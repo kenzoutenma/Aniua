@@ -1,6 +1,7 @@
 'use client';
 
-import { CustomButton } from '@/components/UI/UIComponents';
+import { Button } from '@/components/UI/UIComponents';
+import Link from 'next/link';
 
 export default function GlobalError() {
   const reportLink = process.env.NEXT_PUBLIC_REPORT_LINK || '/';
@@ -21,13 +22,13 @@ export default function GlobalError() {
       <h1>Oh, something went wrong with server. Error code is 500 (if you know you know)</h1>
       <h2>
         Please, leave this error code{' '}
-        <CustomButton variant="link" url={reportLink}>
+        <Button variant="link" as={Link} href={reportLink}>
           here.
-        </CustomButton>
+        </Button>
       </h2>
-      <CustomButton variant="link" url={reportLink}>
+      <Button variant="link" as={Link} href={reportLink}>
         <img src="/report.gif" style={{ margin: '0 auto' }}></img>
-      </CustomButton>
+      </Button>
     </div>
   );
 }

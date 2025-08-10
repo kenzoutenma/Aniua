@@ -1,8 +1,8 @@
-import { Metadata } from 'next';
-import { CustomButton, Section } from '@/components/UI/UIComponents';
-import AnimeList from './Components/AnimeList';
 import Pagination from '@/components/Pagination/Pagination';
+import { Button, Section } from '@/components/UI/UIComponents';
 import useAnimeList from '@/hooks/useAnimeList';
+import { Metadata } from 'next';
+import AnimeList from './Components/AnimeList';
 import Filters from './Components/Filters';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -26,13 +26,14 @@ const listPage = async ({ searchParams }: ListPageProps) => {
         <AnimeList anime={AnimeData.titles} />
         <Pagination isNextDisabled={!AnimeData.isNextPage} isPrevDisabled={!AnimeData.isPrevPage}>
           {Array.from({ length: AnimeData.pageCount }).map((_, i) => (
-            <CustomButton
-              url={AnimeData.createPageUrl(i + 1)}
+            <Button
+              as="a"
+              href={AnimeData.createPageUrl(i + 1)}
               key={i}
               variant={AnimeData.page == i + 1 ? 'primary' : 'secondary'}
             >
               {i + 1}
-            </CustomButton>
+            </Button>
           ))}
         </Pagination>
       </Section.Col>

@@ -1,18 +1,18 @@
 'use client';
 import styles from './Header.module.css';
 
-import { useState } from 'react';
-import { CustomButton, Dropdown, ProfilePicture } from '../UI/UIComponents';
 import clsx from 'clsx';
+import { useState } from 'react';
+import { Button, Dropdown, ProfilePicture } from '../UI/UIComponents';
 
+import { getAccount, paths, pathsProfile } from '@/constants/headersconst';
+import { useScrollDirection } from '@/hooks/useScrollDirection';
+import useUserProfile from '@/hooks/useUserProfile';
+import { useSettingsStore } from '@/stores/settings-store';
 import { getTranslatedText } from '@/utils';
 import { MenuIcon } from '@/utils/icons';
-import useUserProfile from '@/hooks/useUserProfile';
-import { getAccount, paths, pathsProfile } from '@/constants/headersconst';
-import { SearchBar } from '../IndexComponent';
 import React from 'react';
-import { useScrollDirection } from '@/hooks/useScrollDirection';
-import { useSettingsStore } from '@/stores/settings-store';
+import { SearchBar } from '../IndexComponent';
 
 export default function Header() {
   const [isMenuOpened, setMenuOpened] = useState(false);
@@ -34,9 +34,9 @@ export default function Header() {
 
   const objectToButtons = (obj: Record<string, string>, namespace = 'header') => {
     return Object.entries(obj).map(([key, action]) => (
-      <CustomButton variant="link" url={action} key={key} hideMenu={menuHide}>
+      <Button as="a" variant="link" href={action} key={key} onClick={menuHide}>
         {getTranslatedText(`${namespace}.${key}`)}
-      </CustomButton>
+      </Button>
     ));
   };
 
@@ -54,12 +54,12 @@ export default function Header() {
             menuHandler();
           }}
         />
-        <CustomButton variant="link" className="font-semibold" url={paths.home}>
+        <Button variant="link" className="font-semibold" url={paths.home}>
           ANIUA
-        </CustomButton>
-        <CustomButton variant="link" url={paths.list}>
+        </Button>
+        <Button variant="link" url={paths.list}>
           {getTranslatedText(`paths.list`)}
-        </CustomButton>
+        </Button>
         <SearchBar handle={menuHide} />
         <div className="hidden md:flex ml-auto flex gap-[20px] items-center flex-row justify-center">
           <AccountBlock userStoredData={userStoredData} />
@@ -97,9 +97,9 @@ const ProfileBlock = React.memo(({ userStoredData }: { userStoredData: UserProfi
     </Dropdown> */}
     <Dropdown customElement={<ProfilePicture avatar={userStoredData?.avatar} />} position="right">
       {Object.entries(pathsProfile).map((path, index) => (
-        <CustomButton key={index} url={path[1]}>
+        <Button key={index} url={path[1]}>
           {getTranslatedText(`paths.${path[0]}`)}
-        </CustomButton>
+        </Button>
       ))}
     </Dropdown>
   </>

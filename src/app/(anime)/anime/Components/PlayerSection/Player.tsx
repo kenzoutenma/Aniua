@@ -1,9 +1,9 @@
 'use client';
 
 import Pagination from '@/components/Pagination/Pagination';
-import styles from './Player.module.css';
-import { CustomButton, Dropdown, Typography } from '@/components/UI/UIComponents';
+import { Button, Dropdown, Typography } from '@/components/UI/UIComponents';
 import { usePlayerSocket } from '@/hooks/usePlayerSocket';
+import styles from './Player.module.css';
 
 import { handleEpisode } from '@/utils';
 import clsx from 'clsx';
@@ -76,7 +76,7 @@ const Player = ({
               chooseStudio={playerState.chooseStudio}
               handleStudio={handleStudio}
             />
-            {startW2G && <CustomButton onClick={startW2G}>W2G</CustomButton>}
+            {startW2G && <Button onClick={startW2G}>W2G</Button>}
           </div>
           <iframe
             ref={frameRef}
@@ -143,9 +143,9 @@ const StudioDropdown = ({
   return (
     <Dropdown currentState={studiosList[chooseStudio]}>
       {studiosList.map((studio, index) => (
-        <CustomButton key={index} onClick={() => handleStudio(index)}>
+        <Button key={index} onClick={() => handleStudio(index)}>
           {studio}
-        </CustomButton>
+        </Button>
       ))}
     </Dropdown>
   );
@@ -169,7 +169,7 @@ const EpisodeList = ({
         const isCurrent = element.id === playerState.episodeID;
         const variant = isCurrent ? 'primary' : element.is_filler ? 'outline' : 'secondary';
         return (
-          <CustomButton
+          <Button
             key={index}
             variant={variant}
             onClick={() =>
@@ -183,7 +183,7 @@ const EpisodeList = ({
             }
           >
             {element.episode_number}
-          </CustomButton>
+          </Button>
         );
       })}
     </Pagination>

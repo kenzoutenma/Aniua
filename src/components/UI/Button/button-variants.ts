@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import styles from './button.module.css';
+import styles from './Button.module.css';
 
 export const button_variants = {
   button: clsx(styles.ghost, styles.button),

@@ -1,12 +1,13 @@
 'use client';
 
-import { CustomButton, Section } from '@/components/UI/UIComponents';
+import { Button, Section } from '@/components/UI/UIComponents';
 import settingsConfig, { setting } from '@/constants/settings-constant';
 import { useSettingsStore } from '@/stores/settings-store';
 
+import { getTranslatedText } from '@/utils';
 import { memo, useCallback, useMemo, useState } from 'react';
 import SettingField from './components/SettingField';
-import { getTranslatedText } from '@/utils';
+import Link from 'next/link';
 
 export default function settings() {
   const setSetting = useSettingsStore((s) => s.setSetting);
@@ -61,9 +62,9 @@ export default function settings() {
       <Section.Col widthState="1/4">
         Settings
         {Object.entries(settingsConfig).map(([section]) => (
-          <CustomButton variant="link" key={section} url={`#settings-${section}`}>
+          <Button variant="link" key={section} as={Link} href={`#settings-${section}`}>
             {section}
-          </CustomButton>
+          </Button>
         ))}
       </Section.Col>
       <Section.Col widthState="3/4">
@@ -79,9 +80,9 @@ export default function settings() {
                 settingsData={settingsData}
                 handleChange={handleChange}
               />
-              <CustomButton variant="primary" onClick={() => handleSectionSubmit(section, options)}>
+              <Button variant="primary" onClick={() => handleSectionSubmit(section, options)}>
                 {getTranslatedText('settings.save')}
-              </CustomButton>
+              </Button>
             </div>
           );
         })}

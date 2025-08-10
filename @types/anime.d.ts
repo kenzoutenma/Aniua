@@ -46,6 +46,7 @@ interface AnimeDataInterface {
   url: string;
   create_at: Date;
   update_at: Date;
+  trailer: string;
   is_ongoing: boolean;
   age: string;
   score: number;

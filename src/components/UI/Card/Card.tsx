@@ -1,8 +1,9 @@
 'use client';
 
-import { CustomButton, TypographyType } from '../UIComponents';
-import styles from './Card.module.css';
 import Image from 'next/image';
+import { Button, TypographyType } from '../UIComponents';
+import styles from './Card.module.css';
+import Link from 'next/link';
 
 interface cardProps {
   image: string | '/next.svg';
@@ -33,7 +34,7 @@ const genres = (year: number, genres: AnimeGenres[] | []) => {
 
 const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', additional }) => {
   return variant == 'default' ? (
-    <CustomButton url={`/anime/${slug}`} classString={styles.cardcontainer}>
+    <Button as={Link} href={`/anime/${slug}`} className={styles.cardcontainer}>
       <Image
         src={image}
         alt={title}
@@ -44,9 +45,9 @@ const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', ad
         quality={50}
       />
       <p className={styles.cardText}>{title}</p>
-    </CustomButton>
+    </Button>
   ) : (
-    <CustomButton url={`/anime/${slug}`} classString={styles.cardHorizontal}>
+    <Button as={Link} href={`/anime/${slug}`} className={styles.cardHorizontal}>
       <div
         className={styles.cardImageHorizontal}
         style={{ backgroundImage: `url(${image})` }}
@@ -60,7 +61,7 @@ const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', ad
           {genres(additional?.year || 0, additional?.genres || [])}
         </div>
       </div>
-    </CustomButton>
+    </Button>
   );
 };
 

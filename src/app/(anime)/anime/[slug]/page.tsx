@@ -1,9 +1,7 @@
-import Banner from '@/components/Banner/FullScreenBanner';
-import InfoBlock from '../Components/AnimeDataSection/InfoBlock';
-import { Metadata } from 'next';
 import FetchServiceInstance from '@/app/api';
-import PlayerProvider from '../Components/PlayerSection/PlayerProvider';
+import HeroBanner from '@/components/hero/hero';
 import { getTranslatedText } from '@/utils';
+import { Metadata } from 'next';
 
 export async function generateMetadata({
   params,
@@ -24,26 +22,17 @@ export async function generateMetadata({
 
 export default async function AnimePage({ params }: { params: { slug: string } }) {
   const { slug } = await params;
+
   const data = (await FetchServiceInstance.fetchHelper(`api/anime/${slug}`, {
     to: 'self',
     cache: 'no-store',
   })) as AnimeDataInterface;
-  const playerID = 'player-section';
+
+  // const playerID = 'player-section';
 
   return (
     <>
-      <Banner
-        bannerImage={data.poster}
-        bannerChar={data.background_image_url}
-        bannerTitle={data.title}
-        bannerJapaneese={data.title_jp}
-        bannerDesc={data.description}
-        bannerGenres={data.genres}
-        bannerYear={data.year}
-        playerID={playerID}
-      />
-      <InfoBlock infoData={data} playerID={playerID} />
-      <PlayerProvider slug={slug} playerID={playerID} />
+      <HeroBanner data={data} />
     </>
   );
 }

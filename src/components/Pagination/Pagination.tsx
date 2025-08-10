@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef } from 'react';
-import { CustomButton } from '../UI/UIComponents';
+import { Button } from '../UI/UIComponents';
 
 interface PagiProps {
   children: React.ReactNode;
@@ -30,23 +30,23 @@ function Pagination({
 
   return (
     <nav className="flex flex-row w-full items-center justify-center gap-2 px-2">
-      <CustomButton
+      <Button
         variant="outline"
         onClick={moveLeftFunc || handleScrollLeft}
         disabled={isPrevDisabled}
       >
         ←
-      </CustomButton>
+      </Button>
       <div ref={scrollRef} className="max-w-full w-fit py-2 overflow-scroll flex flex-row gap-2">
         {children}
       </div>
-      <CustomButton
+      <Button
         variant="outline"
         onClick={moveRightFunc || handleScrollRight}
         disabled={isNextDisabled}
       >
         →
-      </CustomButton>
+      </Button>
     </nav>
   );
 }

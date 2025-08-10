@@ -1,10 +1,10 @@
 'use client';
 
+import { ArrowDownIcon } from '@/utils/icons';
+import clsx from 'clsx';
 import React, { useState } from 'react';
 import styles from './Collapsible.module.css';
-import clsx from 'clsx';
-import { CustomButton } from '../UIComponents';
-import { ArrowDownIcon } from '@/utils/icons';
+import { Button } from '../UIComponents';
 
 function Collapsible({
   label,
@@ -25,12 +25,12 @@ function Collapsible({
       aria-expanded={visible}
       aria-controls="dropdown-options"
     >
-      <CustomButton onClick={handleVisible} style={{ justifyContent: 'space-between' }}>
+      <Button onClick={handleVisible} style={{ justifyContent: 'space-between' }}>
         {label}
         <ArrowDownIcon
           style={{ transform: `rotate(${visible ? `0deg` : `180deg`})`, transition: 'all .1s' }}
         />
-      </CustomButton>
+      </Button>
       <div
         className={clsx(
           'flex flex-wrap gap-2 transition-all overflow-clip justify-start w-full px-1',

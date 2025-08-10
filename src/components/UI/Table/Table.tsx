@@ -1,7 +1,8 @@
-import React from 'react';
-import { CustomButton, Typography } from '../UIComponents';
 import { paths } from '@/constants/headersconst';
+import React from 'react';
+import { Button, Typography } from '../UIComponents';
 import styles from './Table.module.css';
+import Link from 'next/link';
 
 interface TableProps {
   title?: string;
@@ -32,19 +33,20 @@ const Row = ({ title, data, url }: RowProps) => {
         {typeof data !== 'string' ? (
           Object.entries(data).map((element, key) => {
             return (
-              <CustomButton
+              <Button
                 variant="link"
                 key={key}
-                url={`${paths.list}/?genres=${element[1].slug}`}
+                as={Link}
+                href={`${paths.list}/?genres=${element[1].slug}`}
               >
                 {element[1].title}
-              </CustomButton>
+              </Button>
             );
           })
         ) : (
-          <CustomButton variant="link" url={url}>
+          <Button as={Link} variant="link" href={url || '#'}>
             {data}
-          </CustomButton>
+          </Button>
         )}
       </div>
     </div>

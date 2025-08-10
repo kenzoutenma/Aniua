@@ -4,21 +4,22 @@ import { useState } from 'react';
 
 import descriptionCutter from '@/utils/descriptionCutter';
 
-import styles from './InfoBlock.module.css';
+import FetchServiceInstance from '@/app/api';
 import {
+  Button,
   Card,
-  CustomButton,
   Dropdown,
   Section,
   Slider,
   Table,
   Typography,
 } from '@/components/UI/UIComponents';
-import { getTranslatedText } from '@/utils';
 import { paths } from '@/constants/headersconst';
 import { useUserStore } from '@/stores/user-profile-store';
-import FetchServiceInstance from '@/app/api';
+import { getTranslatedText } from '@/utils';
 import toast from 'react-hot-toast';
+import styles from './InfoBlock.module.css';
+import Link from 'next/link';
 
 interface Props {
   infoData: AnimeDataInterface;
@@ -29,15 +30,15 @@ const genres = (year: number, genres: AnimeGenres[]) => {
   if (!genres) return null;
   return (
     <div className={styles.genresRow}>
-      <CustomButton variant="link" key={year} url={`${paths.list}/?year=${year}`}>
+      <Button variant="link" key={year} as={Link} href={`${paths.list}/?year=${year}`}>
         {year}
-      </CustomButton>
+      </Button>
       <p>•</p>
       {Object.entries(genres).length > 0 ? (
         genres.map((el) => (
-          <CustomButton variant="link" key={el.id} url={`${paths.list}/?genre=${el.slug}`}>
+          <Button variant="link" key={el.id} as={Link} href={`${paths.list}/?genre=${el.slug}`}>
             {el.title}
-          </CustomButton>
+          </Button>
         ))
       ) : (
         <p>unknown genres (?)</p>
@@ -89,16 +90,16 @@ const InfoBlock: React.FC<Props> = ({ infoData, playerID }) => {
           height={350}
           width={250}
         />
-        <CustomButton variant="primary" url={`#${playerID}`}>
+        <Button variant="primary" as={Link} href={`#${playerID}`}>
           {getTranslatedText('info.Watch')}
-        </CustomButton>
+        </Button>
         {userStoredData.anime_lists && (
           <Dropdown currentState={getTranslatedText('info.addToList')} position="center">
             {userStoredData.anime_lists.map((e) => {
               return (
-                <CustomButton onClick={() => addToList({ list: e.id || '' })} key={e.id}>
+                <Button onClick={() => addToList({ list: e.id || '' })} key={e.id}>
                   {e.title}
-                </CustomButton>
+                </Button>
               );
             })}
           </Dropdown>
@@ -114,11 +115,11 @@ const InfoBlock: React.FC<Props> = ({ infoData, playerID }) => {
           <Typography variant="h2">{getTranslatedText('info.Description')}</Typography>
           <Typography variant="p" id="desc">
             {displayedText}
-            <CustomButton variant="link" onClick={descHandler} id="descriptionButton">
+            <Button variant="link" onClick={descHandler} id="descriptionButton">
               {!isFullTextDisplayed
                 ? ` ...${getTranslatedText('info.more')}`
                 : ` ...${getTranslatedText('info.less')}`}
-            </CustomButton>
+            </Button>
           </Typography>
         </Section.Row>
         {infoData.characters?.length > 1 ? (

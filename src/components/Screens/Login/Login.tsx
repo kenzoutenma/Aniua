@@ -1,14 +1,13 @@
 'use client';
 
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { CustomButton } from '@/components/UI/UIComponents';
-import { TextField } from '@/components/UI/UIComponents';
-import { useRouter } from 'next/navigation';
-import { getTranslatedText } from '@/utils';
-import toast from 'react-hot-toast';
 import FetchServiceInstance from '@/app/api/index';
-import useUserProfile from '@/hooks/useUserProfile';
+import { Button, TextField } from '@/components/UI/UIComponents';
 import { userAPIConstant } from '@/constants/api-endpoints.constant';
+import useUserProfile from '@/hooks/useUserProfile';
+import { getTranslatedText } from '@/utils';
+import { useRouter } from 'next/navigation';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
 function Login() {
   const router = useRouter();
@@ -94,9 +93,9 @@ function Login() {
           />
         )}
       />
-      <CustomButton type="submit" variant="primary" disabled={!isValid}>
+      <Button type="submit" variant="primary" disabled={!isValid}>
         {getTranslatedText('login.SubmitLogin') || 'Submit'}
-      </CustomButton>
+      </Button>
     </form>
   );
 }

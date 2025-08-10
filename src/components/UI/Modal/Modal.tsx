@@ -1,9 +1,9 @@
 'use client';
 
+import { sleep } from '@/utils';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef } from 'react';
-import { CustomButton } from '../UIComponents';
-import { sleep } from '@/utils';
+import { Button } from '../UIComponents';
 
 function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -26,10 +26,10 @@ function Modal({ children }: { children: React.ReactNode }) {
       data-dialog-backdrop="modal"
       data-dialog-backdrop-close="true"
     >
-      <CustomButton variant="outline" classString="absolute right-0 top-0 m-6" onClick={closeModal}>
+      <Button variant="outline" className="absolute right-0 top-0 m-6" onClick={closeModal}>
         <span>Close</span>
         <kbd>ESC</kbd>
-      </CustomButton>
+      </Button>
       <div
         data-dialog="modal"
         className="gap-5 flex flex-col w-96"

@@ -1,13 +1,6 @@
 'use client';
 
-import {
-  Card,
-  CardStyles,
-  CustomButton,
-  Popover,
-  Section,
-  Tooltip,
-} from '@/components/UI/UIComponents';
+import { Card, CardStyles, Button, Popover, Section, Tooltip } from '@/components/UI/UIComponents';
 import React from 'react';
 
 interface AnimeListProps {
@@ -48,16 +41,16 @@ const PopoverFilled = ({ animeData }: { animeData: AnimeDataInterface }) => {
     <Popover>
       <Popover.Row variant="title">
         <h2>{animeData.title}</h2>
-        <CustomButton variant="secondary">{animeData.mal_score} ⭐️</CustomButton>
+        <Button variant="secondary">{animeData.mal_score} ⭐️</Button>
       </Popover.Row>
       <Popover.Row variant="row">
         <span>{animeData.year}</span>
         <span>•</span>
         {Object.entries(animeData.genres).length > 0 ? (
           animeData.genres.map((el) => (
-            <CustomButton variant="secondary" key={el.id}>
+            <Button variant="secondary" key={el.id}>
               {el.title}
-            </CustomButton>
+            </Button>
           ))
         ) : (
           <p>unknown genres (?)</p>
