@@ -1,62 +1,31 @@
-'use client';
-import Link from 'next/link';
-import clsx from 'clsx';
-import styles from './Button.module.css';
-import { TypographyType } from '@/components/UI/UIComponents';
 import React from 'react';
-import { useRouter } from '@bprogress/next/app';
+import { button_variants } from './button-variants';
 
-const variants = {
-  button: clsx(styles.ghost, styles.button),
-  outline: clsx(styles.outline, styles.button),
-  secondary: clsx(styles.secondary, styles.button),
-  link: clsx(styles.link, `border-animate`),
-  primary: clsx(styles.primary, styles.button),
-} as const;
+export const ButtonDefaultAsType = 'button' as const;
+export type ButtonDefaultAsType = typeof ButtonDefaultAsType;
 
-type VariantType = keyof typeof variants;
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export type ButtonOwnProps<E extends React.ElementType> = {
   children: React.ReactNode;
-  url?: string;
-  classString?: string;
-  hideMenu?: () => void;
-  variant?: VariantType;
-}
+  as?: E;
+  variant?: keyof typeof button_variants;
+};
 
-const CustomButton: React.FC<ButtonProps> = React.memo(
-  ({ url, hideMenu = null, children, classString, variant = 'button', ...props }) => {
-    const router = useRouter();
+export type ButtonProps<E extends React.ElementType> = ButtonOwnProps<E> &
+  Omit<React.ComponentProps<E>, keyof ButtonOwnProps<E>>;
 
-    const doLink = async (url: string, event: React.MouseEvent) => {
-      event.preventDefault();
-      if (hideMenu) {
-        hideMenu();
-      }
-      router.push(url);
-    };
+const Button = <E extends React.ElementType = ButtonDefaultAsType>({
+  children,
+  as,
+  variant,
+  ...otherProps
+}: ButtonProps<E>) => {
+  const Tag = as || ButtonDefaultAsType;
+  const picked_variant = variant ? button_variants[variant] : '';
+  return (
+    <Tag className={picked_variant} {...otherProps}>
+      {children}
+    </Tag>
+  );
+};
 
-    return !url ? (
-      <button
-        className={clsx(variants[variant], classString, `${TypographyType['button'].className}`)}
-        {...props}
-      >
-        {children}
-      </button>
-    ) : (
-      <Link
-        href={url}
-        className={clsx(
-          !classString ? `${variants[variant]} ${TypographyType['button'].className}` : classString,
-        )}
-        onClick={(event) => doLink(url, event)}
-        scroll={false}
-      >
-        {children}
-      </Link>
-    );
-  },
-);
-CustomButton.displayName = 'CustomButton';
-
-export default CustomButton;
+export default Button;

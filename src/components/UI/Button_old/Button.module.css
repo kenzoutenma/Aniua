@@ -107,38 +107,14 @@
 }
 
 /* Link button variant */
-
 .link {
   background-color: transparent;
   width: fit-content;
   position: relative;
-  color: var(--front-400);
-  cursor: pointer;
+  color: var(--textSemiColor);
 }
 
 .link:not(:disabled):hover,
 .link:not(:disabled):focus {
   color: var(--textColor);
-}
-
-.link:not(:disabled)::after {
-  content: ' ';
-  display: block;
-  height: 1px;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  transform: scaleX(0);
-  transition:
-    0.3s ease 0s,
-    left 0.3s ease 0s;
-  transform-origin: bottom right;
-  background-color: var(--frontColor);
-}
-
-.link:not(:disabled):hover::after,
-.link:not(:disabled):focus::after {
-  transform: scaleX(1);
-  transform-origin: left;
 }

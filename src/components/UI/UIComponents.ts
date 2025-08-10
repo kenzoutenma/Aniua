@@ -1,7 +1,8 @@
 export { default as Dropdown } from '@/components/UI/DropDown/DropDown';
 
-export { default as CustomButton } from '@/components/UI/Button/Button';
-export { default as CustomButtonStyles } from '@/components/UI/Button/Button.module.css';
+export { default as CustomButton } from '@/components/UI/Button_old/Button';
+export { default as Button } from '@/components/UI/button/button';
+export { default as CustomButtonStyles } from '@/components/UI/Button_old/Button.module.css';
 export { default as Range } from './Range/Range';
 
 export { default as Checkbox } from '@/components/UI/Checkbox/Checkbox';
