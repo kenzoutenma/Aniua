@@ -1,2 +1,2 @@
-#!/bin/sh
+# .husky/pre-commit
 npx lint-staged
