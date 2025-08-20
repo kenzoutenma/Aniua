@@ -13,6 +13,7 @@ import { getTranslatedText } from '@/utils';
 import { MenuIcon } from '@/utils/icons';
 import React from 'react';
 import { SearchBar } from '../IndexComponent';
+import Link from 'next/link';
 
 export default function Header() {
   const [isMenuOpened, setMenuOpened] = useState(false);
@@ -34,7 +35,7 @@ export default function Header() {
 
   const objectToButtons = (obj: Record<string, string>, namespace = 'header') => {
     return Object.entries(obj).map(([key, action]) => (
-      <Button as="a" variant="link" href={action} key={key} onClick={menuHide}>
+      <Button as={Link} variant="link" href={action} key={key} onClick={menuHide}>
         {getTranslatedText(`${namespace}.${key}`)}
       </Button>
     ));
@@ -54,10 +55,10 @@ export default function Header() {
             menuHandler();
           }}
         />
-        <Button variant="link" className="font-semibold" url={paths.home}>
+        <Button variant="link" className="font-semibold" as={Link} href={paths.home}>
           ANIUA
         </Button>
-        <Button variant="link" url={paths.list}>
+        <Button variant="link" as={Link} href={paths.list}>
           {getTranslatedText(`paths.list`)}
         </Button>
         <SearchBar handle={menuHide} />
@@ -97,7 +98,7 @@ const ProfileBlock = React.memo(({ userStoredData }: { userStoredData: UserProfi
     </Dropdown> */}
     <Dropdown customElement={<ProfilePicture avatar={userStoredData?.avatar} />} position="right">
       {Object.entries(pathsProfile).map((path, index) => (
-        <Button key={index} url={path[1]}>
+        <Button key={index} as={Link} href={path[1]}>
           {getTranslatedText(`paths.${path[0]}`)}
         </Button>
       ))}
