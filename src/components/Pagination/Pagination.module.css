@@ -1,0 +1,13 @@
+.scrollableContent {
+    display: flex;
+    gap: 5px;
+    max-width: 100%;
+    overflow-x: scroll;
+}
+
+.scrollable {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
