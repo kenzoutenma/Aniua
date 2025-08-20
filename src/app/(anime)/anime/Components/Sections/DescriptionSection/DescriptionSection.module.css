@@ -1,0 +1,25 @@
+.descSection {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.shortInfo {
+  display: flex;
+  gap: 5px;
+}
+
+.descLeftColumn {
+  width: 100%;
+}
+
+.descRightColumn {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .descSection {
+    flex-direction: column;
+  }
+}
