@@ -1,0 +1,66 @@
+import { paths } from '@/constants/headersconst';
+import clsx from 'clsx';
+import Image from 'next/image';
+import Button from '../UI/Button/Button';
+import { CreepingText } from '../UI/UIComponents';
+import styles from './hero.module.css';
+
+function HeroBanner({ data }: { data: AnimeDataInterface }) {
+  const Filler = () =>
+    data.trailer ? (
+      <Trailer />
+    ) : (
+      <Poster src={data.poster || data.background_image_url || 'pfp.png'} />
+    );
+
+  return (
+    <div className={styles.heroWrap}>
+      <CreepingText text={data.title_jp || data.title} speed={20} />
+      <div className={styles.heroInfo}>
+        <h1>{data.title}</h1>
+        <div>
+          <span> {data.year}</span>
+          {data.genres.length > 0 ? data.genres.map((e) => <GenreButton key={e.slug} e={e} />) : ''}
+        </div>
+        <p>{data.description.split(' ').slice(0, 40).join(' ')}...</p>
+      </div>
+      <Filler />
+    </div>
+  );
+}
+
+function GenreButton({ e }: { e: AnimeGenres }) {
+  return (
+    <Button as="a" variant="link" target="_blank" href={paths['list'] + '?genre=' + e.id}>
+      {e.title}
+    </Button>
+  );
+}
+
+function Trailer({ src }: { src?: string }) {
+  return (
+    <div className={styles.heroTrailerContainer}>
+      <iframe
+        className={styles.heroTrailer}
+        width="560"
+        height="315"
+        src={src}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; web-share"
+      ></iframe>
+    </div>
+  );
+}
+
+function Poster({ src }: { src: string }) {
+  return (
+    <Image
+      src={src}
+      className={clsx(styles.heroPoster)}
+      alt="Anime Poster"
+      width={250}
+      height={350}
+    />
+  );
+}
+
+export default HeroBanner;
