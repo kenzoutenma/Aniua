@@ -1,4 +1,3 @@
-import { ArrowDownIcon } from '@/utils/icons';
 import React, { HTMLAttributes } from 'react';
 import styles from './dropdownButton.module.css';
 
@@ -19,7 +18,6 @@ function DropDownButton({ state, handle }: dropdown_button) {
         {typeof state == 'string' ? (
           <>
             {state}
-            <ArrowDownIcon />
           </>
         ) : (
           state
