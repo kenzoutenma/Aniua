@@ -1,19 +1,17 @@
 import { paths } from '@/constants/headersconst';
-import React from 'react';
-import { Button, Typography } from '../UIComponents';
-import styles from './Table.module.css';
 import Link from 'next/link';
+import React from 'react';
+import { Button } from '../UIComponents';
+import styles from './Table.module.css';
 
 interface TableProps {
-  title?: string;
   children: React.ReactNode;
 }
 
-function Table({ title, children }: TableProps) {
+function Table({ children }: TableProps) {
   return (
     <div className="flex flex-col gap-4">
-      <Typography variant="h2">{title}</Typography>
-      <div className={styles.table}>{children}</div>
+      <table className={styles.table}><tbody>{children}</tbody></table>
     </div>
   );
 }
@@ -27,9 +25,9 @@ interface RowProps {
 const Row = ({ title, data, url }: RowProps) => {
   if (!data) return;
   return (
-    <div className={styles.tableRow}>
-      <span className="">{title}:</span>
-      <div className={styles.tableRowRight}>
+    <tr>
+      <th>{title}:</th>
+      <th>
         {typeof data !== 'string' ? (
           Object.entries(data).map((element, key) => {
             return (
@@ -48,8 +46,8 @@ const Row = ({ title, data, url }: RowProps) => {
             {data}
           </Button>
         )}
-      </div>
-    </div>
+      </th>
+    </tr>
   );
 };
 
