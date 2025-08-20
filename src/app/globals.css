@@ -146,7 +146,7 @@ button {
 }
 
 input::placeholder {
-  color: var(--textSemiColor);
+  color: var(--front-400);
 }
 
 kbd {
@@ -192,4 +192,53 @@ kbd {
     background-color: var(--front-800);
     opacity: 0.1;
   }
+}
+
+/* TEXT */
+
+h1 {
+  font-size: 2.25rem;
+  scroll-margin-top: 5rem;
+  font-weight: 800;
+  letter-spacing: -0.01562em;
+  color: var(--textCol);
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+h2 {
+  font-size: 1.875rem;
+  scroll-margin-top: 5rem;
+  font-weight: 600;
+  letter-spacing: -0.01562em;
+  color: var(--textCol);
+}
+
+h3 {
+  scroll-margin-top: 5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01562em;
+  color: var(--front-400);
+}
+
+h4 {
+  scroll-margin-top: 5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01562em;
+  color: var(--front-400);
+}
+
+p,
+button,
+a,
+span {
+  font-size: 1rem;
+  line-height: 1.75rem;
+  color: var(--front-400);
 }
