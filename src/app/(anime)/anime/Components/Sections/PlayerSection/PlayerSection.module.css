@@ -1,7 +1,6 @@
 .playerSection {
   display: flex;
   justify-content: center;
-  aspect-ratio: 21 / 9;
   gap: 15px;
   transition: all 0.1s ease-in;
 }
@@ -18,6 +17,7 @@
 
 .playerSectionColumn:last-child {
   width: 70%;
+  aspect-ratio: 21 / 9;
 }
 
 @media (max-width: 430px) {
