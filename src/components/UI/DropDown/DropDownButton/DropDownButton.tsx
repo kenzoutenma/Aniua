@@ -1,5 +1,6 @@
 import React, { HTMLAttributes } from 'react';
 import styles from './dropdownButton.module.css';
+import { Button } from '../../UIComponents';
 
 interface dropdown_button extends HTMLAttributes<HTMLDivElement> {
   state: string | React.ReactNode;
@@ -9,7 +10,8 @@ interface dropdown_button extends HTMLAttributes<HTMLDivElement> {
 function DropDownButton({ state, handle }: dropdown_button) {
   return (
     <>
-      <button
+      <Button
+        variant='outline'
         role="button"
         aria-haspopup="listbox"
         className={styles.dropdownButton}
@@ -22,7 +24,7 @@ function DropDownButton({ state, handle }: dropdown_button) {
         ) : (
           state
         )}
-      </button>
+      </Button>
     </>
   );
 }
