@@ -1,5 +1,6 @@
 .playerSection {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 7fr;
   justify-content: center;
   gap: 15px;
   transition: all 0.1s ease-in;
@@ -11,17 +12,13 @@
   flex-direction: column;
 }
 
-.playerSectionColumn:first-child {
-  width: 30%;
-}
-
 .playerSectionColumn:last-child {
-  width: 70%;
-  aspect-ratio: 21 / 9;
+  min-width: 0;
 }
 
 @media (max-width: 430px) {
   .playerSection {
+    display: flex;
     flex-direction: column;
     align-items: center;
   }

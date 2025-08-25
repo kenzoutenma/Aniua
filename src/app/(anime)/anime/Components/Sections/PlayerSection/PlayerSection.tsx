@@ -5,7 +5,7 @@ import styles from './PlayerSection.module.css';
 
 function PlayerSection({ data }: { data: AnimeDataInterface }) {
   return (
-    <div className={styles.playerSection}>
+    <section className={styles.playerSection}>
       <div className={styles.playerSectionColumn}>
         <Image
           src={data.poster}
@@ -19,7 +19,7 @@ function PlayerSection({ data }: { data: AnimeDataInterface }) {
       <div className={styles.playerSectionColumn}>
         <Player slug={data.slug} />
       </div>
-    </div>
+    </section>
   );
 }
 
