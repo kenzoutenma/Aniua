@@ -1,9 +1,16 @@
 .tooltip-wrapper {
   display: flex;
   flex-shrink: 0;
-  width: fit-content;
   height: 100%;
   position: relative;
+  width: max-content;
+  max-width: 376px;
+}
+
+.tooltip-wrapper:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .tooltip {
@@ -11,21 +18,12 @@
   position: absolute;
   z-index: 2;
   transition: all 0.5s;
-}
-
-.tooltip-right {
-  top: 0;
-  left: calc(100% + 15px);
-}
-
-.hidden {
   opacity: 0;
   visibility: hidden;
   transform: translateX(-15px);
 }
 
-.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+.tooltip-right {
+  top: 0;
+  left: calc(100% + 15px);
 }

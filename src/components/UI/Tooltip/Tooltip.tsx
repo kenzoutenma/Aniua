@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
-import styles from './Tooltip.module.css';
 import clsx from 'clsx';
+import React from 'react';
+import styles from './Tooltip.module.css';
 
 interface TooltipInterface extends React.HTMLAttributes<HTMLDivElement> {
   tooltipContent: React.ReactNode;
@@ -11,13 +11,10 @@ interface TooltipInterface extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Tooltip = ({ tooltipContent, children, position = 'right', ...props }: TooltipInterface) => {
-  const [isHovered, setIsHovered] = useState(false);
   return (
     <div
       {...props}
       className={styles['tooltip-wrapper']}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {children}
 
@@ -25,10 +22,9 @@ const Tooltip = ({ tooltipContent, children, position = 'right', ...props }: Too
         className={clsx(
           styles.tooltip,
           styles[`tooltip-${position}`],
-          isHovered ? styles.visible : styles.hidden,
         )}
       >
-        <div className={styles['tooltip-content']}>{tooltipContent}</div>
+        {tooltipContent}
       </div>
     </div>
   );
