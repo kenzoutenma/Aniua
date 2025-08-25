@@ -1,8 +1,12 @@
 .descSection {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 3fr 7fr;
   flex-direction: row;
   gap: 15px;
+}
+
+.descSection div:last-child {
+  min-width: 0;
 }
 
 .shortInfo {
@@ -10,16 +14,9 @@
   gap: 5px;
 }
 
-.descLeftColumn {
-  width: 100%;
-}
-
-.descRightColumn {
-  width: 100%;
-}
-
 @media (max-width: 1024px) {
   .descSection {
+    display: flex;
     flex-direction: column;
   }
 }
