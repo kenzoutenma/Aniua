@@ -40,7 +40,7 @@ const PopoverFilled = ({ animeData }: { animeData: AnimeDataInterface }) => {
   return (
     <Popover>
       <Popover.Row variant="title">
-        <h2>{animeData.title}</h2>
+        <h4>{animeData.title}</h4>
         <Button variant="secondary">{animeData.mal_score} ⭐️</Button>
       </Popover.Row>
       <Popover.Row variant="row">
@@ -56,7 +56,7 @@ const PopoverFilled = ({ animeData }: { animeData: AnimeDataInterface }) => {
           <p>unknown genres (?)</p>
         )}
       </Popover.Row>
-      <p>{animeData.description.slice(0, 100)}...</p>
+      <p>{animeData.description.slice(0, 75)}...</p>
     </Popover>
   );
 };
