@@ -2,8 +2,8 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: Dockerfile.multi
-      target: runner-next
+      dockerfile: Dockerfile
+      target: next-app-runner
       args:
         GITHUB_TOKEN: ${GITHUB_TOKEN}
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
