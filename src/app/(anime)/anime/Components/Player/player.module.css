@@ -10,7 +10,7 @@
   height: 100%;
 }
 
-.frameWrapper div[aria-controls="dropdown-options"]:first-child {
+.frameWrapper select {
   position: absolute;
   margin: 10px;
   width: fit-content;

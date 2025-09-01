@@ -1,10 +1,11 @@
 'use client';
 
+import Pagination from '@/components/Pagination/Pagination';
+import Select from '@/components/UI/Select/select';
+import { Button } from '@/components/UI/UIComponents';
 import { useNewPlayer } from '@/hooks/useNewPlayer';
 import { getTranslatedText } from '@/utils';
 import styles from './player.module.css';
-import Pagination from '@/components/Pagination/Pagination';
-import { Button, Dropdown } from '@/components/UI/UIComponents';
 
 function Player({ slug }: { slug: string }) {
   const { playerState, episodesList, handleEpisode, handleStudio } = useNewPlayer(slug);
@@ -65,13 +66,16 @@ const PlayerFrame = ({
   return (
     <div className={styles.frameWrapper}>
       {studios.length > 1 ? (
-        <Dropdown currentState={studios[studio]}>
-          {studios.map((studio, index) => (
-            <Button key={index} onClick={() => handleStudio(index)} variant='button'>
-              {studio}
-            </Button>
+        <Select
+          value={studio}
+          onChange={(e) => handleStudio(Number(e.target.value))}
+        >
+          {studios.map((studio_name, index) => (
+            <option key={index} value={index}>
+              {studio_name}
+            </option>
           ))}
-        </Dropdown>
+        </Select>
       ) : null}
       <iframe className={styles.frame} allow="fullscreen" src={src} />
     </div>
