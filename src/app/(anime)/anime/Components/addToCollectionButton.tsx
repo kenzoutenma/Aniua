@@ -36,7 +36,7 @@ function AddToCollectionButton({ slug }: { slug: string }) {
       })}
     </Dropdown>
   ) : (
-    <Button as={"button"} onClick={() => toast.error(getTranslatedText('info.notLogginedUser'))}>{getTranslatedText('info.addToList')}</Button>
+    <Button as={"button"} variant='outline' onClick={() => toast.error(getTranslatedText('info.notLogginedUser'))}>{getTranslatedText('info.addToList')}</Button>
   );
 }
 
