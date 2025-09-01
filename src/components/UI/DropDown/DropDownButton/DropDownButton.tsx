@@ -16,13 +16,14 @@ function DropDownButton({ state, handle }: dropdown_button) {
         aria-haspopup="listbox"
         className={styles.dropdownButton}
         onClick={() => handle}
+        style={{ padding: "0" }}
       >
         {typeof state == 'string' ? (
           <>
             {state}
           </>
         ) : (
-          state
+          <>{state}</>
         )}
       </Button>
     </>
