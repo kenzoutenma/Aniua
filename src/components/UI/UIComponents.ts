@@ -18,7 +18,7 @@ export { default as Section } from '@/components/UI/Section/Section';
 
 export {
   default as Typography,
-  variantMap as TypographyType,
+  variantMap as TypographyType
 } from '@/components/UI/Typography/Typography';
 
 export { default as CreepingText } from '@/components/UI/LineTextAnimation/CreepingText';
@@ -32,3 +32,6 @@ export { default as Slider } from '@/components/UI/Slider/Slider';
 
 export { default as Popover } from '@/components/UI/Popover/Popover';
 export { default as Tooltip } from '@/components/UI/Tooltip/Tooltip';
+
+export { default as Select } from "@/components/UI/Select/select";
+
