@@ -12,6 +12,7 @@ function Player({ slug }: { slug: string }) {
 
   const Frame = () => {
     if (!episodesList) return <h2>Loading episodes…</h2>;
+    if (playerState.is_error) return <h2>PlayerNotFound</h2>;
     if (playerState.is_loading) return <h2 className={styles.frame}>Waiting for player…</h2>;
     if (playerState.current_episode_url)
       return (
@@ -29,7 +30,7 @@ function Player({ slug }: { slug: string }) {
     <>
       <Frame />
       <div style={{ width: '100%' }}>
-        {episodesList ? (
+        {episodesList && !playerState.is_error ? (
           <Pagination scrollToActive>
             {episodesList.map((element, index) => {
               const isCurrent = element.id === playerState.current_episode_id;

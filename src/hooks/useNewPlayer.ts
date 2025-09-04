@@ -13,6 +13,7 @@ export interface PlayerV2 {
   current_studio: number;
   studios_list: string[];
   is_loading: boolean;
+  is_error: boolean;
 }
 
 const default_player = (slug: string) => {
@@ -24,6 +25,7 @@ const default_player = (slug: string) => {
     current_studio: 0,
     studios_list: [],
     is_loading: true,
+    is_error: false,
   };
 };
 
@@ -47,7 +49,7 @@ export const useNewPlayer = (slug: string) => {
         to: 'self',
       },
     );
-    setEpisodesList(list.episodes);
+    setEpisodesList(list.episodes || list);
   };
 
   const handleEpisode = async (episodeID: number) => {
@@ -70,7 +72,7 @@ export const useNewPlayer = (slug: string) => {
 
     let episodeUrl: string | null = null;
 
-    console.log(episodeID, playerState.current_studio)
+    console.log(episodeID, playerState.current_studio);
 
     if (isNewEpisodeHasArrayOfPlayers && newEpisode.players[playerState.current_studio]) {
       // check if selected studio exists in current episode
@@ -96,6 +98,10 @@ export const useNewPlayer = (slug: string) => {
   useEffect(() => {
     // select episode (1 if don't watch before)
     if (!episodesList) return;
+    if (episodesList.length < 1) {
+      setPlayerState((prev) => ({ ...prev, is_error: true }));
+      return;
+    }
     if (stored.lastEpisode) {
       setPlayerState((prev) => ({
         ...prev,
@@ -109,10 +115,10 @@ export const useNewPlayer = (slug: string) => {
   }, [episodesList]);
 
   useEffect(() => {
-    if (!episodesList || !playerState.current_episode_id) return
+    if (!episodesList || !playerState.current_episode_id) return;
 
-    handleEpisode(playerState.current_episode_id)
-  }, [playerState.current_studio])
+    handleEpisode(playerState.current_episode_id);
+  }, [playerState.current_studio]);
 
   useEffect(() => {
     // fetch list on page start
