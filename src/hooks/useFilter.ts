@@ -15,9 +15,8 @@ export const useAnimeFilters = () => {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const res = await FetchServiceInstance.fetchHelper('genres', { to: 'out' });
-
-        const genre = res.genres.map((genre: AnimeGenres) => ({
+        const res = await FetchServiceInstance.fetchHelper('api/data/genres', { to: 'self' });
+        const genre = res.map((genre: AnimeGenres) => ({
           id: String(genre.id),
           title: genre.title,
           title_en: genre.title_en,
@@ -31,16 +30,13 @@ export const useAnimeFilters = () => {
             values: genre,
           },
         };
-
         setFilters(updatedConfig);
       } catch (err) {
         console.error('Failed to fetch genres:', err);
       }
     };
-
     fetchGenres();
   }, []);
-
   /* 
     set filter options TO URL 
   */
