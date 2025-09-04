@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
 import FetchServiceInstance from '@/app/api';
 import { animeAPIConstant } from '@/constants/api-endpoints.constant';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest, { params }: { params: { slug: string } }) {
   try {
@@ -32,11 +32,11 @@ export async function GET(req: NextRequest, { params }: { params: { slug: string
     }
 
     const animeBody = await anime.json();
-    const characterBody = await character.json();
+    const characterBody = character.status === "200" && await character.json();
 
     const totalResponse = {
       ...animeBody,
-      characters: characterBody.characters.slice(0, 10),
+      characters: characterBody && characterBody.characters.slice(0, 10),
     };
 
     return NextResponse.json(totalResponse);
