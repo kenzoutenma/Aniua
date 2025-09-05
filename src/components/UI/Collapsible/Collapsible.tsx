@@ -2,9 +2,9 @@
 
 import { ArrowDownIcon } from '@/utils/icons';
 import clsx from 'clsx';
-import React, { useState } from 'react';
-import styles from './Collapsible.module.css';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import { Button } from '../UIComponents';
+import styles from './Collapsible.module.css';
 
 function Collapsible({
   label,
@@ -16,7 +16,30 @@ function Collapsible({
   hidden?: boolean;
 }) {
   const [visible, setVisible] = useState(hidden && true);
-  const handleVisible = () => setVisible((prev) => !prev);
+  const [display, setDisplay] = useState(hidden && true);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (contentRef.current) {
+      const el = contentRef.current;
+      el.style.setProperty('--collapsible-content-height', `${el.scrollHeight}px`);
+    }
+  }, [children, visible]);
+
+  const handleVisible = () => {
+    if (visible) {
+      setVisible(false);
+    } else {
+      setDisplay(true);
+      requestAnimationFrame(() => setVisible(true));
+    }
+  };
+
+  const handleAnimationEnd = () => {
+    if (!visible) {
+      setDisplay(false);
+    }
+  };
 
   return (
     <div
@@ -32,12 +55,12 @@ function Collapsible({
         />
       </Button>
       <div
-        className={clsx(
-          'flex flex-wrap gap-2 transition-all overflow-clip justify-start w-full px-1',
-          visible ? 'max-h-screen' : 'max-h-0',
-        )}
-        aria-expanded={visible}
-        inert={!visible ? true : false}
+        ref={contentRef}
+        className={clsx(styles.collapsible_child)}
+        data-expanded={visible}
+        inert={!visible}
+        style={{ display: display ? 'flex' : 'none' }}
+        onTransitionEnd={handleAnimationEnd}
       >
         {children}
       </div>
