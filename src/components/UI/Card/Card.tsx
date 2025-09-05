@@ -34,7 +34,7 @@ const genres = (year: number, genres: AnimeGenres[] | []) => {
 
 const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', additional }) => {
   return variant == 'default' ? (
-    <Button as={Link} title={title} href={`/anime/${slug}`} className={styles.cardcontainer}>
+    <Button as={Link} prefetch={false} title={title} href={`/anime/${slug}`} className={styles.cardcontainer}>
       <Image
         src={image}
         alt={title}
