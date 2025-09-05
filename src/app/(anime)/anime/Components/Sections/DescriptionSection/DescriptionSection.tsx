@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, Slider, Table, Typography } from '@/components/UI/UIComponents';
 import { paths } from '@/constants/headersconst';
 import { getTranslatedText } from '@/utils';

@@ -1,3 +1,5 @@
+"use client"
+
 import Image from 'next/image';
 import Player from '../../Player/player';
 import AddToCollectionButton from '../../addToCollectionButton';
