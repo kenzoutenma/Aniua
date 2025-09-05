@@ -47,8 +47,8 @@ const PopoverFilled = ({ animeData }: { animeData: AnimeDataInterface }) => {
         <span>{animeData.year}</span>
         <span>•</span>
         {Object.entries(animeData.genres).length > 0 ? (
-          animeData.genres.map((el) => (
-            <Button variant="secondary" key={el.id}>
+          animeData.genres.map((el, _) => (
+            <Button key={`genres_${el.id}_${_}`} variant="secondary">
               {el.title}
             </Button>
           ))
