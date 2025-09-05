@@ -57,7 +57,8 @@ function Collapsible({
       <div
         ref={contentRef}
         className={clsx(styles.collapsible_child)}
-        data-expanded={visible}
+        // data-expanded={visible}
+        aria-expanded={visible}
         inert={!visible}
         style={{ display: display ? 'flex' : 'none' }}
         onTransitionEnd={handleAnimationEnd}
