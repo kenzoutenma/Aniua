@@ -1,8 +1,9 @@
 'use client';
 
 import clsx from 'clsx';
-import React from 'react';
+import React, { useRef } from 'react';
 import styles from './Tooltip.module.css';
+import { useTooltipPosition } from './utils/useToolTipPosition';
 
 interface TooltipInterface extends React.HTMLAttributes<HTMLDivElement> {
   tooltipContent: React.ReactNode;
@@ -11,18 +12,19 @@ interface TooltipInterface extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Tooltip = ({ tooltipContent, children, position = 'right', ...props }: TooltipInterface) => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const side = useTooltipPosition(wrapperRef, tooltipRef);
   return (
-    <div
-      {...props}
-      className={styles['tooltip-wrapper']}
-    >
+    <div {...props} className={styles['tooltip-wrapper']} ref={wrapperRef}>
       {children}
 
       <div
         className={clsx(
           styles.tooltip,
-          styles[`tooltip-${position}`],
+          side === position ? styles['tooltip-right'] : styles['tooltip-left'],
         )}
+        ref={tooltipRef}
       >
         {tooltipContent}
       </div>
