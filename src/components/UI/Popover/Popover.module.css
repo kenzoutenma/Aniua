@@ -1,5 +1,4 @@
 .popoverCard {
-  position: absolute;
   width: max-content;
   max-width: 376px;
   border-radius: var(--borderRad);

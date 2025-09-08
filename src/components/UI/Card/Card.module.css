@@ -1,6 +1,8 @@
 .cardcontainer {
-  min-width: var(--cardMinWidth);
-  max-width: var(--cardMaxWidth);
+  /* min-width: var(--cardMinWidth); */
+  /* max-width: var(--cardMaxWidth); */
+  aspect-ratio: 2 / 3;
+  width: 100%;
   height: 100%;
   @apply flex flex-col relative gap-0 overflow-hidden p-1 rounded-xl border border-transparent01dp;
 }
