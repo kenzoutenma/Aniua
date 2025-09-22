@@ -7,8 +7,10 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
+  border-radius: var(--borderRad);
+  overflow: clip;
 }
-.heroWrap:has(img) {
+.heroWrap:has(img:not(.heroTrailerSource)) {
   justify-content: space-around;
 }
 
@@ -65,4 +67,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.heroTrailerSource {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5%;
 }

@@ -1,6 +1,7 @@
 import { paths } from '@/constants/headersconst';
 import clsx from 'clsx';
 import Image from 'next/image';
+import Link from 'next/link';
 import Button from '../UI/Button/Button';
 import { CreepingText } from '../UI/UIComponents';
 import styles from './hero.module.css';
@@ -8,7 +9,7 @@ import styles from './hero.module.css';
 function HeroBanner({ data }: { data: AnimeDataInterface }) {
   const Filler = () =>
     data.trailer ? (
-      <Trailer />
+      <Trailer src={data.trailer} />
     ) : (
       <Poster src={data.poster || data.background_image_url || 'pfp.png'} />
     );
@@ -38,16 +39,27 @@ function GenreButton({ e }: { e: AnimeGenres }) {
 }
 
 function Trailer({ src }: { src?: string }) {
-  return (
-    <div className={styles.heroTrailerContainer}>
-      <iframe
-        className={styles.heroTrailer}
-        width="560"
-        height="315"
-        src={src}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; web-share"
-      ></iframe>
-    </div>
+  return src && (
+    <>
+      <div className={styles.heroTrailerContainer}>
+        <iframe
+          className={styles.heroTrailer}
+          width="560"
+          height="315"
+          src={src + '?autoplay=1&mute=1&controls=0&loop=1'}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; web-share"
+        ></iframe>
+      </div>
+      <Link href={src.replace("embed/", "watch?v=")} target="_blank">
+        <Image
+          src={"/yt_icon_white_digital.png"}
+          className={styles.heroTrailerSource}
+          alt="Youtube Logo"
+          width={250}
+          height={350}
+        />
+      </Link>
+    </>
   );
 }
 
