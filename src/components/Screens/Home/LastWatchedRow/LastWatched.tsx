@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { usePlayerStore } from '@/stores/playerHistory';
-import { Card, Section, Slider } from '@/components/UI/UIComponents';
 import FetchServiceInstance from '@/app/api';
+import { Card, Section, Slider } from '@/components/UI/UIComponents';
 import { animeAPIConstant } from '@/constants/api-endpoints.constant';
+import { usePlayerStore } from '@/stores/playerHistory';
 import { getTranslatedText } from '@/utils';
+import { useEffect, useState } from 'react';
 
 export default function LastWatchedSection() {
   const session = usePlayerStore((state) => state.session);
@@ -17,10 +17,11 @@ export default function LastWatchedSection() {
 
     const fetchAnime = async () => {
       const res = await FetchServiceInstance.fetchHelper(animeAPIConstant['filter'], {
-        to: 'out',
+        to: 'self',
         params: {
           slug: `${slugs},`,
         },
+        cache: 'no-store'
       });
 
       const data = res.titles;

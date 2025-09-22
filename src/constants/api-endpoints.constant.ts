@@ -7,7 +7,7 @@ export const userAPIConstant = {
 
 export const animeAPIConstant = {
   list: `api/list/`,
-  filter: `filter/`,
+  filter: `api/list/`,
   episode: `api/anime/episode`,
   search: `search/`,
   episodeByTitle: (title: string) => `episode/get/${encodeURIComponent(title)}`,
