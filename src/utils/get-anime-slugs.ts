@@ -14,13 +14,17 @@ async function getAllAnimeSlugs(): Promise<string[]> {
       params: { limit: String(pageSize), page: String(page), order: 'rating' },
     });
 
-    const titles: AnimeDataInterface[] = response.titles;
+    if(response.error != true && response.titles) {
+      const titles: AnimeDataInterface[] = response.titles;
 
-    allSlugs.push(...titles.map((anime) => anime.slug));
-    if (page < 3) {
-      hasMore = false;
+      allSlugs.push(...titles.map((anime) => anime.slug));
+      if (page < 3) {
+        hasMore = false;
+      } else {
+        page++;
+      }
     } else {
-      page++;
+      break;
     }
 
     await sleep(1000);

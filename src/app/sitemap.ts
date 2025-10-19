@@ -2,29 +2,36 @@ import { getAllAnimeSlugs } from '@/utils';
 import type { MetadataRoute } from 'next';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const slugs = await getAllAnimeSlugs();
-
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: 'https://aniua.vip',
+      url: process.env.NEXT_PUBLIC_BASE_URL || '',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: 'https://aniua.vip/list',
+      url: process.env.NEXT_PUBLIC_BASE_URL + 'list' || '',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
   ];
 
-  const dynamicRoutes: MetadataRoute.Sitemap = slugs.map((slug) => ({
-    url: `https://aniua.vip/anime/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.7,
-  }));
-
-  return [...staticRoutes, ...dynamicRoutes];
+  try {
+    const slugs = await getAllAnimeSlugs();
+    if (slugs.length > 0) {
+      const dynamicRoutes: MetadataRoute.Sitemap = slugs.map((slug) => ({
+        url: process.env.NEXT_PUBLIC_BASE_URL + `anime/${slug}` || '',
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.7,
+      }));
+      return [...staticRoutes, ...dynamicRoutes];
+    }
+  } catch (e) {
+    console.error('Failed to fetch anime slugs:', e);
+  }
+  finally {
+    return [...staticRoutes];
+  }  
 }

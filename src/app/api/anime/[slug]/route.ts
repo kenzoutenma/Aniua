@@ -32,7 +32,7 @@ export async function GET(req: NextRequest, { params }: { params: { slug: string
     }
 
     const animeBody = await anime.json();
-    const characterBody = character.status === "200" && await character.json();
+    const characterBody = character && character.status === "200" && await character.json();
 
     const totalResponse = {
       ...animeBody,
