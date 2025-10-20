@@ -1,25 +1,32 @@
 import { Card, Section, Slider } from '@/components/UI/UIComponents';
-import React from 'react';
-import LastWatchedSection from './LastWatchedRow/LastWatched';
 import { getTranslatedText } from '@/utils';
+import LastWatchedSection from './LastWatchedRow/LastWatched';
 
-function HomeScreen({ community }: { community: AnimeDataInterface[] }) {
+function HomeScreen({ groups }: { groups: { name: string; data: AnimeDataInterface[] }[] }) {
+  const slides = groups.map((group) => Slides(group.name, group.data));
+
   return (
     <>
       <Section>
         <LastWatchedSection />
-        <Section.Row>
-          <Section.Col title={getTranslatedText(`home.Community choice`)} widthState="1">
-            <Slider>
-              {community.map((el, index) => (
-                <Card key={index} image={el.poster} title={el.title} slug={el.slug}></Card>
-              ))}
-            </Slider>
-          </Section.Col>
-        </Section.Row>
+        {slides}
       </Section>
     </>
   );
 }
+
+const Slides = (name: string, group: AnimeDataInterface[]) => {
+  return (
+    <Section.Row>
+      <Section.Col title={getTranslatedText(name)} widthState="1">
+        <Slider>
+          {group.map((el, index) => (
+            <Card key={index} image={el.poster} title={el.title} slug={el.slug}></Card>
+          ))}
+        </Slider>
+      </Section.Col>
+    </Section.Row>
+  );
+};
 
 export default HomeScreen;

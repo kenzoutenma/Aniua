@@ -92,5 +92,11 @@
     "season_anime": "Аніме по порі року",
     "status": "Статус",
     "year": "Роки"
+  },
+  "anime_themes": {
+    "shonen": "Сьонен"
+  },
+  "anime_genres": {
+    "action": "Екшн"
   }
 }

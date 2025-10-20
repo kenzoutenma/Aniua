@@ -43,7 +43,7 @@ export default function LastWatchedSection() {
       <Section.Col title={getTranslatedText('home.Last watched')} widthState="1">
         <Slider>
           {animeList.map((el, idx) => (
-            <Card key={idx} image={el.poster} title={el.title} slug={el.slug} />
+            <Card key={idx} image={el.poster} title={el.title} slug={el.slug} variant='horizontal'/>
           ))}
         </Slider>
       </Section.Col>
