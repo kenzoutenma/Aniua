@@ -19,7 +19,7 @@ export async function generateMetadata({
 
   return {
     title: `${title} - Aniua | ${data.title_jp}`,
-    description: `${getTranslatedText('description.anime', { anime: title })} \n ${data.description.split(' ').slice(0, 10).join(' ')}...`,
+    description: `${getTranslatedText('description.anime', { anime: title })} \n ${data?.description && data.description.split(' ').slice(0, 10).join(' ')}...`,
   };
 }
 

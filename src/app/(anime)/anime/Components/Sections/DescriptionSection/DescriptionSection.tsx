@@ -45,7 +45,7 @@ function DescriptionSection({ data }: { data: AnimeDataInterface }) {
       <div className={styles.descRightColumn}>
         <div>
           <h2>{getTranslatedText('info.Description')}</h2>
-          <p>{data.description}</p>
+          <p>{data?.description && data.description}</p>
         </div>
         {data.characters?.length > 1 ? (
           <div>

@@ -14,16 +14,25 @@ function HeroBanner({ data }: { data: AnimeDataInterface }) {
       <Poster src={data.poster || data.background_image_url || 'pfp.png'} />
     );
 
+  const description = data?.description && data.description.split(' ').slice(0, 40).join(' ');
+  const genres = data.genres.length > 0 ? data.genres.map((e) => <GenreButton key={e.slug} e={e} />) : ''
+  const titles = {
+    bg: data.title_jp || data.title,
+    jp: data.title_jp || null,
+    ua: data.title || "",
+  }
+  const year = data.year || null
+
   return (
     <div className={styles.heroWrap}>
-      <CreepingText text={data.title_jp || data.title} speed={20} />
+      <CreepingText text={titles.bg} speed={20} />
       <div className={styles.heroInfo}>
-        <h1>{data.title}</h1>
+        <h1>{titles.ua}</h1>
         <div>
-          <span> {data.year}</span>
-          {data.genres.length > 0 ? data.genres.map((e) => <GenreButton key={e.slug} e={e} />) : ''}
+          <span> {year}</span>
+          {genres}
         </div>
-        <p>{data.description.split(' ').slice(0, 40).join(' ')}...</p>
+        <p>{description}...</p>
       </div>
       <Filler />
     </div>
