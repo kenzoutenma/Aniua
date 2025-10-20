@@ -4,10 +4,7 @@ ARG NODE_VERSION=23.7.0
 FROM node:${NODE_VERSION}-slim as builder-from-git
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
-
-ARG GITHUB_TOKEN
-RUN git clone https://$GITHUB_TOKEN@github.com/AnswerShy/Aniua.git .
+COPY . .
 
 ARG NEXT_PUBLIC_API_URL
 ARG NEXT_PUBLIC_BASE_URL
