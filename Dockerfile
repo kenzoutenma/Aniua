@@ -36,7 +36,6 @@ ENV NEXT_PUBLIC_SEARCH_API_URL=$NEXT_PUBLIC_SEARCH_API_URL
 ENV NEXT_PUBLIC_WS_URL=$NEXT_PUBLIC_WS_URL
 
 COPY --from=builder-from-git /app/.next/standalone ./
-COPY .env .env
 
 RUN chown -R node:node /app
 USER node
