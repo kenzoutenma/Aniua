@@ -11,8 +11,9 @@ interface cardProps {
   slug: string;
   variant?: 'horizontal' | 'default';
   additional?: {
-    year: number;
-    genres: AnimeGenres[];
+    year?: number;
+    genres?: AnimeGenres[];
+    rate?: string;
     onClick?: () => void;
   };
 }
@@ -33,6 +34,7 @@ const genres = (year: number, genres: AnimeGenres[] | []) => {
 };
 
 const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', additional }) => {
+  const rate = additional?.rate ? <span>{additional?.rate}✨</span> : null
   return variant == 'default' ? (
     <Button as={Link} prefetch={false} title={title} href={`/anime/${slug}`} className={styles.cardcontainer}>
       <Image
@@ -44,7 +46,7 @@ const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', ad
         loading="eager"
         quality={50}
       />
-      <p className={styles.cardText}>{title}</p>
+      <div className={styles.cardData}><p className={styles.cardText}>{title}</p>{rate}</div>
     </Button>
   ) : (
     <Button as={Link} href={`/anime/${slug}`} className={styles.cardHorizontal}>

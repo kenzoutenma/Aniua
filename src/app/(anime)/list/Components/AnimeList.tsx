@@ -26,6 +26,7 @@ function AnimeList({ anime }: AnimeListProps) {
                 image={el.poster}
                 title={el.title}
                 slug={el.slug}
+                additional={{rate: el.mal_score.toString()}}
               />
             </Tooltip>
           ))}

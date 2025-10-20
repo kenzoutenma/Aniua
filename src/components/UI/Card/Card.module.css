@@ -1,14 +1,37 @@
 .cardcontainer {
-  /* min-width: var(--cardMinWidth); */
-  /* max-width: var(--cardMaxWidth); */
   aspect-ratio: 2 / 3;
-  width: 100%;
-  height: 100%;
-  @apply flex flex-col relative gap-0 overflow-hidden p-1 rounded-xl border border-transparent01dp;
+  height: var(--cardHeight);
+  width: auto;
+
+  border-width: 1px;
+  border-color: var(--front-transparent-950);
+  border-radius: 0.75rem;
+  
+  flex-direction: column;
+  gap: 0;
+  padding: var(--cardPadding);
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cardData {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .cardText {
-  @apply text-center w-full text-sm leading-6 font-light tracking-[0] text-textCol truncate px-4 py-1;
+  text-overflow: ellipsis;
+  text-align: left;
+  letter-spacing: 0px;
+  width: 100%;
+  color: var(--textColor);
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.5rem;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .cardImage {

@@ -38,9 +38,10 @@
   /* CARD VARS */
   --cardMinWidth: max(10vw, 120px);
   --cardMaxWidth: min(10vw, 120px);
-  --cardMinHeight: 200px;
-  --cardMaxHeight: 220px;
-
+  --cardMinHeight: min(200px, 30vh);
+  --cardMaxHeight: 35vh;
+  
+  --cardHeight: 35vh;
   --cardPadding: 0.25rem;
   --borderRadius: 0.75rem;
 
