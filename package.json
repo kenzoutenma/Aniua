@@ -8,12 +8,14 @@
     "dev:next": "next dev --turbopack --hostname 0.0.0.0",
     "build": "next build",
     "start": "node server.js",
-    "lint": "next lint && prettier --write .",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
     "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
       "eslint --fix",
+      "prettier --write",
       "git add"
     ]
   },
