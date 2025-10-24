@@ -36,12 +36,9 @@
   --shadow05dp: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 
   /* CARD VARS */
-  --cardMinWidth: max(10vw, 120px);
-  --cardMaxWidth: min(10vw, 120px);
-  --cardMinHeight: min(200px, 30vh);
-  --cardMaxHeight: 35vh;
-  
-  --cardHeight: 35vh;
+  --h_card_width: max(400px, 50%);
+
+  --cardHeight: max(200px, 35vh);
   --cardPadding: 0.25rem;
   --borderRadius: 0.75rem;
 

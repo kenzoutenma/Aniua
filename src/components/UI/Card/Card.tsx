@@ -1,9 +1,10 @@
 'use client';
 
+import clsx from 'clsx';
 import Image from 'next/image';
-import { Button, TypographyType } from '../UIComponents';
-import styles from './Card.module.css';
 import Link from 'next/link';
+import { Button } from '../UIComponents';
+import styles from './Card.module.css';
 
 interface cardProps {
   image: string | '/next.svg';
@@ -18,25 +19,22 @@ interface cardProps {
   };
 }
 
-const genres = (year: number, genres: AnimeGenres[] | []) => {
+const genres = (genres: AnimeGenres[] | []) => {
   if (!genres) return null;
-  return (
-    <>
-      <span>{year}</span>
-      <span>•</span>
-      {Object.entries(genres).length > 0 ? (
-        genres.map((el) => <span key={el.id}>{el.title}</span>)
-      ) : (
-        <p>unknown genres (?)</p>
-      )}
-    </>
-  );
+  const genresStr = genres.map((el) => el.title || el.slug).join(', ');
+  return <span key={genresStr}>{genresStr}</span>;
 };
 
 const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', additional }) => {
-  const rate = additional?.rate ? <span>{additional?.rate}✨</span> : null
+  const rate = additional?.rate ? <span>{additional?.rate}✨</span> : null;
   return variant == 'default' ? (
-    <Button as={Link} prefetch={false} title={title} href={`/anime/${slug}`} className={styles.cardcontainer}>
+    <Button
+      as={Link}
+      prefetch={false}
+      title={title}
+      href={`/anime/${slug}`}
+      className={styles.cardcontainer}
+    >
       <Image
         src={image}
         alt={title}
@@ -46,21 +44,28 @@ const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', ad
         loading="eager"
         quality={50}
       />
-      <div className={styles.cardData}><p className={styles.cardText}>{title}</p>{rate}</div>
+      <div className={styles.cardData}>
+        <p className={styles.cardText}>{title}</p>
+        {rate}
+      </div>
     </Button>
   ) : (
-    <Button as={Link} href={`/anime/${slug}`} className={styles.cardHorizontal}>
-      <div
-        className={styles.cardImageHorizontal}
-        style={{ backgroundImage: `url(${image})` }}
-      ></div>
+    <Button as={Link} href={`/anime/${slug}`} className={styles.h_card}>
+      <Image
+        src={image}
+        alt={title}
+        width={200}
+        height={200}
+        className={styles.h_card_image}
+      ></Image>
       <div>
-        <p className={TypographyType['h2'].className}>{title}</p>
-        <div
-          className={TypographyType['muted'].className}
-          style={{ display: 'flex', flexDirection: 'row', gap: '5px' }}
-        >
-          {genres(additional?.year || 0, additional?.genres || [])}
+        <div className={styles.h_card_title_container}>
+          <h2 className={clsx(styles.h_card_title, title.length > 20 && styles['marquee-text'])}>
+            {title}
+          </h2>
+        </div>
+        <div className={styles.h_card_description}>
+          {genres(additional?.genres || [])}
         </div>
       </div>
     </Button>
