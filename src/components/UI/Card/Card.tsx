@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '../UIComponents';
 import styles from './Card.module.css';
+import { getTranslatedText } from '@/utils';
 
 interface cardProps {
   image: string | '/next.svg';
@@ -16,6 +17,7 @@ interface cardProps {
     genres?: AnimeGenres[];
     rate?: string;
     onClick?: () => void;
+    history?: { episode?: number | string };
   };
 }
 
@@ -27,6 +29,16 @@ const genres = (genres: AnimeGenres[] | []) => {
 
 const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', additional }) => {
   const rate = additional?.rate ? <span>{additional?.rate}✨</span> : null;
+  const History = () => {
+    console.log(additional);
+    return additional?.history?.episode ? (
+      <span>
+        {getTranslatedText('home.Continue watching episode')} {additional?.history?.episode}
+      </span>
+    ) : (
+      <></>
+    );
+  };
   return variant == 'default' ? (
     <Button
       as={Link}
@@ -66,6 +78,7 @@ const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', ad
         </div>
         <div className={styles.h_card_description}>
           {genres(additional?.genres || [])}
+          <History />
         </div>
       </div>
     </Button>

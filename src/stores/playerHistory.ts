@@ -4,6 +4,9 @@ import { persist } from 'zustand/middleware';
 interface PlayerSession {
   episodeID: number;
   studio: string;
+
+  episodeNumber?: number;
+  time?: number;
 }
 
 interface PlayerStore {

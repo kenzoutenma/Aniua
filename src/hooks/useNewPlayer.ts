@@ -54,11 +54,6 @@ export const useNewPlayer = (slug: string) => {
 
   const handleEpisode = async (episodeID: number) => {
     setPlayerState((prev) => ({ ...prev, is_loading: true }));
-    setEpisode(slug, {
-      // setting new episode to store
-      episodeID: episodeID,
-      studio: String(playerState.current_studio),
-    });
 
     const newEpisode: EpisodeListInterface = await FetchServiceInstance.fetchHelper(
       animeAPIConstant['episode'],
@@ -89,6 +84,13 @@ export const useNewPlayer = (slug: string) => {
       studios_list: studios,
     }));
     setPlayerState((prev) => ({ ...prev, is_loading: false }));
+
+    // setting new episode to store
+    setEpisode(slug, {
+      episodeID: episodeID,
+      studio: String(playerState.current_studio),
+      episodeNumber: Number(newEpisode.episode_number),
+    });
   };
 
   const handleStudio = (index: number) => {
