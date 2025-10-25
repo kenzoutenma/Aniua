@@ -1,11 +1,3 @@
-.playerSection {
-  display: grid;
-  grid-template-columns: 3fr 7fr;
-  justify-content: center;
-  gap: 15px;
-  transition: all 0.1s ease-in;
-}
-
 .playerSectionColumn {
   gap: 15px;
   display: flex;

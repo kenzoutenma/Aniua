@@ -1,13 +1,14 @@
-"use client"
+'use client';
 
 import Image from 'next/image';
 import Player from '../../Player/player';
 import AddToCollectionButton from '../../addToCollectionButton';
 import styles from './PlayerSection.module.css';
+import { Section } from '@/components/UI/UIComponents';
 
 function PlayerSection({ data }: { data: AnimeDataInterface }) {
   return (
-    <section className={styles.playerSection}>
+    <Section typeOfSection="TwoColSection">
       <div className={styles.playerSectionColumn}>
         <Image
           src={data.poster}
@@ -21,7 +22,7 @@ function PlayerSection({ data }: { data: AnimeDataInterface }) {
       <div className={styles.playerSectionColumn}>
         <Player slug={data.slug} />
       </div>
-    </section>
+    </Section>
   );
 }
 

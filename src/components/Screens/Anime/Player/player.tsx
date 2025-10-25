@@ -67,10 +67,7 @@ const PlayerFrame = ({
   return (
     <div className={styles.frameWrapper}>
       {studios.length > 1 ? (
-        <Select
-          value={studio}
-          onChange={(e) => handleStudio(Number(e.target.value))}
-        >
+        <Select value={studio} onChange={(e) => handleStudio(Number(e.target.value))}>
           {studios.map((studio_name, index) => (
             <option key={index} value={index}>
               {studio_name}

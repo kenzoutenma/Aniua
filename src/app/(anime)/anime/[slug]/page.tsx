@@ -2,9 +2,8 @@ import FetchServiceInstance from '@/app/api';
 import HeroBanner from '@/components/hero/hero';
 import { getTranslatedText } from '@/utils';
 import { Metadata } from 'next';
-import DescriptionSection from '../Components/Sections/DescriptionSection/DescriptionSection';
-import PlayerSection from '../Components/Sections/PlayerSection/PlayerSection';
-
+import DescriptionSection from '@/components/Screens/Anime/Sections/DescriptionSection/DescriptionSection';
+import PlayerSection from '@/components/Screens/Anime/Sections/PlayerSection/PlayerSection';
 
 export async function generateMetadata({
   params,
@@ -36,7 +35,7 @@ export default async function AnimePage({ params }: { params: { slug: string } }
   return (
     <>
       <HeroBanner data={data} />
-      <PlayerSection data={data}/>
+      <PlayerSection data={data} />
       <DescriptionSection data={data} />
     </>
   );
