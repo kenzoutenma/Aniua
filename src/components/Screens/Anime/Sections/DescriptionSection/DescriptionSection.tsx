@@ -11,7 +11,7 @@ function DescriptionSection({ data }: { data: AnimeDataInterface }) {
   };
 
   return (
-    <Section typeOfSection="TwoColSection">
+    <Section typeOfSection="TwoColSection" style={{ gridTemplateColumns: '7fr 3fr' }}>
       <div className={styles.descRightColumn}>
         <div>
           <h2>{getTranslatedText('info.Description')}</h2>

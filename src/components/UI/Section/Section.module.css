@@ -25,10 +25,13 @@
 }
 
 .TwoColSection {
-  display: flex;
-  gap: 25px;
-  padding-left: 5%;
-  padding-right: 5%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  gap: 15px;
+  transition: all 0.1s ease-in;
+  overflow: hidden;
+  padding: 3rem 6rem;
 }
 
 .grid {

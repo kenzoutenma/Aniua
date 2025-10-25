@@ -15,6 +15,7 @@ type SectionProps = {
   typeOfSection?: keyof typeof SectionType;
   id?: string;
   classname?: string;
+  style?: React.CSSProperties;
 };
 
 const SectionBase: React.FC<SectionProps> = ({
@@ -22,9 +23,10 @@ const SectionBase: React.FC<SectionProps> = ({
   typeOfSection = 'OneColSection',
   id,
   classname,
+  style,
 }) => {
   return (
-    <section className={clsx(SectionType[typeOfSection], classname)} id={id}>
+    <section className={clsx(SectionType[typeOfSection], classname)} id={id} style={style}>
       {children}
     </section>
   );
