@@ -5,9 +5,9 @@
   border-radius: var(--borderRad);
 }
 
-
 .frameWrapper {
   height: 100%;
+  aspect-ratio: 16/9;
 }
 
 .frameWrapper select {
