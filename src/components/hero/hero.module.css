@@ -1,6 +1,6 @@
 .heroWrap {
   position: relative;
-  width: 100%;
+  width: auto;
   max-height: 768px;
   height: 90svh;
   padding: 25px;
@@ -9,6 +9,8 @@
   justify-content: flex-start;
   border-radius: var(--borderRad);
   overflow: clip;
+  margin: 1rem 6rem;
+  border: var(--border);
 }
 .heroWrap:has(img:not(.heroTrailerSource)) {
   justify-content: space-around;
@@ -17,6 +19,13 @@
 @media (min-width: 768px) and (max-width: 1024) {
   .heroWrap {
     height: 50svh;
+  }
+}
+
+@media (max-width: 768) {
+  .heroWrap {
+    height: 50svh;
+    margin: 10px;
   }
 }
 /* INFO  */
@@ -73,5 +82,5 @@
   position: absolute;
   right: 0;
   top: 0;
-  width: 5%;
+  width: 15%;
 }
