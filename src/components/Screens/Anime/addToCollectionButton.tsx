@@ -1,6 +1,6 @@
 'use client';
 
-import FetchServiceInstance from '@/app/api';
+import FI from '@/app/api';
 import { Button, Dropdown } from '@/components/UI/UIComponents';
 import { useUserStore } from '@/stores/user-profile-store';
 import { getTranslatedText } from '@/utils';
@@ -11,7 +11,7 @@ function AddToCollectionButton({ slug }: { slug: string }) {
   const storedList = userStoredData.anime_lists;
 
   const addToList = async ({ list }: { list: string }) => {
-    const data = await FetchServiceInstance.fetchHelper('lists/add/anime', {
+    const data = await FI.fetch<{ message: string }>('lists/add/anime', {
       to: 'out',
       body: {
         anime_slug: slug,
@@ -20,8 +20,10 @@ function AddToCollectionButton({ slug }: { slug: string }) {
       method: 'POST',
     });
 
-    if (data && data.message) {
-      toast.success(data.message);
+    if (!data.ok) return null;
+
+    if (data && data.data.message) {
+      toast.success(data.data.message);
     }
   };
 

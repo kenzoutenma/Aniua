@@ -31,3 +31,7 @@ interface EpisodeListInterface {
   description: string;
   players: PlayersInEpisode[];
 }
+
+interface IEpisodeListResponse {
+  episodes: EpisodeListInterface[];
+}

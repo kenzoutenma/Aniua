@@ -15,13 +15,16 @@ function HeroBanner({ data }: { data: AnimeDataInterface }) {
     );
 
   const description = data?.description && data.description.split(' ').slice(0, 40).join(' ');
-  const genres = data.genres.length > 0 ? data.genres.map((e) => <GenreButton key={e.slug} e={e} />) : ''
+  const genres =
+    data.genres && data.genres.length > 0
+      ? data.genres.map((e) => <GenreButton key={e.slug} e={e} />)
+      : '';
   const titles = {
     bg: data.title_jp || data.title,
     jp: data.title_jp || null,
-    ua: data.title || "",
-  }
-  const year = data.year || null
+    ua: data.title || '',
+  };
+  const year = data.year || null;
 
   return (
     <div className={styles.heroWrap}>
@@ -39,7 +42,7 @@ function HeroBanner({ data }: { data: AnimeDataInterface }) {
   );
 }
 
-function GenreButton({ e }: { e: AnimeGenres }) {
+function GenreButton({ e }: { e: AnimeGenre }) {
   return (
     <Button as="a" variant="link" target="_blank" href={paths['list'] + '?genre=' + e.id}>
       {e.title}
@@ -48,27 +51,29 @@ function GenreButton({ e }: { e: AnimeGenres }) {
 }
 
 function Trailer({ src }: { src?: string }) {
-  return src && (
-    <>
-      <div className={styles.heroTrailerContainer}>
-        <iframe
-          className={styles.heroTrailer}
-          width="560"
-          height="315"
-          src={src + '?autoplay=1&mute=1&controls=0&loop=1'}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; web-share"
-        ></iframe>
-      </div>
-      <Link href={src.replace("embed/", "watch?v=")} target="_blank">
-        <Image
-          src={"/yt_icon_white_digital.png"}
-          className={styles.heroTrailerSource}
-          alt="Youtube Logo"
-          width={250}
-          height={350}
-        />
-      </Link>
-    </>
+  return (
+    src && (
+      <>
+        <div className={styles.heroTrailerContainer}>
+          <iframe
+            className={styles.heroTrailer}
+            width="560"
+            height="315"
+            src={src + '?autoplay=1&mute=1&controls=0&loop=1'}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; web-share"
+          ></iframe>
+        </div>
+        <Link href={src.replace('embed/', 'watch?v=')} target="_blank">
+          <Image
+            src={'/yt_icon_white_digital.png'}
+            className={styles.heroTrailerSource}
+            alt="Youtube Logo"
+            width={250}
+            height={350}
+          />
+        </Link>
+      </>
+    )
   );
 }
 

@@ -9,7 +9,7 @@ import { getTranslatedText } from '@/utils';
 
 function Filters() {
   const { filters, selected, doChange, doChangeRange } = useAnimeFilters();
-  console.log(selected);
+  console.log(filters);
   return (
     <>
       {Object.entries(filters ?? {}).map(([key, value], index) => {
@@ -21,7 +21,7 @@ function Filters() {
           >
             {value.type_of_filter == 'option' ? (
               <>
-                {(value.values ?? []).map((e: string | AnimeGenres) => {
+                {(value.values ?? []).map((e: string | AnimeGenre) => {
                   const id = typeof e === 'string' ? e : e.id;
                   const title = typeof e === 'string' ? e : e.title;
                   return (

@@ -1,18 +1,23 @@
-import FetchServiceInstance from '@/app/api';
+import FI from '@/app/api';
 import { animeAPIConstant } from '@/constants/api-endpoints.constant';
 
-const useAnimeList = async (query: Record<string, string | string[] | undefined>) => {
-  const result = (await FetchServiceInstance.fetchHelper(animeAPIConstant['list'], {
+interface IUseAnimeList {
+  titles: AnimeDataInterface[] | null;
+  createPageUrl: (page: number) => string;
+  page: number;
+  pageCount: number;
+  isNextPage: boolean;
+  isPrevPage: boolean;
+}
+
+const useAnimeList = async (
+  query: Record<string, string | string[] | undefined>,
+): Promise<IUseAnimeList> => {
+  const request = await FI.fetch<AnimeDataListInterface>(animeAPIConstant['list'], {
     params: { page: '1', limit: '15', ...query },
     to: 'self',
     cache: 'force-cache',
-  })) as AnimeDataListInterface;
-
-  const titles = result.titles;
-  const isNextPage = result.next_page;
-  const isPrevPage = result.previous_page;
-  const page = result.page;
-  const pageCount = result.page_count;
+  });
 
   const createPageUrl = (page: number) => {
     const params = new URLSearchParams();
@@ -31,7 +36,16 @@ const useAnimeList = async (query: Record<string, string | string[] | undefined>
     return `?${params.toString()}`;
   };
 
-  return { titles, isNextPage, isPrevPage, page, pageCount, createPageUrl };
+  const result = {
+    titles: request.ok ? request?.data?.titles : null,
+    page: request.ok ? request?.data?.page : 0,
+    pageCount: request.ok ? request?.data?.page_count : 0,
+    isNextPage: request.ok ? request?.data?.next_page : false,
+    isPrevPage: request.ok ? request?.data?.previous_page : false,
+    createPageUrl,
+  };
+
+  return result;
 };
 
 export default useAnimeList;

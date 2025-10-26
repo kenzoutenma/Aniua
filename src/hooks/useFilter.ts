@@ -1,4 +1,4 @@
-import FetchServiceInstance from '@/app/api';
+import FI from '@/app/api';
 import { initAnimeFilters } from '@/constants/anime-default-filters';
 import debounce from 'lodash.debounce';
 import { useRouter } from 'next/navigation';
@@ -15,18 +15,24 @@ export const useAnimeFilters = () => {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        const res = await FetchServiceInstance.fetchHelper('api/data/genres', { to: 'self' });
-        const genre = res.map((genre: AnimeGenres) => ({
-          id: String(genre.id),
+        type response = AnimeGenre[];
+        const request = await FI.fetch<response>('api/data/genres', { to: 'self' });
+        if (!request.ok) {
+          return request;
+        }
+        const data = request.data as AnimeGenre[];
+
+        const genre = data.map((genre: AnimeGenre) => ({
+          id: genre.id,
           title: genre.title,
           title_en: genre.title_en,
           slug: genre.slug,
         }));
 
-        const updatedConfig = {
+        const updatedConfig: animeFilterConstant = {
           ...initAnimeFilters,
           genre: {
-            ...initAnimeFilters.genre,
+            type_of_filter: 'option',
             values: genre,
           },
         };

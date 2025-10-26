@@ -1,6 +1,6 @@
 'use client';
 
-import FetchServiceInstance from '@/app/api/index';
+import FI from '@/app/api/index';
 import { Button, TextField } from '@/components/UI/UIComponents';
 import { userAPIConstant } from '@/constants/api-endpoints.constant';
 import useUserProfile from '@/hooks/useUserProfile';
@@ -27,7 +27,7 @@ function Login() {
 
   const handleLogin: SubmitHandler<LoginForms> = async (data) => {
     try {
-      const res = await FetchServiceInstance.fetchHelper(userAPIConstant['login'], {
+      const res = await FI.fetch<{ success: boolean }>(userAPIConstant['login'], {
         to: 'self',
         method: 'POST',
         body: {
@@ -36,12 +36,12 @@ function Login() {
         },
       });
 
-      if (!res) {
+      if (!res.ok) {
         toast.error(getTranslatedText('toast.fetchLoginError'));
         return;
       }
 
-      if (res?.success == true) {
+      if (res.data.success == true) {
         await fetchUserProfile();
         toast.success(getTranslatedText('toast.LoginSuccess'));
         router.push('/');

@@ -1,47 +1,50 @@
-class AnimeService {
-  private domain = process.env.NEXT_PUBLIC_BASE_URL;
-  private api = process.env.NEXT_PUBLIC_API_URL;
-  private search = process.env.NEXT_PUBLIC_SEARCH_API_URL;
+interface Options {
+  method?: 'GET' | 'POST';
+  params?: Record<string, string>;
+  to: 'self' | 'out';
+  cache?: RequestCache;
+  body?: Record<string, string>;
+}
+
+export type ApiResponse<T> =
+  | { ok: true; status: number; data: T }
+  | { ok: false; status: number; error: string };
+
+class Fetch {
+  private domain: string = process.env.NEXT_PUBLIC_BASE_URL || '';
+  private api: string = process.env.NEXT_PUBLIC_API_URL || '';
 
   constructor() {
-    if (!this.api || !this.domain) {
+    if (!(this.api.length > 1) || !(this.domain.length > 1)) {
       console.warn('Missing environment variables: NEXT_PUBLIC_API_URL or NEXT_PUBLIC_BASE_URL');
+      return;
     }
   }
 
-  private constructUrl(endpoint: string, params?: Record<string, string>) {
-    if (!this.domain) throw new Error('Base URL is undefined');
+  private doURL(endpoint: string, params?: Record<string, string>): URL {
+    console.log(endpoint);
     const url = new URL(endpoint);
     if (params)
       Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, value));
-    console.log(`\x1b[32m ${url.toString()} \x1b[0m`);
-    return url.toString();
+    return url;
   }
 
-  private getFetchOptions<T>(
-    method: 'GET' | 'POST' = 'GET',
-    body: T | null = null,
-    cache: RequestCache = 'force-cache',
-  ): RequestInit {
+  private getFetchOptions(data: Options): RequestInit {
     const options: RequestInit = {
-      method,
-      cache,
+      method: data.method || 'GET',
+      cache: data.cache,
       next: {
         revalidate: 1000 * 60 * 5,
       },
     };
 
-    if (cache == 'no-store') {
-      options.next = {};
-    }
-
-    if (method === 'POST' && body) {
+    if (data.method === 'POST' && data.body) {
       options.headers = {
         'Content-Type': 'application/x-www-form-urlencoded',
       };
 
       const formData = new URLSearchParams();
-      Object.entries(body).forEach(([key, value]) => {
+      Object.entries(data.body).forEach(([key, value]) => {
         if (value !== undefined && value !== null) {
           formData.append(key, String(value));
         }
@@ -55,51 +58,28 @@ class AnimeService {
     return options;
   }
 
-  async fetchHelper(
-    endpoint: string,
-    {
-      to,
-      params,
-      method = 'GET',
-      body = null,
-      cache,
-      requestReturn = false,
-    }: {
-      to?: 'self' | 'out' | 'search';
-      params?: Record<string, string>;
-      method?: 'GET' | 'POST';
-      body?: Record<string, string | number> | null;
-      cache?: RequestCache;
-      requestReturn?: boolean;
-    } = {},
-  ) {
-    const baseURLMap: Record<'self' | 'out' | 'search', string | undefined> = {
-      self: this.domain,
-      out: this.api,
-      search: this.search,
-    };
+  async fetch<T>(route: string, data: Options): Promise<ApiResponse<T>> {
+    const direction = data.to == 'self' ? this.domain : this.api;
+    const isApiRoute = direction.includes('/api/') ? '' : 'api/';
+    const url: URL = this.doURL(direction + isApiRoute + route, data.params);
 
-    const baseURL = baseURLMap[to ?? 'self'];
-    if (!baseURL) throw new Error(`Base URL for '${to}' is not defined`);
+    const options = this.getFetchOptions(data);
+    const request = await fetch(url, options);
 
-    const url = this.constructUrl(`${baseURL}${endpoint}`, params);
-
-    try {
-      const options = this.getFetchOptions(method, body, cache);
-
-      const request = await fetch(url, options);
-
-      if (!request.ok) {
-        return { error: true, status: request.status, response: await request.json() };
-      }
-
-      return requestReturn ? request : await request.json();
-    } catch (error) {
-      console.error(`Error fetching ${url}\n<${baseURL}${endpoint}>: ${error}`);
-      return null;
+    if (!request.ok) {
+      const error_message = {
+        ok: false,
+        status: 500,
+        error: 'failed to fetch ' + direction + route,
+      } as const;
+      console.error(error_message);
+      return error_message;
     }
+
+    const response = await request.json();
+    return { ok: true, status: 200, data: response } as ApiResponse<T>;
   }
 }
 
-const FetchServiceInstance = new AnimeService();
-export default FetchServiceInstance;
+const FI = new Fetch();
+export default FI;

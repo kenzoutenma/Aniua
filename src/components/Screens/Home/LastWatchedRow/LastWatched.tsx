@@ -1,6 +1,6 @@
 'use client';
 
-import FetchServiceInstance from '@/app/api';
+import FI from '@/app/api';
 import { Card, Section, Slider } from '@/components/UI/UIComponents';
 import { animeAPIConstant } from '@/constants/api-endpoints.constant';
 import { usePlayerStore } from '@/stores/playerHistory';
@@ -20,15 +20,15 @@ export default function LastWatchedSection() {
     if (slugs.length === 0) return;
 
     const fetchAnime = async () => {
-      const res = await FetchServiceInstance.fetchHelper(animeAPIConstant['filter'], {
+      const res = await FI.fetch<AnimeDataListInterface>(animeAPIConstant['filter'], {
         to: 'self',
         params: {
           slug: `${slugs.slice(-10).reverse().join(',')},`,
         },
         cache: 'no-store',
       });
-
-      const data = res.titles;
+      if (!res.ok) return null;
+      const data = res.data.titles;
 
       const mergedData = data.map((anime: AnimeDataInterface) => {
         const slug = anime.slug;
@@ -38,7 +38,7 @@ export default function LastWatchedSection() {
           ...anime,
           last_users_episode: userSession ? userSession.episodeNumber : null,
         };
-      });
+      }) as AnimeWithSession[];
 
       setAnimeList(mergedData);
       if (res.ok) {

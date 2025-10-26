@@ -1,8 +1,8 @@
 type Title = {
-  genres: AnimeGenres[];
+  genres: AnimeGenre[];
 };
 
-const chartDataExtractor = (titles: Title[]): chartData[] => {
+const chartDataExtractor = (titles: Title): chartData[] => {
   if (!Array.isArray(titles)) {
     return [];
   }

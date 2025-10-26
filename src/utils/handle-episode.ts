@@ -1,5 +1,5 @@
 // Desc: Helper function to handle the episode change in the player component
-import FetchServiceInstance from '@/app/api';
+import FI from '@/app/api';
 import { animeAPIConstant } from '@/constants/api-endpoints.constant';
 import { usePlayerStore } from '@/stores/playerHistory';
 import { Dispatch, SetStateAction } from 'react';
@@ -23,10 +23,15 @@ async function handleEpisode({ playerState, id, studio = 0, animeSlug }: handleE
   playerState((prevState) => ({ ...prevState, isPlayerLoading: true, episodeID: id }));
 
   try {
-    const newEpisode: EpisodeListInterface = await FetchServiceInstance.fetchHelper(
-      animeAPIConstant['episode'],
-      { to: 'self', params: { title: id.toString() } },
-    );
+    const requestEpisode = await FI.fetch<EpisodeListInterface>(animeAPIConstant['episode'], {
+      to: 'self',
+      params: { title: id.toString() },
+    });
+
+    if (!requestEpisode.ok) {
+      return;
+    }
+    const newEpisode = requestEpisode.data;
 
     const isNewEpisodeHasArrayOfPlayers = Array.isArray(newEpisode.players);
 

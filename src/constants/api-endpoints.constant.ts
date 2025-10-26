@@ -1,14 +1,14 @@
 export const userAPIConstant = {
-  login: 'api/login',
-  registration: 'api/registration',
-  profile: `api/profile`,
-  chart: `api/chart`,
+  login: 'login/',
+  registration: 'registration/',
+  profile: `profile/`,
+  chart: `chart/`,
 };
 
 export const animeAPIConstant = {
-  list: `api/list/`,
-  filter: `api/list/`,
-  episode: `api/anime/episode`,
+  list: `list/`,
+  filter: `list/`,
+  episode: `anime/episode/`,
   search: `search/`,
   episodeByTitle: (title: string) => `episode/get/${encodeURIComponent(title)}`,
   episodeList: (slug: string) => `anime/${encodeURIComponent(slug)}/episodes`,

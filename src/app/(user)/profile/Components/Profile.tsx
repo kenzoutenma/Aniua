@@ -1,13 +1,13 @@
 'use client';
 
+import FI from '@/app/api';
+import { userAPIConstant } from '@/constants/api-endpoints.constant';
+import useUserProfile from '@/hooks/useUserProfile';
+import { chartDataExtractor } from '@/utils';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import { Section, Typography } from '../../../../components/UI/UIComponents';
 import styles from './Profile.module.css';
-import Image from 'next/image';
-import useUserProfile from '@/hooks/useUserProfile';
-import FetchServiceInstance from '@/app/api';
-import { useEffect, useState } from 'react';
-import { chartDataExtractor } from '@/utils';
-import { userAPIConstant } from '@/constants/api-endpoints.constant';
 
 export default function ProfileComponent() {
   const { userStoredData } = useUserProfile();
@@ -15,13 +15,14 @@ export default function ProfileComponent() {
 
   useEffect(() => {
     const fetchChart = async () => {
-      const request = await FetchServiceInstance.fetchHelper(userAPIConstant['chart'], {
+      const request = await FI.fetch<AnimeGenre[]>(userAPIConstant['chart'], {
         to: 'self',
         method: 'GET',
         cache: 'no-store',
       });
+      if (!request.ok) return null;
 
-      const chart = chartDataExtractor(request);
+      const chart = chartDataExtractor({ genres: request.data });
       console.log(chart);
       setChart(chart);
     };

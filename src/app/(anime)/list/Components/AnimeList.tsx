@@ -3,7 +3,7 @@
 import { Button, Card, CardStyles, Popover, Section, Tooltip } from '@/components/UI/UIComponents';
 
 interface AnimeListProps {
-  anime?: AnimeDataInterface[] | null;
+  anime: AnimeDataInterface[] | null;
 }
 
 function AnimeList({ anime }: AnimeListProps) {
@@ -26,7 +26,7 @@ function AnimeList({ anime }: AnimeListProps) {
                 image={el.poster}
                 title={el.title}
                 slug={el.slug}
-                additional={{rate: el.mal_score.toString()}}
+                additional={{ rate: el.mal_score.toString() }}
               />
             </Tooltip>
           ))}
@@ -46,7 +46,7 @@ const PopoverFilled = ({ animeData }: { animeData: AnimeDataInterface }) => {
       <Popover.Row variant="row">
         <span>{animeData.year}</span>
         <span>•</span>
-        {Object.entries(animeData.genres).length > 0 ? (
+        {animeData.genres && Object.entries(animeData.genres).length > 0 ? (
           animeData.genres.map((el, _) => (
             <Button key={`genres_${el.id}_${_}`} variant="secondary">
               {el.title || el.slug}

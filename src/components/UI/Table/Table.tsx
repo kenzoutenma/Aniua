@@ -11,14 +11,16 @@ interface TableProps {
 function Table({ children }: TableProps) {
   return (
     <div className="flex flex-col gap-4">
-      <table className={styles.table}><tbody>{children}</tbody></table>
+      <table className={styles.table}>
+        <tbody>{children}</tbody>
+      </table>
     </div>
   );
 }
 
 interface RowProps {
   title: string;
-  data: string | AnimeGenres[];
+  data: string | number | AnimeGenre[];
   url?: string;
 }
 

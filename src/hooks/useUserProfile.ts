@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useUserStore } from '@/stores/user-profile-store';
-import FetchServiceInstance from '@/app/api';
-import toast from 'react-hot-toast';
-import { getTranslatedText } from '@/utils';
+import FI from '@/app/api';
 import { userAPIConstant } from '@/constants/api-endpoints.constant';
+import { useUserStore } from '@/stores/user-profile-store';
+import { getTranslatedText } from '@/utils';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 const useUserProfile = () => {
   const userStoredData = useUserStore((state) => state.user);
@@ -17,18 +17,22 @@ const useUserProfile = () => {
 
   const fetchUserProfile = async () => {
     try {
-      const data = await FetchServiceInstance.fetchHelper(userAPIConstant['profile'], {
+      const request = await FI.fetch<{ success: boolean }>(userAPIConstant['profile'], {
         to: 'self',
         method: 'GET',
         cache: 'no-store',
       });
 
-      if (data.success !== true) {
+      if (!request.ok) {
+        return null;
+      }
+
+      if (request.data.success !== true) {
         console.log(`\n\n\t\tREMOVED BY STORAGE (while fetch)`);
         removeUserFromStore();
         return;
       }
-      setUserToStore(data);
+      setUserToStore(request.data);
     } catch (error) {
       console.log(`\n\n\t\tREMOVED BY STORAGE (while trycatch)`);
       console.error(error);

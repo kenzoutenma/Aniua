@@ -1,6 +1,6 @@
 'use client';
 
-import FetchServiceInstance from '@/app/api/index';
+import FI from '@/app/api/index';
 import { Button, TextField } from '@/components/UI/UIComponents';
 import { userAPIConstant } from '@/constants/api-endpoints.constant';
 import useUserProfile from '@/hooks/useUserProfile';
@@ -24,7 +24,7 @@ function Registration() {
 
   const handleRegistration: SubmitHandler<RegistrationForms> = async (data) => {
     try {
-      const res = await FetchServiceInstance.fetchHelper(userAPIConstant['registration'], {
+      const res = await FI.fetch<{ success: boolean }>(userAPIConstant['registration'], {
         to: 'self',
         method: 'POST',
         body: {
@@ -35,7 +35,7 @@ function Registration() {
         },
       });
 
-      if (res?.success == true) {
+      if (res.ok && res.data.success == true) {
         await fetchUserProfile();
         router.push('/');
       } else {

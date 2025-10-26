@@ -1,4 +1,4 @@
-import FetchServiceInstance from '@/app/api';
+import FI from '@/app/api';
 import { backendAPIRoutes } from '@/constants/backend-api.constant';
 import { sleep } from '@/utils';
 
@@ -9,15 +9,17 @@ async function getAllAnimeSlugs(): Promise<string[]> {
   let hasMore = true;
 
   while (hasMore) {
-    const response = await FetchServiceInstance.fetchHelper(backendAPIRoutes['filter'], {
+    const request = await FI.fetch<AnimeDataListInterface>(backendAPIRoutes['filter'], {
       to: 'out',
       params: { limit: String(pageSize), page: String(page), order: 'rating' },
     });
 
-    if(response.error != true && response.titles) {
-      const titles: AnimeDataInterface[] = response.titles;
+    if (request.ok) {
+      const titles = request.data.titles;
 
-      allSlugs.push(...titles.map((anime) => anime.slug));
+      if (Array.isArray(titles)) {
+        allSlugs.push(...titles.map((anime) => anime.slug));
+      }
       if (page < 3) {
         hasMore = false;
       } else {

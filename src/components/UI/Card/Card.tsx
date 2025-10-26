@@ -14,14 +14,14 @@ interface cardProps {
   variant?: 'horizontal' | 'default';
   additional?: {
     year?: number;
-    genres?: AnimeGenres[];
+    genres?: AnimeGenre[] | null;
     rate?: string;
     onClick?: () => void;
     history?: { episode?: number | string };
   };
 }
 
-const genres = (genres: AnimeGenres[] | []) => {
+const genres = (genres: AnimeGenre[] | []) => {
   if (!genres) return null;
   const genresStr = genres.map((el) => el.title || el.slug).join(', ');
   return <span key={genresStr}>{genresStr}</span>;

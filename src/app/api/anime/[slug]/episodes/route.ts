@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
-import FetchServiceInstance from '@/app/api';
+import FI from '@/app/api';
 import { animeAPIConstant } from '@/constants/api-endpoints.constant';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest, { params }: { params: { slug: string } }) {
   try {
@@ -10,11 +10,10 @@ export async function GET(req: NextRequest, { params }: { params: { slug: string
       NextResponse.json({ message: 'No slug provided' }, { status: 400 });
     }
 
-    const response = await FetchServiceInstance.fetchHelper(animeAPIConstant.episodeList(slug), {
+    const response = await FI.fetch(animeAPIConstant.episodeList(slug), {
       to: 'out',
       method: 'GET',
       cache: 'no-store',
-      requestReturn: true,
     });
 
     if (!response.ok) {
@@ -24,8 +23,7 @@ export async function GET(req: NextRequest, { params }: { params: { slug: string
       );
     }
 
-    const responseBody = await response.json();
-    return NextResponse.json(responseBody);
+    return NextResponse.json(response.data);
   } catch (error) {
     console.error('Error in login handler:', error);
     return NextResponse.json({ message: 'Internal server error' }, { status: 500 });

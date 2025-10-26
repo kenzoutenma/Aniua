@@ -1,4 +1,4 @@
-import FetchServiceInstance from '@/app/api';
+import FI from '@/app/api';
 import { animeAPIConstant } from '@/constants/api-endpoints.constant';
 import { getTranslatedText } from '@/utils';
 import debounce from 'lodash.debounce';
@@ -12,11 +12,14 @@ function useSearchHook() {
   async function fetchDBSearch(query: string) {
     if (!query.trim()) return getTranslatedText('search.TypeSmt');
 
-    const response = await FetchServiceInstance.fetchHelper(animeAPIConstant['search'], {
-      to: 'search',
+    const response = await FI.fetch<AnimeDataListInterface>(animeAPIConstant['search'], {
+      to: 'self',
       params: { q: query },
     });
-    const titles = response?.titles;
+
+    if (!response.ok) return getTranslatedText('search.NoResults');
+
+    const titles = response.data.titles;
 
     if (!Array.isArray(titles) || titles.length < 1) {
       return getTranslatedText('search.NoResults');
