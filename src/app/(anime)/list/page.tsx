@@ -21,8 +21,8 @@ const listPage = async ({ searchParams }: ListPageProps) => {
   const AnimeData = await useAnimeList(filterQuery);
 
   return (
-    <Section typeOfSection="TwoColSection" classname="justify-evenly">
-      <Section.Col widthState="3/4">
+    <Section typeOfSection="TwoColSection" classname="justify-evenly" style={{ gridTemplateColumns: "10fr 3fr", padding: "2rem 6rem"}}>
+      <Section.Col>
         <AnimeList anime={AnimeData.titles} />
         <Pagination isNextDisabled={!AnimeData.isNextPage} isPrevDisabled={!AnimeData.isPrevPage}>
           {Array.from({ length: AnimeData.pageCount }).map((_, i) => (
@@ -37,7 +37,7 @@ const listPage = async ({ searchParams }: ListPageProps) => {
           ))}
         </Pagination>
       </Section.Col>
-      <Section.Col widthState="1/4">
+      <Section.Col>
         <Filters />
       </Section.Col>
     </Section>

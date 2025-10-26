@@ -63,9 +63,10 @@
   .row,
   .ThreeColsSection,
   .TwoColSection {
+    display: flex;
     flex-direction: column;
     gap: 15px;
-    padding: 5% 10px;
+    padding: 10px !important;
   }
   .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
