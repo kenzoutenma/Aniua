@@ -6,6 +6,7 @@ export const userAPIConstant = {
 };
 
 export const animeAPIConstant = {
+  genres_data: 'data/genres',
   list: `list/`,
   filter: `list/`,
   episode: `anime/episode/`,
