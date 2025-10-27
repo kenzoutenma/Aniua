@@ -1,5 +1,6 @@
 import FI from '@/app/api';
 import { initAnimeFilters } from '@/constants/anime-default-filters';
+import { animeAPIConstant } from '@/constants/api-endpoints.constant';
 import debounce from 'lodash.debounce';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
@@ -16,7 +17,7 @@ export const useAnimeFilters = () => {
     const fetchGenres = async () => {
       try {
         type response = AnimeGenre[];
-        const request = await FI.fetch<response>('api/data/genres', { to: 'self' });
+        const request = await FI.fetch<response>(animeAPIConstant.genres_data, { to: 'self' });
         if (!request.ok) {
           return request;
         }
