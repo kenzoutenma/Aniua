@@ -70,7 +70,7 @@ class Fetch {
       const error_message = {
         ok: false,
         status: 500,
-        error: 'failed to fetch ' + direction + route,
+        error: 'failed to fetch ' + url,
       } as const;
       console.error(error_message);
       return error_message;
