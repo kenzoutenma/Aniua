@@ -1,13 +1,14 @@
 'use client';
 
-import { Button, Section } from '@/components/UI/UIComponents';
-import settingsConfig, { setting } from '@/constants/settings-constant';
-import { useSettingsStore } from '@/stores/settings-store';
+import settingsConfig, { setting } from '@/shared/constants/settings-constant';
+import { useSettingsStore } from '@/shared/state/settings-store';
+import { Button } from '@/shared/ui';
 
-import { getTranslatedText } from '@/utils';
-import { memo, useCallback, useMemo, useState } from 'react';
-import SettingField from './components/SettingField';
+import SettingField from '@/features/user/components/setting-field';
+import { getTranslatedText } from '@/shared/lib';
 import Link from 'next/link';
+import { memo, useCallback, useMemo, useState } from 'react';
+import Section from '@/shared/layout/section/section';
 
 export default function settings() {
   const setSetting = useSettingsStore((s) => s.setSetting);

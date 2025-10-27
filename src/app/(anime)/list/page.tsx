@@ -1,8 +1,8 @@
-import Pagination from '@/components/Pagination/Pagination';
-import { Button } from '@/components/UI/UIComponents';
-import useAnimeList from '@/hooks/useAnimeList';
+import AnimeList from '@/features/list/components/items-list';
+import useAnimeList from '@/features/list/hooks/useAnimeList';
+import { Button } from '@/shared/ui';
+import Pagination from '@/shared/ui/pagination/pagination';
 import { Metadata } from 'next';
-import AnimeList from './Components/AnimeList';
 
 export async function generateMetadata(): Promise<Metadata> {
   return {

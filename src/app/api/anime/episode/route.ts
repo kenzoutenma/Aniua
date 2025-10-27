@@ -1,6 +1,6 @@
-import { animeAPIConstant } from '@/constants/api-endpoints.constant';
-import { NextRequest, NextResponse } from 'next/server';
 import FI from '@/app/api';
+import { animeAPIConstant } from '@/shared/constants/api-endpoints.constant';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   try {

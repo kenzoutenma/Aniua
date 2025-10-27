@@ -1,7 +1,7 @@
 'use client';
 
-import Login from '@/components/Screens/Login/Login';
-import { Modal } from '@/components/UI/UIComponents';
+import Login from '@/features/auth/components/login';
+import Modal from '@/shared/layout/modal';
 
 export default function LoginModal() {
   return (

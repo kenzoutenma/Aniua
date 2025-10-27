@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/UI/UIComponents';
+import { Button } from '@/shared/ui';
 import Link from 'next/link';
 
 export default function GlobalError() {

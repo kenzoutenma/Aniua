@@ -1,5 +1,5 @@
 import FI from '@/app/api';
-import { animeAPIConstant } from '@/constants/api-endpoints.constant';
+import { animeAPIConstant } from '@/shared/constants/api-endpoints.constant';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest, { params }: { params: { slug: string } }) {

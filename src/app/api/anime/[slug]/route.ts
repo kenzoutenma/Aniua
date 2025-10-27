@@ -1,5 +1,5 @@
 import FI from '@/app/api';
-import { backendAPIRoutes } from '@/constants/backend-api.constant';
+import { backendAPIRoutes } from '@/shared/constants/backend-api.constant';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest, { params }: { params: { slug: string } }) {

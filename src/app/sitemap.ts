@@ -1,4 +1,4 @@
-import { getAllAnimeSlugs } from '@/utils';
+import { getAllAnimeSlugs } from '@/shared/lib';
 import type { MetadataRoute } from 'next';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

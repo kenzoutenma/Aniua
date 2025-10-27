@@ -1,5 +1,5 @@
-import CardSkeleton from '@/components/UI/Card/CardSkeleton';
-import { Section } from '@/components/UI/UIComponents';
+import CardSkeleton from '@/features/anime/components/anime-card/anime-card-skeleton';
+import Section from '@/shared/layout/section/section';
 
 export default function Loading() {
   return (

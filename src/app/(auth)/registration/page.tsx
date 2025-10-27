@@ -1,5 +1,5 @@
-import Registration from '@/components/Screens/Registration/Registration';
-import { Section } from '@/components/UI/UIComponents';
+import Registration from '@/features/auth/components/registration';
+import Section from '@/shared/layout/section/section';
 
 export default function RegistrationPage() {
   return (

@@ -1,7 +1,7 @@
 'use client';
 
-import Search from '@/components/Search/Search';
-import { Section } from '@/components/UI/UIComponents';
+import Search from '@/features/search/components/search';
+import Section from '@/shared/layout/section/section';
 
 export default function LoginModal() {
   return (

@@ -1,9 +1,9 @@
 import FI from '@/app/api';
-import HeroBanner from '@/components/hero/hero';
-import DescriptionSection from '@/components/Screens/Anime/Sections/DescriptionSection/DescriptionSection';
-import PlayerSection from '@/components/Screens/Anime/Sections/PlayerSection/PlayerSection';
-import { animeAPIConstant } from '@/constants/api-endpoints.constant';
-import { getTranslatedText } from '@/utils';
+import DescriptionSection from '@/features/anime/components/description-section/description-section';
+import HeroBanner from '@/features/anime/components/hero/hero';
+import PlayerSection from '@/features/anime/components/player-section/player-section';
+import { animeAPIConstant } from '@/shared/constants/api-endpoints.constant';
+import { getTranslatedText } from '@/shared/lib';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 

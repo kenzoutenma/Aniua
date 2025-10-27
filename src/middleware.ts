@@ -1,6 +1,6 @@
 // middleware.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { pathsProfile, getAccount } from './constants/headersconst';
+import { getAccount, pathsProfile } from './shared/constants/headersconst';
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('sessionid');

@@ -1,7 +1,7 @@
 import FI from '@/app/api';
-import HomeScreen from '@/components/Screens/Home/HomeScreen';
-import { animeAPIConstant } from '@/constants/api-endpoints.constant';
-import { backendAPIRoutes } from '@/constants/backend-api.constant';
+import HomeScreen from '@/features/home/components/home-screen';
+import { animeAPIConstant } from '@/shared/constants/api-endpoints.constant';
+import { backendAPIRoutes } from '@/shared/constants/backend-api.constant';
 
 interface group {
   name: string;

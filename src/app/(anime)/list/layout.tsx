@@ -1,6 +1,6 @@
-import { Section } from '@/components/UI/UIComponents';
+import Section from '@/shared/layout/section/section';
 import { Suspense } from 'react';
-import Filters from './Components/Filters';
+import Filters from '../../../features/list/components/filters/filters';
 import Loading from './loading';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
