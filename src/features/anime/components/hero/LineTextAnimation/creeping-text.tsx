@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import styles from './CreepingText.module.css';
+import styles from './creeping-text.module.css';
 
 interface AnimatedTextProps {
   text: string | null;

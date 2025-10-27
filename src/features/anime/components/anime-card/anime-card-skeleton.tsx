@@ -1,6 +1,6 @@
 import { TypographyType } from '@/shared/ui';
 import clsx from 'clsx';
-import styles from './Card.module.css';
+import styles from './anime-card.module.css';
 
 const CardSkeletonBlock = ({ countOfCards = 1 }: { countOfCards?: number }) => {
   return (
