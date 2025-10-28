@@ -5,7 +5,7 @@ interface Category {
 
 interface AnimeGenre {
   title: string;
-  id: number;
+  id: string;
   slug: string;
   title_en?: string;
   description?: string;
