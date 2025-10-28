@@ -1,7 +1,4 @@
-import { paths } from '@/shared/constants/headersconst';
-import Link from 'next/link';
 import React from 'react';
-import { Button } from '@/shared/ui';
 import styles from './table.module.css';
 
 interface TableProps {
@@ -19,40 +16,21 @@ function Table({ children }: TableProps) {
 }
 
 interface RowProps {
-  title: string;
-  data: string | number | AnimeGenre[];
-  url?: string;
+  children: React.ReactNode;
 }
 
-const Row = ({ title, data, url }: RowProps) => {
-  if (!data) return;
-  return (
-    <tr>
-      <th>{title}:</th>
-      <th>
-        {typeof data !== 'string' ? (
-          Object.entries(data).map((element, key) => {
-            return (
-              <Button
-                variant="link"
-                key={key}
-                as={Link}
-                href={`${paths.list}/?genres=${element[1].slug}`}
-              >
-                {element[1].title}
-              </Button>
-            );
-          })
-        ) : (
-          <Button as={Link} variant="link" href={url || '#'}>
-            {data}
-          </Button>
-        )}
-      </th>
-    </tr>
-  );
+const Row = ({ children }: RowProps) => {
+  if (!children) return;
+  return <tr>{children}</tr>;
 };
 
 Table.row = Row;
+
+const Col = ({ children }: RowProps) => {
+  if (!children) return;
+  return <th>{children}</th>;
+};
+
+Table.col = Col;
 
 export default Table;
