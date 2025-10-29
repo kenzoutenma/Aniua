@@ -1,9 +1,9 @@
 'use client';
 
-import FI from '@/app/api';
-import { animeAPIConstant } from '@/shared/constants/api-endpoints.constant';
 import { usePlayerStore } from '@/shared/state/player-history';
 import { useEffect, useState } from 'react';
+import getEpisodeService from '../service/getEpisode';
+import getEpisodesListService from '../service/getEpisodesList';
 
 export interface PlayerV2 {
   anime_slug: string;
@@ -43,26 +43,14 @@ export const useNewPlayer = (slug: string) => {
 
   const fetch_episodes_list = async () => {
     if (!slug) throw new Error(`No slug: ${slug}`);
-    const list = await FI.fetch<IEpisodeListResponse>(animeAPIConstant.episodeList(slug), {
-      to: 'self',
-    });
-    if (!list.ok) return null;
-    setEpisodesList(list.data.episodes);
+    const list = await getEpisodesListService(slug)
+    setEpisodesList(list);
   };
 
   const handleEpisode = async (episodeID: number) => {
     setPlayerState((prev) => ({ ...prev, is_loading: true }));
 
-    const EpisodeRequest = await FI.fetch<EpisodeListInterface>(animeAPIConstant['episode'], {
-      to: 'self',
-      params: { title: episodeID.toString() },
-    });
-
-    if (!EpisodeRequest.ok) {
-      return;
-    }
-
-    const newEpisode = EpisodeRequest.data;
+    const newEpisode = await getEpisodeService(episodeID.toString())
 
     const isNewEpisodeHasArrayOfPlayers = Array.isArray(newEpisode.players);
     const studios: string[] = isNewEpisodeHasArrayOfPlayers
