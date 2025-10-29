@@ -1,9 +1,8 @@
-import FI from '@/app/api';
 import { initAnimeFilters } from '@/shared/constants/anime-default-filters';
-import { animeAPIConstant } from '@/shared/constants/api-endpoints.constant';
 import debounce from 'lodash.debounce';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
+import { getGenresData } from '../service/get-filters';
 
 export const useAnimeFilters = () => {
   const [filters, setFilters] = useState<animeFilterConstant | null>(null);
@@ -16,25 +15,13 @@ export const useAnimeFilters = () => {
   useEffect(() => {
     const fetchGenres = async () => {
       try {
-        type response = AnimeGenre[];
-        const request = await FI.fetch<response>(animeAPIConstant.genres_data, { to: 'self' });
-        if (!request.ok) {
-          return request;
-        }
-        const data = request.data as AnimeGenre[];
-
-        const genre = data.map((genre: AnimeGenre) => ({
-          id: genre.id,
-          title: genre.title,
-          title_en: genre.title_en,
-          slug: genre.slug,
-        }));
+        const result = await getGenresData();
 
         const updatedConfig: animeFilterConstant = {
           ...initAnimeFilters,
           genre: {
             type_of_filter: 'option',
-            values: genre,
+            values: result.data,
           },
         };
         setFilters(updatedConfig);
@@ -69,8 +56,8 @@ export const useAnimeFilters = () => {
         params.set('year', `${yearMin}-${yearMax}`);
       }
 
-      router.replace(`?${params.toString()}`);
-    }, 1000),
+      router.push(`?${params.toString()}`);
+    }, 200),
     [selected],
   );
 
