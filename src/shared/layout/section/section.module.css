@@ -30,7 +30,6 @@
   justify-content: center;
   gap: 15px;
   transition: all 0.1s ease-in;
-  overflow: hidden;
   padding: 3rem 6rem;
 }
 
