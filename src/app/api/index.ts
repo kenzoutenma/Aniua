@@ -21,12 +21,25 @@ class Fetch {
     }
   }
 
-  private doURL(endpoint: string, params?: Record<string, string>): URL {
-    console.log(endpoint);
-    const url = new URL(endpoint);
-    if (params)
-      Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, value));
-    return url;
+  private getBase(direction: string) {
+    if (direction == 'self' && typeof window !== 'undefined') {
+      return '';
+    }
+    return direction == 'self' ? this.domain : this.api
+  }
+
+  private doURL(endpoint: string, params?: Record<string, string>) {
+    if(endpoint.includes("http")) {
+      const url = new URL(endpoint);
+      if (params)
+        Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, value));
+      return url
+    } else {
+      let url = endpoint;
+      if (params)
+        Object.entries(params).forEach(([key, value]) => url += `${key}=${value}`);
+      return url;
+    }
   }
 
   private getFetchOptions(data: Options): RequestInit {
@@ -59,9 +72,9 @@ class Fetch {
   }
 
   async fetch<T>(route: string, data: Options): Promise<ApiResponse<T>> {
-    const direction = data.to == 'self' ? this.domain : this.api;
+    const direction = this.getBase(data.to)
     const isApiRoute = direction.includes('/api/') ? '' : 'api/';
-    const url: URL = this.doURL(direction + isApiRoute + route, data.params);
+    const url = this.doURL(direction + isApiRoute + route, data.params);
 
     const options = this.getFetchOptions(data);
     const request = await fetch(url, options);
