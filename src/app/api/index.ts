@@ -1,7 +1,7 @@
-interface Options {
+export interface Options {
   method?: 'GET' | 'POST';
   params?: Record<string, string>;
-  to: 'self' | 'out';
+  to?: 'self' | 'out';
   cache?: RequestCache;
   next?: NextFetchRequestConfig;
   body?: Record<string, string>;
@@ -26,20 +26,39 @@ class Fetch {
     if (direction == 'self' && typeof window !== 'undefined') {
       return '/api/';
     }
-    return direction == 'self' ? (this.domain.includes('api/') ? this.domain : this.domain + 'api/') : this.api
+    return direction == 'self'
+      ? this.domain.includes('api/')
+        ? this.domain
+        : this.domain + 'api/'
+      : this.api;
+  }
+
+  getParams(query?: Record<string, string | string[] | undefined>) {
+    const params = new URLSearchParams();
+
+    for (const key in query) {
+      const value = query[key];
+      if (Array.isArray(value)) {
+        value.forEach((v) => v && params.append(key, v));
+      } else if (typeof value === 'string') {
+        params.set(key, value);
+      }
+    }
+    console.log(params)
+    return params;
   }
 
   private doURL(endpoint: string, params?: Record<string, string>) {
-    if(endpoint.includes("http")) {
+    if (endpoint.includes('http')) {
       const url = new URL(endpoint);
       if (params)
         Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, value));
-      return url
+      return url;
     } else {
       let url = endpoint;
       if (params) {
-        url += "?"
-        Object.entries(params).forEach(([key, value]) => url += `${key}=${value}`);
+        url += '?';
+        Object.entries(params).forEach(([key, value]) => (url += `${key}=${value}`));
       }
       return url;
     }
@@ -75,11 +94,12 @@ class Fetch {
   }
 
   async fetch<T>(route: string, data: Options): Promise<ApiResponse<T>> {
-    const direction = this.getBase(data.to)
+    const direction = this.getBase(data.to || 'out');
     const url = this.doURL(direction + route, data.params);
 
     const options = this.getFetchOptions(data);
     const request = await fetch(url, options);
+    console.log(`${request.ok ? '\x1b[33m%s\x1b[0m' : '\x1b[43m%s\x1b[0m'}`, url.toString());
 
     if (!request.ok) {
       const error_message = {
