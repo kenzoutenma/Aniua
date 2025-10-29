@@ -36,8 +36,10 @@ class Fetch {
       return url
     } else {
       let url = endpoint;
-      if (params)
+      if (params) {
+        url += "?"
         Object.entries(params).forEach(([key, value]) => url += `${key}=${value}`);
+      }
       return url;
     }
   }
