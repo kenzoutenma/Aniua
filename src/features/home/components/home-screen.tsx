@@ -19,7 +19,7 @@ function HomeScreen({ groups }: { groups: { name: string; data: AnimeDataInterfa
 
 const Slides = (name: string, group: AnimeDataInterface[]) => {
   return (
-    <Section.Row>
+    <Section.Row key={'anime-slide-'+name}>
       <Section.Col title={getTranslatedText(name)} widthState="1">
         <Slider>
           {group.map((el, index) => (
