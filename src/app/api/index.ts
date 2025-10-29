@@ -23,9 +23,9 @@ class Fetch {
 
   private getBase(direction: string) {
     if (direction == 'self' && typeof window !== 'undefined') {
-      return '';
+      return '/api/';
     }
-    return direction == 'self' ? this.domain : this.api
+    return direction == 'self' ? (this.domain.includes('api/') ? this.domain : this.domain + 'api/') : this.api
   }
 
   private doURL(endpoint: string, params?: Record<string, string>) {
@@ -75,8 +75,7 @@ class Fetch {
 
   async fetch<T>(route: string, data: Options): Promise<ApiResponse<T>> {
     const direction = this.getBase(data.to)
-    const isApiRoute = direction.includes('/api/') ? '' : 'api/';
-    const url = this.doURL(direction + isApiRoute + route, data.params);
+    const url = this.doURL(direction + route, data.params);
 
     const options = this.getFetchOptions(data);
     const request = await fetch(url, options);
