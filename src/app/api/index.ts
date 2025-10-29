@@ -3,6 +3,7 @@ interface Options {
   params?: Record<string, string>;
   to: 'self' | 'out';
   cache?: RequestCache;
+  next?: NextFetchRequestConfig;
   body?: Record<string, string>;
 }
 
@@ -48,7 +49,7 @@ class Fetch {
     const options: RequestInit = {
       method: data.method || 'GET',
       cache: data.cache,
-      next: {
+      next: data.next || {
         revalidate: 1000 * 60 * 5,
       },
     };
