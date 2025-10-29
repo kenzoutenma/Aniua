@@ -1,30 +1,26 @@
 'use client';
 
+import clsx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
-import DropDownButton from './dropdown-button/dropdown-button';
-import DropDownMenu from './dropdown-menu/dropdown-menu';
+import buttonStyles from './dropdown-button.module.css';
+import menuStyles from './dropdown-menu.module.css';
 import styles from './dropdown.module.css';
 
 interface DropdownProps {
+  trigger?: React.ReactNode; //For show custom element
   currentState?: string; //For show current state
   children?: React.ReactNode; //For show current state as Node
-  customElement?: React.ReactNode; //For show custom element
-  position?: 'left' | 'right' | 'center'; //For change position of dropdown options menu
+  align?: 'left' | 'right' | 'center'; //For change position of dropdown options menu
 }
 
-const Dropdown = ({
-  currentState,
-  customElement,
-  children,
-  position = 'center',
-}: DropdownProps) => {
+const Dropdown = ({ trigger, children, align = 'center' }: DropdownProps) => {
   const [visible, setVision] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const handleVisible = () => {
     setVision((prev) => !prev);
+    console.log(visible);
   };
-  const hideDropdown = () => setVision(false);
 
   const handleClickOutside = (e: MouseEvent) => {
     if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
@@ -48,10 +44,28 @@ const Dropdown = ({
       aria-controls="dropdown-options"
       className={styles.dropdownWrapper}
     >
-      <DropDownButton handle={handleVisible} state={customElement || currentState} />
-      <DropDownMenu hideDropdown={hideDropdown} isVisible={visible} position={position}>
+      <button
+        role="button"
+        aria-haspopup="true"
+        aria-expanded={visible}
+        className={buttonStyles.dropdownButton}
+      >
+        {trigger}
+      </button>
+      <div
+        tabIndex={visible ? 1 : -1}
+        role="menu"
+        className={clsx(
+          !visible && menuStyles.hidden,
+          menuStyles.dropdownMenu,
+          align === 'left' && menuStyles.alignLeft,
+          align === 'right' && menuStyles.alignRight,
+          align === 'center' && menuStyles.alignCenter,
+        )}
+      >
         {children}
-      </DropDownMenu>
+      </div>
+      {visible && <></>}
     </div>
   );
 };

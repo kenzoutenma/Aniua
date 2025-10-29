@@ -28,7 +28,7 @@ function AddToCollectionButton({ slug }: { slug: string }) {
   };
 
   return storedList && storedList.length > 0 ? (
-    <Dropdown currentState={getTranslatedText('info.addToList')} position="center">
+    <Dropdown trigger={getTranslatedText('info.addToList')} align="center">
       {storedList.map((e) => {
         return (
           <Button variant="button" onClick={() => addToList({ list: e.id || '' })} key={e.id}>

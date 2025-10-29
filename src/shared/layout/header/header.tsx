@@ -96,7 +96,7 @@ const ProfileBlock = React.memo(({ userStoredData }: { userStoredData: UserProfi
         />
       ))}
     </Dropdown> */}
-    <Dropdown customElement={<ProfilePicture avatar={userStoredData?.avatar} />} position="right">
+    <Dropdown trigger={<ProfilePicture avatar={userStoredData?.avatar} />} align="right">
       {Object.entries(pathsProfile).map((path, index) => (
         <Button key={index} as={Link} href={path[1]}>
           {getTranslatedText(`paths.${path[0]}`)}
