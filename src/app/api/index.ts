@@ -44,7 +44,6 @@ class Fetch {
         params.set(key, value);
       }
     }
-    console.log(params)
     return params;
   }
 
@@ -68,10 +67,12 @@ class Fetch {
     const options: RequestInit = {
       method: data.method || 'GET',
       cache: data.cache,
-      next: data.next || {
-        revalidate: 1000 * 60 * 5,
-      },
     };
+
+    if (data.cache != 'no-cache')
+      options.next = data.next || {
+        revalidate: 1000 * 60 * 5,
+      };
 
     if (data.method === 'POST' && data.body) {
       options.headers = {
