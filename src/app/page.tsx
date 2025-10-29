@@ -1,6 +1,6 @@
 import FI from '@/app/api';
 import HomeScreen from '@/features/home/components/home-screen';
-import { animeAPIConstant } from '@/shared/constants/api-endpoints.constant';
+import { getGenresData } from '@/features/list/service/get-filters';
 import { backendAPIRoutes } from '@/shared/constants/backend-api.constant';
 
 interface group {
@@ -9,9 +9,7 @@ interface group {
 }
 
 export default async function Home() {
-  const request = await FI.fetch<AnimeGenre[]>(animeAPIConstant.genres_data, { to: 'self' });
-  if (!request.ok) return request
-  const data = request.data as AnimeGenre[];
+  const request = await getGenresData()
 
   const groups: group[] = [];
 
@@ -26,11 +24,11 @@ export default async function Home() {
   });
 
   for (let i = 0; i < 4; i++) {
-    const thisGenreIs = data[i]
+    const thisGenreIs = request.data[i]
     const action = await FI.fetch<AnimeDataListInterface>(backendAPIRoutes['filter'], {
       to: 'out',
-      cache: 'no-store',
       params: { limit: '9', order: 'rating', genre: thisGenreIs.id.toString() },
+      next: {tags: [`anime-list-genre-${thisGenreIs.slug}`]}
     });
     if (!action.ok) return action;
     groups.push({ name: `anime_genres.${thisGenreIs.slug}`, data: action.data.titles as AnimeDataInterface[] });
