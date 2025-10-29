@@ -4,9 +4,9 @@ import sitemeta from '@/shared/constants/site-metadata';
 import Header from '@/shared/layout/header/header';
 import { getTranslatedText } from '@/shared/lib';
 import LoadProvider from '@/shared/providers/loading-provider';
+import '@/shared/styles/globals.css';
 import type { Metadata } from 'next';
 import { Toaster } from 'react-hot-toast';
-import './globals.css';
 
 const roboto = Roboto_Condensed({
   weight: '400',

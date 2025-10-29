@@ -240,3 +240,7 @@ span {
   line-height: 1.75rem;
   color: var(--front-400);
 }
+
+*:focus {
+  border: var(--frontColor) 1px solid !important;
+}
