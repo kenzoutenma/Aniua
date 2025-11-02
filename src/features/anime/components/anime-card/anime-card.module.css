@@ -10,7 +10,6 @@
   position: relative;
   flex-shrink: 0;
 
-  background-color: var(--bg);
   padding: .25rem;
   border-radius: var(--border-radius);
   transition: all .5s ease-in-out;
