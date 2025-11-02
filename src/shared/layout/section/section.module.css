@@ -34,15 +34,8 @@
 }
 
 .grid {
-  display: grid;
-  position: relative;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  margin-top: -1rem;
-  margin-bottom: -1rem;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1rem;
-  justify-items: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .row {
