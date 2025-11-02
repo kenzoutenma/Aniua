@@ -1,9 +1,5 @@
 .tooltip-wrapper {
-  display: flex;
-  flex-shrink: 0;
   position: relative;
-  width: fit-content;
-  max-width: 376px;
 }
 
 .tooltip-wrapper:hover .tooltip {
