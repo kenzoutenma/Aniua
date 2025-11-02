@@ -1,0 +1,11 @@
+.pfp {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: cover;
+
+  position: relative;
+}
+
+.pfp img {
+  object-fit: cover;
+}

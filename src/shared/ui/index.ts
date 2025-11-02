@@ -13,5 +13,5 @@ export { default as Tooltip } from './tooltip/tooltip';
 export { default as Typography } from './typography/typography';
 export { variantMap as TypographyType } from './typography/typography';
 
-export { default as ProfilePicture } from './pfp';
+export { default as ProfilePicture } from './pfp/pfp';
 
