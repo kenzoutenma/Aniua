@@ -1,7 +1,6 @@
 .tooltip-wrapper {
   display: flex;
   flex-shrink: 0;
-  height: 100%;
   position: relative;
   width: fit-content;
   max-width: 376px;
