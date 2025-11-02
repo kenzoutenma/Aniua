@@ -1,9 +1,9 @@
 :root {
   color-scheme: light dark;
   /* hsl (fallback color) */
-  --bg-dark: hsl(0 0% 0%);
-  --bg: hsl(0, 0%, 4%);
-  --bg-light: hsl(0 0% 8%);
+  --bg-dark: hsl(0, 0%, 5%);
+  --bg: hsl(0, 0%, 10%);
+  --bg-light: hsl(0 0% 15%);
   --text: hsl(0 0% 95%);
   --text-muted: hsl(300 0% 69%);
   --highlight: hsl(330 0% 39%);
@@ -98,9 +98,10 @@ button,
 input {
   background-color: var(--bg);
   border: 1px solid var(--border);
-  border-radius: var(--border-radius);
+  border-radius: calc(var(--border-radius) / 2);
   display: flex;
   align-items: center;
+  padding: 4px;
 }
 
 label {
