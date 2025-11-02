@@ -1,0 +1,72 @@
+.h_card {
+  transition: 0.7s;
+  padding: var(--distance);
+  flex-direction: row;
+  gap: 10px;
+  height: calc(35vh / 3);
+  width: 25%;
+  overflow: hidden;
+  display: flex;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .h_card {
+    width: 50%;
+  }
+}
+
+.h_card:hover,
+.h_card:focus {
+  background-color: var(--front-800);
+  box-shadow: var(--shadow03dp);
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+.h_card_image {
+  aspect-ratio: 2 / 3;
+  height: calc(var(--cardHeight) / 3);
+  width: auto;
+  border-radius: calc(var(--borderRad) - var(--cardPadding));
+}
+
+.h_card_title_container {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.h_card_title_container * {
+  margin: 0;
+}
+
+.h_card_title {
+  color: var(--frontColor);
+}
+
+.h_card_description {
+  gap: 5px;
+  display: flex;
+}
+
+.h_card:hover .marquee-text,
+.h_card:focus .marquee-text {
+  animation-name: scroll-text;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes scroll-text {
+  0% {
+    transform: translateX(0);
+  }
+  75% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
