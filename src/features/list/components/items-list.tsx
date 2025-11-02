@@ -18,7 +18,7 @@ function AnimeList({ anime }: AnimeListProps) {
       ) : (
         anime.map((el: AnimeDataInterface) => (
           <Tooltip
-            className={CardStyles.cardcontainer}
+            className={CardStyles.card}
             role="tooltip"
             id={`anime_${el.slug}_tooltip`}
             key={el.slug}

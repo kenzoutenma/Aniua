@@ -16,7 +16,7 @@ const Tooltip = ({ tooltipContent, children, position = 'right', ...props }: Too
   const tooltipRef = useRef<HTMLDivElement>(null);
   const side = useTooltipPosition(wrapperRef, tooltipRef);
   return (
-    <div {...props} className={styles['tooltip-wrapper']} ref={wrapperRef}>
+    <div {...props} ref={wrapperRef}>
       {children}
 
       <div
