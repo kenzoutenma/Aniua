@@ -13,6 +13,7 @@
   background-color: var(--bg);
   padding: .25rem;
   border-radius: var(--border-radius);
+  transition: all .5s ease-in-out;
 }
 
 @media (max-width: 932) {
@@ -22,8 +23,8 @@
   }
 }
 
-.card:hover {
-  background-color: var(--bg-light);
+.card:hover .card_title {
+  color: var(--text);
 }
 
 .card_image {
@@ -32,6 +33,18 @@
   width: 100%;
   flex-shrink: 0;
   border-radius: calc(var(--border-radius) - .25rem);
+  overflow: hidden;
+}
+
+.card_image img {
+  transition: all .1s ease-in-out;
+  height: 100%;
+  width: 100%;
+  scale: 1;
+}
+
+.card:hover img {
+  scale: 1.1;
 }
 
 .card_name {
@@ -53,4 +66,5 @@
   
   white-space: nowrap;
   overflow: hidden;
+  color: var(--text-muted);
 }

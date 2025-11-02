@@ -48,15 +48,9 @@ const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', ad
       href={`/anime/${slug}`}
       className={styles.card}
     >
-      <Image
-        src={image}
-        alt={title}
-        width={500}
-        height={750}
-        className={styles.card_image}
-        loading="eager"
-        quality={50}
-      />
+      <div className={styles.card_image}>
+        <Image src={image} alt={title} width={500} height={750} loading="eager" quality={50} />
+      </div>
       <div className={styles.card_name}>
         <p className={styles.card_title}>{title}</p>
         {rate}
@@ -73,7 +67,12 @@ const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', ad
       ></Image>
       <div>
         <div className={horizontal.h_card_title_container}>
-          <h2 className={clsx(horizontal.h_card_title, title.length > 20 && horizontal['marquee-text'])}>
+          <h2
+            className={clsx(
+              horizontal.h_card_title,
+              title.length > 20 && horizontal['marquee-text'],
+            )}
+          >
             {title}
           </h2>
         </div>
