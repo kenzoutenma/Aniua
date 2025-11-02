@@ -1,5 +1,13 @@
 .button {
+  padding: var(--padding);
+  background-color: var(--bg);
+  border: var(--border-fill);
+  border-radius: var(--border-radius-1_2);
   
+  display: flex;
+  align-items: center;
+
+  line-height: normal;
 }
 
 .button:not(:disabled):hover {
@@ -47,13 +55,13 @@
 /* Primary button */
 
 .primary {
-  background-color: var(--frontColor);
+  background-color: var(--primary);
   color: var(--backColor);
 }
 
 .primary:not(:disabled):hover {
   cursor: pointer;
-  background-color: var(--front-200);
+  background-color: var(--primary);
 }
 
 .primary:not(:disabled):focus {
@@ -102,7 +110,7 @@
 
 .link:not(:disabled):hover,
 .link:not(:disabled):focus {
-  color: var(--textColor);
+  color: var(--button-text-timed-color);
 }
 
 .link:not(:disabled)::after {
@@ -118,7 +126,7 @@
     0.3s ease 0s,
     left 0.3s ease 0s;
   transform-origin: bottom right;
-  background-color: var(--frontColor);
+  background-color: var(--button-text-color);
 }
 
 .link:not(:disabled):hover::after,

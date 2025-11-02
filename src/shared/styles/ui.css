@@ -3,19 +3,29 @@
   --border-fill: 1px solid var(--border);
   --border-radius-1_2: calc(var(--border-radius) / 2);
   
+  --button-text-color: var(--text);
+  --button-text-timed-color: var(--text-muted);
 }
 
 button,
 input {
   padding: var(--padding);
   background-color: var(--bg);
-  border: var(--border-fill);
+  border: none;
   border-radius: var(--border-radius-1_2);
   
   display: flex;
+  flex-direction: row;
   align-items: center;
 
   line-height: normal;
+
+  justify-content: center;
+  align-items: center;
+  outline-style: none;
+
+  white-space: nowrap;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
 input:has(img),
