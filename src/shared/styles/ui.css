@@ -1,0 +1,29 @@
+:root {
+  --padding: .5rem 0.75rem;
+  --border-fill: 1px solid var(--border);
+  --border-radius-1_2: calc(var(--border-radius) / 2);
+  
+}
+
+button,
+input {
+  padding: var(--padding);
+  background-color: var(--bg);
+  border: var(--border-fill);
+  border-radius: var(--border-radius-1_2);
+  
+  display: flex;
+  align-items: center;
+
+  line-height: normal;
+}
+
+input:has(img),
+button:has(img) {
+  padding: 0;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+}

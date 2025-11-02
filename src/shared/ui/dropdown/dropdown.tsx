@@ -2,7 +2,6 @@
 
 import clsx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
-import buttonStyles from './dropdown-button.module.css';
 import menuStyles from './dropdown-menu.module.css';
 import styles from './dropdown.module.css';
 
@@ -48,7 +47,6 @@ const Dropdown = ({ trigger, children, align = 'center' }: DropdownProps) => {
         role="button"
         aria-haspopup="true"
         aria-expanded={visible}
-        className={buttonStyles.dropdownButton}
       >
         {trigger}
       </button>
