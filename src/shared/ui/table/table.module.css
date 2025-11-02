@@ -1,0 +1,26 @@
+.table {
+  @apply p-1 min-w-[150px] rounded-xl border border-c02dp;
+  overflow: hidden;
+  font-weight: 100;
+  font-synthesis: none;
+}
+
+.table tr {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.table tr:hover {
+  background-color: var(--front-950);
+}
+
+.table tr th:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 5px;
+  color: var(--front-400);
+}

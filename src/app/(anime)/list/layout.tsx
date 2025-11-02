@@ -1,10 +1,23 @@
-import Loading from './loading';
+import Section from '@/shared/layout/section/section';
 import { Suspense } from 'react';
+import Filters from '../../../features/list/components/filters/filters';
+import Loading from './loading';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Suspense fallback={<Loading />}>{children}</Suspense>
+      <Section
+        typeOfSection="TwoColSection"
+        classname="justify-evenly"
+        style={{ gridTemplateColumns: '10fr 3fr', padding: '2rem 6rem' }}
+      >
+        <Section.Col>
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </Section.Col>
+        <Section.Col>
+          <Filters />
+        </Section.Col>
+      </Section>
     </>
   );
 }

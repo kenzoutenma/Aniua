@@ -1,7 +1,7 @@
 'use client';
 
-import Registration from '@/components/Screens/Registration/Registration';
-import { Modal } from '@/components/UI/UIComponents';
+import Registration from '@/features/auth/components/registration';
+import Modal from '@/shared/layout/modal';
 
 export default function RegistrationModal() {
   return (

@@ -1,0 +1,82 @@
+.BannerSection {
+  display: flex;
+  height: 90svh;
+  align-items: flex-end;
+  margin: 0 50px;
+  padding: 50px 50px;
+  position: relative;
+  overflow: clip;
+}
+
+.ThreeColsSection {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 2%;
+}
+
+.OneColSection {
+  display: flex;
+  justify-content: center;
+  min-height: 50svh;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px 10%;
+  gap: 25px;
+}
+
+.TwoColSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  gap: 15px;
+  transition: all 0.1s ease-in;
+  padding: 3rem 6rem;
+}
+
+.grid {
+  display: grid;
+  position: relative;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (max-width: 1024px) {
+  .row,
+  .ThreeColsSection,
+  .TwoColSection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px !important;
+  }
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .BannerSection {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 786px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

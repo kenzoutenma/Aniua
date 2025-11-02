@@ -1,0 +1,51 @@
+'use client';
+
+import FI from '@/app/api';
+import { getTranslatedText } from '@/shared/lib';
+import { useUserStore } from '@/shared/state/user-profile-store';
+import { Button, Dropdown } from '@/shared/ui';
+import toast from 'react-hot-toast';
+
+function AddToCollectionButton({ slug }: { slug: string }) {
+  const userStoredData = useUserStore((state) => state.user);
+  const storedList = userStoredData.anime_lists;
+
+  const addToList = async ({ list }: { list: string }) => {
+    const data = await FI.fetch<{ message: string }>('lists/add/anime', {
+      to: 'out',
+      body: {
+        anime_slug: slug,
+        list_id: list,
+      },
+      method: 'POST',
+    });
+
+    if (!data.ok) return null;
+
+    if (data && data.data.message) {
+      toast.success(data.data.message);
+    }
+  };
+
+  return storedList && storedList.length > 0 ? (
+    <Dropdown trigger={getTranslatedText('info.addToList')} align="center">
+      {storedList.map((e) => {
+        return (
+          <Button variant="button" onClick={() => addToList({ list: e.id || '' })} key={e.id}>
+            {e.title}
+          </Button>
+        );
+      })}
+    </Dropdown>
+  ) : (
+    <Button
+      as={'button'}
+      variant="outline"
+      onClick={() => toast.error(getTranslatedText('info.notLogginedUser'))}
+    >
+      {getTranslatedText('info.addToList')}
+    </Button>
+  );
+}
+
+export default AddToCollectionButton;

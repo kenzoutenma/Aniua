@@ -1,12 +1,12 @@
 import { Roboto_Condensed } from 'next/font/google';
 
+import sitemeta from '@/shared/constants/site-metadata';
+import Header from '@/shared/layout/header/header';
+import { getTranslatedText } from '@/shared/lib';
+import LoadProvider from '@/shared/providers/loading-provider';
+import '@/shared/styles/globals.css';
 import type { Metadata } from 'next';
-import './globals.css';
-import Header from '@/components/Header/Header';
-import { getTranslatedText } from '@/utils';
 import { Toaster } from 'react-hot-toast';
-import sitemeta from '@/constants/site-metadata';
-import { LoadProvider } from '@/components/IndexComponent';
 
 const roboto = Roboto_Condensed({
   weight: '400',

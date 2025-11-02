@@ -1,0 +1,15 @@
+.descSection div:last-child {
+  min-width: 0;
+}
+
+.shortInfo {
+  display: flex;
+  gap: 5px;
+}
+
+@media (max-width: 1024px) {
+  .descSection {
+    display: flex;
+    flex-direction: column;
+  }
+}
