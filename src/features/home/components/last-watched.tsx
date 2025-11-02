@@ -1,12 +1,11 @@
 'use client';
 
-import FI from '@/app/api';
 import Card from '@/features/anime/components/anime-card/anime-card';
+import { getList } from '@/features/list/service/get-list';
 import Section from '@/shared/layout/section/section';
-import { Slider } from '@/shared/ui';
-import { animeAPIConstant } from '@/shared/constants/api-endpoints.constant';
 import { getTranslatedText } from '@/shared/lib';
 import { usePlayerStore } from '@/shared/state/player-history';
+import { Slider } from '@/shared/ui';
 import { useEffect, useState } from 'react';
 
 interface AnimeWithSession extends AnimeDataInterface {
@@ -22,15 +21,15 @@ export default function LastWatchedSection() {
     if (slugs.length === 0) return;
 
     const fetchAnime = async () => {
-      const res = await FI.fetch<AnimeDataListInterface>(animeAPIConstant['filter'], {
-        to: 'self',
+      const res = await getList({
         params: {
           slug: `${slugs.slice(-10).reverse().join(',')},`,
         },
         cache: 'no-store',
       });
       if (!res.ok) return null;
-      const data = res.data.titles;
+      console.log(res)
+      const data = res.titles;
 
       const mergedData = data.map((anime: AnimeDataInterface) => {
         const slug = anime.slug;
