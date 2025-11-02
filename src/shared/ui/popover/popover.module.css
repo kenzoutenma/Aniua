@@ -1,13 +1,13 @@
 .popoverCard {
-  width: max-content;
-  max-width: 376px;
-  border-radius: var(--borderRad);
-  background-color: var(--backColor);
+  width: 15vw;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding: 4px;
-  border: 1px solid var(--front-950);
+  padding: var(--distance);
+  background-color: var(--bg-light);
+  border-radius: var(--border-radius);
+  border: 1px var(--border) solid;
+
 }
 
 .popover-row {

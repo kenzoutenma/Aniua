@@ -1,9 +1,9 @@
 :root {
   color-scheme: light dark;
   /* hsl (fallback color) */
-  --bg-dark: hsl(336 0% 1%);
-  --bg: hsl(330 0% 4%);
-  --bg-light: hsl(0 0% 9%);
+  --bg-dark: hsl(0 0% 0%);
+  --bg: hsl(0, 0%, 4%);
+  --bg-light: hsl(0 0% 8%);
   --text: hsl(0 0% 95%);
   --text-muted: hsl(300 0% 69%);
   --highlight: hsl(330 0% 39%);
@@ -15,21 +15,6 @@
   --warning: hsl(52 19% 57%);
   --success: hsl(146 17% 59%);
   --info: hsl(217 28% 65%);
-  /* oklch */
-  --bg-dark: oklch(0.1 0 76);
-  --bg: oklch(0.15 0 76);
-  --bg-light: oklch(0.2 0 76);
-  --text: oklch(0.96 0 76);
-  --text-muted: oklch(0.76 0 76);
-  --highlight: oklch(0.5 0 76);
-  --border: oklch(0.4 0 76);
-  --border-muted: oklch(0.3 0 76);
-  --primary: oklch(0.76 0.1 76);
-  --secondary: oklch(0.76 0.1 256);
-  --danger: oklch(0.7 0.05 30);
-  --warning: oklch(0.7 0.05 100);
-  --success: oklch(0.7 0.05 160);
-  --info: oklch(0.7 0.05 260);
 
   --distance: 0.5rem;
   --border-radius: 12px;
@@ -52,21 +37,6 @@
     --warning: hsl(52 23% 34%);
     --success: hsl(147 19% 36%);
     --info: hsl(217 22% 41%);
-    /* oklch */
-    --bg-dark: oklch(0.92 0 76);
-    --bg: oklch(0.96 0 76);
-    --bg-light: oklch(1 0 76);
-    --text: oklch(0.15 0 76);
-    --text-muted: oklch(0.4 0 76);
-    --highlight: oklch(1 0 76);
-    --border: oklch(0.6 0 76);
-    --border-muted: oklch(0.7 0 76);
-    --primary: oklch(0.4 0.1 76);
-    --secondary: oklch(0.4 0.1 256);
-    --danger: oklch(0.5 0.05 30);
-    --warning: oklch(0.5 0.05 100);
-    --success: oklch(0.5 0.05 160);
-    --info: oklch(0.5 0.05 260);
   }
 }
 
@@ -111,6 +81,7 @@ h4 {
   font-weight: 600;
   letter-spacing: -0.01562em;
   color: var(--text-muted);
+  margin: 0;
 }
 
 p,
@@ -121,4 +92,18 @@ span {
   line-height: 1.75rem;
   text-decoration: none;
   color: var(--text);
+}
+
+button,
+input {
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
 }
