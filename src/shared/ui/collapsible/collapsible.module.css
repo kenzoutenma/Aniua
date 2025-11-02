@@ -1,9 +1,9 @@
 .block {
   border-width: 1px;
-  border-color: var(--front-950);
+  border-color: var(--bg);
   width: 100%;
   height: fit-content;
-  border-radius: var(--borderRad);
+  border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -11,13 +11,15 @@
 }
 
 .block:hover {
-  background-color: var(--front-950);
+  background-color: var(--bg);
 }
 .block:focus {
-  border-color: var(--front-800);
+  border-color: var(--bg);
 }
 
 .collapsible_child {
+  background-color: var(--bg);
+  padding: var(--padding);
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
