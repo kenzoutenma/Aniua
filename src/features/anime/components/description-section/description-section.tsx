@@ -36,10 +36,8 @@ function DescriptionSection({
   return (
     <Section typeOfSection="TwoColSection" style={{ gridTemplateColumns: '7fr 3fr' }}>
       <Section.Col>
-        <div>
-          <h2>{getTranslatedText('info.Description')}</h2>
-          <p>{data?.description && data.description}</p>
-        </div>
+        <h2>{getTranslatedText('info.Description')}</h2>
+        <p>{data?.description && data.description}</p>
         {data.characters && data.characters.length > 1 ? (
           <>
             <h2>{getTranslatedText('info.Characters')}</h2>
