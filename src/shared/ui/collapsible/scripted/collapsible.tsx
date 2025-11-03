@@ -1,9 +1,9 @@
 'use client';
 
 import { ArrowDownIcon } from '@/shared/icons/index';
+import { Button } from '@/shared/ui/index';
 import clsx from 'clsx';
 import React, { useLayoutEffect, useRef, useState } from 'react';
-import { Button } from '@/shared/ui/index';
 import styles from './collapsible.module.css';
 
 function Collapsible({
@@ -43,23 +43,19 @@ function Collapsible({
 
   return (
     <div
-      className={styles.block}
+      className={styles.collapsible_wrap}
       aria-haspopup="listbox"
       aria-expanded={visible}
       aria-controls="dropdown-options"
     >
-      <Button onClick={handleVisible} style={{ justifyContent: 'space-between' }}>
+      <Button className={styles.collapse_button} onClick={handleVisible}>
         {label}
-        <ArrowDownIcon
-          style={{ transform: `rotate(${visible ? `0deg` : `180deg`})`, transition: 'all .1s' }}
-        />
+        <ArrowDownIcon />
       </Button>
       <div
         ref={contentRef}
         className={clsx(styles.collapsible_child)}
-        // data-expanded={visible}
         aria-expanded={visible}
-        inert={!visible}
         style={{ display: display ? 'flex' : 'none' }}
         onTransitionEnd={handleAnimationEnd}
       >
