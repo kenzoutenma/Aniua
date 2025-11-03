@@ -2,8 +2,8 @@
   color-scheme: light dark;
   /* hsl (fallback color) */
   --bg-dark: hsl(0, 0%, 5%);
-  --bg: hsl(0, 0%, 10%);
-  --bg-light: hsl(0 0% 15%);
+  --bg: hsl(0, 0%, 7%);
+  --bg-light: hsl(0 0% 9%);
   --text: hsl(0 0% 95%);
   --text-muted: hsl(300 0% 69%);
   --highlight: hsl(330 0% 39%);
