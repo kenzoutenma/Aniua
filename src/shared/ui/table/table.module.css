@@ -1,5 +1,7 @@
 .table {
-  @apply p-1 min-w-[150px] rounded-xl border border-c02dp;
+  border: var(--border-fill);
+  border-radius: var(--border-radius);
+  width: 100%;
   overflow: hidden;
   font-weight: 100;
   font-synthesis: none;
@@ -14,7 +16,7 @@
 }
 
 .table tr:hover {
-  background-color: var(--front-950);
+  background-color: var(--bg);
 }
 
 .table tr th:last-child {
@@ -22,5 +24,5 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 5px;
-  color: var(--front-400);
+  color: var(--highlight);
 }
