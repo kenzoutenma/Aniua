@@ -87,13 +87,12 @@
   background-color: transparent;
   width: fit-content;
   position: relative;
-  color: var(--front-400);
   cursor: pointer;
 }
 
 .link:not(:disabled):hover,
 .link:not(:disabled):focus-visible{
-  color: var(--button-text-timed-color);
+  color: var(--button-text-color);
 }
 
 .link:not(:disabled)::after {
