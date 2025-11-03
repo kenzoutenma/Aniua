@@ -28,10 +28,9 @@
 
 .card_image {
   aspect-ratio: 3 / 4;
-  height: auto;
-  width: 100%;
-  flex-shrink: 0;
   border-radius: calc(var(--border-radius) - .25rem);
+  width: 100%;
+  height: auto;
   overflow: hidden;
 }
 
