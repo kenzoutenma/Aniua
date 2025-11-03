@@ -6,7 +6,9 @@
 }
 
 .checkbox:hover,
-.checkbox:has(.checkinput:focus-visible) {
+.checkbox:has(.checkinput:focus-visible),
+.checkbox:has(.checkinput:checked) {
+  color: var(--button-primary-text-color);
   background-color: var(--primary);
   cursor: pointer;
 }
@@ -14,8 +16,4 @@
 .checkinput {
   position: absolute;
   opacity: 0;
-}
-
-.checkbox:has(.checkinput:checked) {
-  background-color: var(--primary);
 }

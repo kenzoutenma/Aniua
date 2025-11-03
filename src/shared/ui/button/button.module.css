@@ -8,16 +8,13 @@
   align-items: center;
 
   line-height: normal;
+  transition: var(--text-color-animation);
 }
 
-.button:not(:disabled):hover {
+.button:not(:disabled):hover,
+.button:not(:disabled):focus  {
   cursor: pointer;
-  background-color: var(--front-950);
-}
-
-.button:not(:disabled):focus {
-  cursor: pointer;
-  background-color: var(--front-800);
+  background-color: var(--highlight);
 }
 
 .button:disabled {
@@ -42,60 +39,46 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  background-color: transparent;
 }
 
-.ghost:not(:disabled):hover {
-  background-color: var(--front-950);
-}
-
+.ghost:not(:disabled):hover,
 .ghost:not(:disabled):focus {
-  background-color: var(--front-800);
+  background-color: var(--bg-light);
+  color: var(--button-primary-text-color);
 }
 
 /* Primary button */
 
 .primary {
   background-color: var(--primary);
-  color: var(--backColor);
+  color: var(--bg-light);
 }
 
-.primary:not(:disabled):hover {
-  cursor: pointer;
-  background-color: var(--primary);
-}
-
+.primary:not(:disabled):hover,
 .primary:not(:disabled):focus {
-  background-color: var(--front-50);
+  cursor: pointer;
+  background-color: color-mix(in srgb, var(--primary) 75%, black 25%);
 }
+
 /* Secondary button */
 
-.secondary {
-  background-color: var(--front-950);
-}
+.secondary {}
 
-.secondary:not(:disabled):hover {
-  cursor: pointer;
-  background-color: var(--front-900);
-  box-shadow:
-    0 14px 28px rgba(0, 0, 0, 0.25),
-    0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
+.secondary:not(:disabled):hover,
 .secondary:not(:disabled):focus {
-  background-color: var(--front-500);
+  cursor: pointer;
+  background-color: var(--highlight);
 }
 /* Outline button */
 
 .outline {
-  border: 1px var(--front-950) solid;
+  border: var(--border-fill);
 }
 
-.outline:not(:disabled):hover {
-  background-color: var(--front-950);
-}
-
-.outline:focus {
-  background-color: var(--front-900);
+.outline:not(:disabled):hover,
+.outline:not(:disabled):focus  {
+  background-color: var(--highlight);
 }
 
 /* Link button variant */

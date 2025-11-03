@@ -62,7 +62,7 @@
 
 .collapsible_wrap[aria-expanded='false'] button {
   border-radius: var(--border-radius);
-  transition-delay: var(--animation-duration);
+  transition-delay: var(--animation-duration), color 0s;
 }
 
 /* svg animation */

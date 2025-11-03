@@ -1,16 +1,23 @@
 :root {
-  --padding: .5rem 0.75rem;
+  --padding: 0.5rem 0.75rem;
   --border-fill: 1px solid var(--border);
   --border-radius-1_2: calc(var(--border-radius) / 2);
-  
+
   --button-text-color: var(--text);
   --button-text-timed-color: var(--text-muted);
+  --button-primary-text-color: var(--bg-light);
+  --button-primary-text-timed-color: var(--bg);
 
-  --animation-duration: .25s;
-  --animation-duration-2: .15s;
+  --animation-duration: 0.25s;
+  --animation-duration-2: 0.15s;
 
-  --animation-delay-in: cubic-bezier(1,0,1,0);
-  --animation-delay-out: cubic-bezier(0,1,0,1);
+  --text-color-animation: color 0.1s ease-in-out,
+    background-color 0.1s ease-in-out;
+
+  --animation-delay-in: cubic-bezier(1, 0, 1, 0);
+  --animation-delay-out: cubic-bezier(0, 1, 0, 1);
+
+  --shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 button,
@@ -19,7 +26,7 @@ input {
   background-color: var(--bg);
   border: none;
   border-radius: var(--border-radius-1_2);
-  
+
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -33,6 +40,7 @@ input {
   white-space: nowrap;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
   cursor: pointer;
+  transition: var(--text-color-animation);
 }
 
 input:has(img),
@@ -43,4 +51,5 @@ button:has(img) {
 label {
   display: flex;
   flex-direction: row;
+  transition: var(--text-color-animation);
 }
