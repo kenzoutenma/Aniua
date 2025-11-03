@@ -12,7 +12,7 @@
 .collapsible_wrap:hover {
   border-color: var(--border-fill);
 }
-.collapsible_wrap:focus {
+.collapsible_wrap:focus-visible{
   border-color: var(--bg);
 }
 

@@ -17,7 +17,7 @@
 }
 
 .h_card:hover,
-.h_card:focus {
+.h_card:focus-visible{
   background-color: var(--front-800);
   box-shadow: var(--shadow03dp);
   transform: scale(1.02);
@@ -52,7 +52,7 @@
 }
 
 .h_card:hover .marquee-text,
-.h_card:focus .marquee-text {
+.h_card:focus-visible.marquee-text {
   animation-name: scroll-text;
   animation-duration: 6s;
   animation-iteration-count: infinite;

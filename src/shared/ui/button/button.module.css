@@ -12,7 +12,7 @@
 }
 
 .button:not(:disabled):hover,
-.button:not(:disabled):focus  {
+.button:not(:disabled):focus-visible {
   cursor: pointer;
   background-color: var(--highlight);
 }
@@ -43,7 +43,7 @@
 }
 
 .ghost:not(:disabled):hover,
-.ghost:not(:disabled):focus {
+.ghost:not(:disabled):focus-visible{
   background-color: var(--bg-light);
   color: var(--button-primary-text-color);
 }
@@ -56,7 +56,7 @@
 }
 
 .primary:not(:disabled):hover,
-.primary:not(:disabled):focus {
+.primary:not(:disabled):focus-visible{
   cursor: pointer;
   background-color: color-mix(in srgb, var(--primary) 75%, black 25%);
 }
@@ -66,7 +66,7 @@
 .secondary {}
 
 .secondary:not(:disabled):hover,
-.secondary:not(:disabled):focus {
+.secondary:not(:disabled):focus-visible{
   cursor: pointer;
   background-color: var(--highlight);
 }
@@ -77,7 +77,7 @@
 }
 
 .outline:not(:disabled):hover,
-.outline:not(:disabled):focus  {
+.outline:not(:disabled):focus-visible {
   background-color: var(--highlight);
 }
 
@@ -92,7 +92,7 @@
 }
 
 .link:not(:disabled):hover,
-.link:not(:disabled):focus {
+.link:not(:disabled):focus-visible{
   color: var(--button-text-timed-color);
 }
 
