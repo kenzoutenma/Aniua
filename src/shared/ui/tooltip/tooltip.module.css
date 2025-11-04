@@ -1,5 +1,6 @@
 .tooltip-wrapper {
   position: relative;
+  max-width: 100%;
 }
 
 .tooltip-wrapper:hover .tooltip {

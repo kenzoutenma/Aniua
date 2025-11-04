@@ -10,6 +10,18 @@
   border: 1px var(--border) solid;
 }
 
+@media (max-width: 1024px) {
+  .popoverCard {
+    width: 35vw;
+  }
+}
+
+@media (max-width: 640px) {
+  .popoverCard {
+    width: 90vw;
+  }
+}
+
 .popover-row {
   display: flex;
   flex-direction: row;
