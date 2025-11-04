@@ -114,7 +114,7 @@
 }
 
 .link:not(:disabled):hover::after,
-.link:not(:disabled):focus::after {
+.link:not(:disabled):focus-visible::after {
   transform: scaleX(1);
   transform-origin: left;
 }
