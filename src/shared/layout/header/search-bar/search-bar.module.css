@@ -1,8 +1,21 @@
-.searchbar {
-  padding: 4px 10px;
-  width: 150px;
-  height: var(--minButtonHeight);
-  text-align: left;
-  border-radius: var(--borderRad);
-  background-color: var(--backColor);
+.search_bar label {
+  display: none;
+}
+
+.search_bar svg {
+  display: none;
+}
+
+.search_bar input {
+  width: fit-content;
+}
+
+@media (max-width: 640px) {
+  .search_bar svg {
+    display: block;
+  }
+
+  .search_bar input {
+    display: none;
+  }
 }
