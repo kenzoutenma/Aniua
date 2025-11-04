@@ -33,6 +33,7 @@ button,
 input {
   padding: var(--padding);
   background-color: var(--bg);
+  color: var(--text-muted);
   border: none;
   border-radius: var(--border-radius-1_2);
 
