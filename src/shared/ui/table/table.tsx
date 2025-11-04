@@ -5,13 +5,11 @@ interface TableProps {
   children: React.ReactNode;
 }
 
-function Table({ children }: TableProps) {
+function Table({ children, ...props }: TableProps) {
   return (
-    <div className="flex flex-col gap-4">
-      <table className={styles.table}>
-        <tbody>{children}</tbody>
-      </table>
-    </div>
+    <table className={styles.table} {...props}>
+      <tbody>{children}</tbody>
+    </table>
   );
 }
 

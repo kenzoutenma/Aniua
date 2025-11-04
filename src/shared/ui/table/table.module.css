@@ -26,3 +26,28 @@
   gap: 5px;
   color: var(--highlight);
 }
+
+.table[data-align-left] {
+  border: none;
+}
+
+.table[data-align-left] tr {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  align-items: start;
+}
+
+.table[data-align-left] tr th:first-child {
+  color: var(--text);
+  text-align: left;
+  padding-right: 0.05rem;
+  line-height: 1.75;
+}
+
+.table[data-align-left] tr th:last-child {
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  color: var(--highlight);
+}
