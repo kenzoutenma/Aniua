@@ -28,7 +28,7 @@
 
 .tooltip-left {
   top: 0;
-  right: calc(100% + 15px);
+  right: calc(100% - 15px);
 }
 
 @media (max-width: 640px) {
