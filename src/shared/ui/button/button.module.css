@@ -4,9 +4,6 @@
   border: var(--border-fill);
   border-radius: var(--border-radius-1_2);
   
-  display: flex;
-  align-items: center;
-
   line-height: normal;
   transition: var(--text-color-animation);
 }
@@ -63,7 +60,10 @@
 
 /* Secondary button */
 
-.secondary {}
+.secondary {
+  background-color: var(--bg-light);
+  border: none;
+}
 
 .secondary:not(:disabled):hover,
 .secondary:not(:disabled):focus-visible{
@@ -74,6 +74,8 @@
 
 .outline {
   border: var(--border-fill);
+  border-color: var(--border-muted);
+  background-color: transparent;
 }
 
 .outline:not(:disabled):hover,

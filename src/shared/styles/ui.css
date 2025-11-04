@@ -27,7 +27,7 @@ input {
   border: none;
   border-radius: var(--border-radius-1_2);
 
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   align-items: center;
 
