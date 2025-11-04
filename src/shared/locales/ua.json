@@ -42,6 +42,7 @@
     "SubmitRegistration": "Зареєструватися"
   },
   "header": {
+    "app": "ANIUA",
     "registration": "Реєстрація",
     "login": "Увійти",
     "search": "Пошук...",
