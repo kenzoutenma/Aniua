@@ -2,6 +2,7 @@
   aspect-ratio: 3 / 4;
 
   height: auto;
+  width: 100%;
   max-width: 25vh;
 
   flex-direction: column;
@@ -38,6 +39,7 @@
   width: 100%;
   height: auto;
   overflow: hidden;
+  background-color: var(--bg);
 }
 
 .card_image img {
