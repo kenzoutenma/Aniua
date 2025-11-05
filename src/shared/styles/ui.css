@@ -63,6 +63,12 @@ button:has(img) {
   overflow: hidden;
 }
 
+th a:not(:last-child)::before {
+  content: ", ";
+  position: absolute;
+  right: -3px;
+}
+
 label {
   display: flex;
   flex-direction: row;
