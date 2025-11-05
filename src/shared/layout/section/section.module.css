@@ -58,6 +58,7 @@
   .TwoColSection {
     display: flex;
     flex-direction: column;
+    align-items: justify;
     gap: 15px;
     padding: 10px !important;
   }

@@ -34,7 +34,7 @@ function DescriptionSection({
   };
 
   return (
-    <Section typeOfSection="TwoColSection" style={{ gridTemplateColumns: '7fr 3fr' }}>
+    <Section typeOfSection="TwoColSection" style={{ gridTemplateColumns: '70% 30%' }}>
       <Section.Col>
         <h2>{getTranslatedText('info.Description')}</h2>
         <p>{data?.description && data.description}</p>
