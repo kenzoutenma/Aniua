@@ -1,3 +1,7 @@
 .dropdownWrapper {
   position: relative;
 }
+
+.dropdownWrapper button {
+  width: 100%;
+}
