@@ -1,5 +1,5 @@
 import { ErrorIcon } from '@/shared/icons';
-import { forwardRef, HTMLInputTypeAttribute, memo } from 'react';
+import { forwardRef, HTMLInputTypeAttribute, InputHTMLAttributes, memo } from 'react';
 import styles from './input.module.css';
 
 type InputProps = {
@@ -7,7 +7,7 @@ type InputProps = {
   type?: HTMLInputTypeAttribute;
   label?: string;
   errorString?: string | undefined;
-};
+} & InputHTMLAttributes<HTMLInputElement>;
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ value, type = 'text', label, errorString, ...rest }, ref) => {
