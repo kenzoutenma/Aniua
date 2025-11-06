@@ -37,12 +37,13 @@
   flex-direction: row;
   justify-content: space-around;
   background-color: transparent;
+  border: none;
 }
 
 .ghost:not(:disabled):hover,
 .ghost:not(:disabled):focus-visible{
-  background-color: var(--bg-light);
-  color: var(--button-primary-text-color);
+  background-color: var(--highlight);
+  color: var(--text);
 }
 
 /* Primary button */

@@ -20,7 +20,7 @@ const Button = <E extends React.ElementType = ButtonDefaultAsType>({
   ...otherProps
 }: ButtonProps<E>) => {
   const Tag = as || ButtonDefaultAsType;
-  const picked_variant = variant ? button_variants[variant] : '';
+  const picked_variant = variant ? button_variants[variant] : button_variants['button'];
   return (
     <Tag className={picked_variant} {...otherProps}>
       {children}
