@@ -19,6 +19,10 @@
     transform 0.3s ease-in-out;
 }
 
+.dropdownMenu button {
+  border-radius: 0;
+}
+
 .hidden {
   max-height: 0;
   opacity: 0;
