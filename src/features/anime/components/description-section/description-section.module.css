@@ -13,3 +13,12 @@
     flex-direction: column;
   }
 }
+
+.anime_description_section {
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    width: calc(100vw - var(--section-padding-x)*2);
+    gap: 15px;
+    padding: 0 var(
+    --section-padding-x);
+}

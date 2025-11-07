@@ -1,10 +1,12 @@
 'use client';
 
-import Section from '@/shared/layout/section/section';
 import { getTranslatedText } from '@/shared/lib';
 import { Slider, Table, Typography } from '@/shared/ui';
-import Card from '../anime-card/anime-card';
+import Image from 'next/image';
 import renderValue from '../../utils/plain-data-details';
+import AddToCollectionButton from '../addToCollectionButton';
+import Card from '../anime-card/anime-card';
+import styles from './description-section.module.css';
 
 function DescriptionSection({
   data,
@@ -34,8 +36,12 @@ function DescriptionSection({
   };
 
   return (
-    <Section typeOfSection="TwoColSection" style={{ gridTemplateColumns: '70% 30%' }}>
-      <Section.Col>
+    <section className={styles.anime_description_section}>
+      <div>
+        <Image src={data.poster} alt={data.title} height={350} width={250} style={{}} />
+        <AddToCollectionButton slug={data.slug} />
+      </div>
+      <div>
         <h2>{getTranslatedText('info.Description')}</h2>
         <p>{data?.description && data.description}</p>
         {data.characters && data.characters.length > 1 ? (
@@ -53,9 +59,9 @@ function DescriptionSection({
             </Slider>
           </>
         ) : null}
-      </Section.Col>
+      </div>
 
-      <Section.Col>
+      <div>
         <Typography variant="h2">{getTranslatedText('info.Details')}</Typography>
         <Table>
           {Object.entries(plain).map(([key, value]) => {
@@ -81,8 +87,8 @@ function DescriptionSection({
             );
           })}
         </Table>
-      </Section.Col>
-    </Section>
+      </div>
+    </section>
   );
 }
 
