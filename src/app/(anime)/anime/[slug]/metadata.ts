@@ -2,12 +2,7 @@ import getAnime from '@/features/anime/service/getAnime';
 import { getTranslatedText } from '@/shared/lib';
 import { Metadata } from 'next';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Promise<Metadata> {
-  const { slug } = await params;
+export default async function GenerateMetadata(slug: string): Promise<Metadata> {
   const anime = await getAnime(slug);
 
   const language = 'uk';
