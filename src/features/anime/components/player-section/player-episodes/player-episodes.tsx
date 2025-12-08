@@ -1,4 +1,6 @@
-import { Button, Pagination } from '@/shared/ui';
+import Image from 'next/image';
+import styles from './episode-card.module.css';
+import { Pagination } from '@/shared/ui';
 
 const Episodes = ({
   episodesList,
@@ -10,19 +12,26 @@ const Episodes = ({
   episode_now: number;
 }) => {
   return (
-    <Pagination scrollToActive>
+    <Pagination variant="vertical">
       {episodesList.map((element, index) => {
         const isCurrent = element.id === episode_now;
-        const variant = isCurrent ? 'primary' : element.is_filler ? 'outline' : 'secondary';
         return (
-          <Button
+          <div
             key={index}
-            variant={variant}
+            className={styles.episode_wrap}
+            data-selected={isCurrent}
             onClick={() => handleEpisode(element.id)}
-            data-active={isCurrent || undefined}
           >
-            {element.episode_number}
-          </Button>
+            <div>
+              <h3>Episode #{element.episode_number}</h3>
+            </div>
+            <Image
+              width={500}
+              height={500}
+              src={element.poster}
+              alt={`episode_${element.episode_number}_poster`}
+            />
+          </div>
         );
       })}
     </Pagination>

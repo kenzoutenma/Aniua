@@ -1,0 +1,51 @@
+.episode_wrap {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: var(--border-radius);
+  overflow: clip;
+  cursor: pointer;
+}
+
+.episode_wrap:hover div {
+  background-position: 0 30px;
+}
+
+.episode_wrap:hover div h3 {
+  color: var(--text);
+  transition: all var(--animation-duration) ease-in-out;
+}
+
+.episode_wrap[data-selected='true'] {
+  border: var(--border-fill);
+}
+
+.episode_wrap div {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+
+  padding: var(--padding);
+  display: flex;
+  align-items: flex-end;
+
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 80%);
+  background-position: 0 50px;
+  background-repeat: no-repeat;
+  transition: all var(--animation-duration) ease-in-out;
+}
+
+.episode_wrap div h3 {
+  margin: 0;
+}
+
+.episode_wrap img {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
