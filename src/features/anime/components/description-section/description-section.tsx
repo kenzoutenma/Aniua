@@ -1,12 +1,14 @@
 'use client';
 
 import { getTranslatedText } from '@/shared/lib';
-import { Slider, Table, Typography } from '@/shared/ui';
+import { Slider, Table } from '@/shared/ui';
 import Image from 'next/image';
 import renderValue from '../../utils/plain-data-details';
 import AddToCollectionButton from '../addToCollectionButton';
 import Card from '../anime-card/anime-card';
 import styles from './description-section.module.css';
+import Synopsis from './synopsis/synopsis';
+import clsx from 'clsx';
 
 function DescriptionSection({
   data,
@@ -36,33 +38,10 @@ function DescriptionSection({
   };
 
   return (
-    <section className={styles.anime_description_section}>
-      <div>
+    <article className={clsx(styles.anime_description_section, 'four_col_section')}>
+      <div className={styles.anime_details}>
         <Image src={data.poster} alt={data.title} height={350} width={250} style={{}} />
         <AddToCollectionButton slug={data.slug} />
-      </div>
-      <div>
-        <h2>{getTranslatedText('info.Description')}</h2>
-        <p>{data?.description && data.description}</p>
-        {data.characters && data.characters.length > 1 ? (
-          <>
-            <h2>{getTranslatedText('info.Characters')}</h2>
-            <Slider>
-              {data.characters.map((el: AnimeCharacters, index: number) => (
-                <Card
-                  key={index}
-                  image={el.poster}
-                  title={el.name_surname_ua}
-                  slug={el.id.toString()}
-                />
-              ))}
-            </Slider>
-          </>
-        ) : null}
-      </div>
-
-      <div>
-        <Typography variant="h2">{getTranslatedText('info.Details')}</Typography>
         <Table>
           {Object.entries(plain).map(([key, value]) => {
             if (!value) return;
@@ -88,7 +67,24 @@ function DescriptionSection({
           })}
         </Table>
       </div>
-    </section>
+      <div className={styles.anime_about}>
+        <span className={styles.description_title}>
+          <h2>{data.title}</h2>
+          <h2 style={{ color: 'var(--text-muted)' }}>{data.score}✨</h2>
+        </span>
+        <Synopsis description={data.description} />
+        {data.characters && data.characters.length > 1 ? (
+          <section>
+            <h2>{getTranslatedText('info.Characters')}</h2>
+            <Slider>
+              {data.characters.map((el: AnimeCharacters, index: number) => (
+                <Card key={index} image={el.character.poster} title={el.character.name} />
+              ))}
+            </Slider>
+          </section>
+        ) : null}
+      </div>
+    </article>
   );
 }
 

@@ -1,24 +1,38 @@
-.descSection div:last-child {
-  min-width: 0;
+.anime_description_section img {
+  aspect-ratio: 0.71 / 1;
+  width: 100%;
+  height: auto;
+}
+.anime_description_section h2 {
+  margin: var(--distance) 0;
 }
 
-.shortInfo {
+.anime_about {
   display: flex;
-  gap: 5px;
+  flex-direction: column;
+  gap: var(--distance);
+  grid-column: 2 / 5;
 }
 
-@media (max-width: 1024px) {
-  .descSection {
-    display: flex;
-    flex-direction: column;
-  }
+.description_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.anime_description_section {
-    display: grid;
-    grid-template-columns: 2fr 6fr 2fr;
-    width: calc(100vw - var(--section-padding-x)*2);
-    gap: 15px;
-    padding: 0 var(
-    --section-padding-x);
+/* FIRST COLUMN */
+.anime_details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--distance);
+}
+
+.anime_details table {
+  background-color: var(--bg);
+}
+
+.anime_description_section section {
+  padding: var(--distance);
+  background-color: var(--bg);
+  border-radius: var(--border-radius);
 }
