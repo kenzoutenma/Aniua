@@ -11,7 +11,7 @@ function HeroBanner({ data }: { data: AnimeDataInterface }) {
     data.trailer ? (
       <Trailer src={data.trailer} />
     ) : (
-      <Poster src={data.poster || data.background_image_url || 'pfp.png'} />
+      <Poster src={data.background_image_url || data.poster || 'pfp.png'} />
     );
 
   const description = data?.description && data.description.split(' ').slice(0, 40).join(' ');
