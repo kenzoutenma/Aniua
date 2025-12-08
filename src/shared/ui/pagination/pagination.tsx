@@ -10,6 +10,7 @@ interface PagiProps {
   isNextDisabled?: boolean;
   isPrevDisabled?: boolean;
   scrollToActive?: boolean;
+  variant?: 'horizontal' | 'vertical';
 }
 
 function Pagination({
@@ -19,7 +20,9 @@ function Pagination({
   isPrevDisabled,
   isNextDisabled,
   scrollToActive,
+  variant = 'horizontal',
 }: PagiProps) {
+  const isHorizontal = variant == 'horizontal';
   const scrollRef = useRef<HTMLDivElement>(null);
   const scrollByAmount = 200;
   const hasScrolled = useRef(false);
@@ -37,48 +40,59 @@ function Pagination({
     if (!scrollToActive || !scrollRef.current) return;
 
     const activeBtn = scrollRef.current.querySelector('[data-active="true"]') as HTMLElement;
-    
+
     if (activeBtn) {
-      const container = scrollRef.current
-      const containerRect = container.getBoundingClientRect()
-      const activeRect = activeBtn.getBoundingClientRect()
+      const container = scrollRef.current;
+      const containerRect = container.getBoundingClientRect();
+      const activeRect = activeBtn.getBoundingClientRect();
 
-      const relativeLeft = activeRect.left - containerRect.left
-      const elementCenter = relativeLeft + activeRect.width / 2
-      const containerCenter = container.clientWidth / 2
+      const relativeLeft = activeRect.left - containerRect.left;
+      const elementCenter = relativeLeft + activeRect.width / 2;
+      const containerCenter = container.clientWidth / 2;
 
-      const scrollAmount = container.scrollLeft + elementCenter - containerCenter
+      const scrollAmount = container.scrollLeft + elementCenter - containerCenter;
 
       container.scrollTo({
         left: scrollAmount,
-        behavior: "smooth",
-      })
+        behavior: 'smooth',
+      });
 
-      hasScrolled.current = true
+      hasScrolled.current = true;
     }
   }, [children]);
 
-  return children ? ( 
-    <nav className={styles.scrollable}>
-      <Button
-        variant="secondary"
-        onClick={moveLeftFunc || handleScrollLeft}
-        disabled={isPrevDisabled}
-      >
-        ←
-      </Button>
-      <div ref={scrollRef} className={styles.scrollableContent}>
+  const option = {
+    wrap: isHorizontal ? styles.scroll_h_wrap : styles.scroll_v_wrap,
+    content: isHorizontal ? styles.scroll_h_content : styles.scroll_v_content,
+  };
+
+  return children ? (
+    <nav className={option.wrap}>
+      {isHorizontal && (
+        <Button
+          variant="secondary"
+          onClick={moveLeftFunc || handleScrollLeft}
+          disabled={isPrevDisabled}
+        >
+          ←
+        </Button>
+      )}
+      <div ref={scrollRef} className={option.content}>
         {children}
       </div>
-      <Button
-        variant="secondary"
-        onClick={moveRightFunc || handleScrollRight}
-        disabled={isNextDisabled}
-      >
-        →
-      </Button>
+      {isHorizontal && (
+        <Button
+          variant="secondary"
+          onClick={moveRightFunc || handleScrollRight}
+          disabled={isNextDisabled}
+        >
+          →
+        </Button>
+      )}
     </nav>
-  ) : <>...</>;
+  ) : (
+    <>...</>
+  );
 }
 
 export default Pagination;
