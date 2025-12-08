@@ -28,7 +28,7 @@ export default function LastWatchedSection() {
         cache: 'no-store',
       });
       if (!res.ok) return null;
-      console.log(res)
+      console.log(res);
       const data = res.titles;
 
       const mergedData = data.map((anime: AnimeDataInterface) => {
@@ -63,7 +63,7 @@ export default function LastWatchedSection() {
               key={idx}
               image={el.poster}
               title={el.title}
-              slug={el.slug}
+              href={'/anime/' + el.slug}
               additional={{
                 history: { episode: `${el.last_users_episode} | ${el.episode.present}` },
               }}
