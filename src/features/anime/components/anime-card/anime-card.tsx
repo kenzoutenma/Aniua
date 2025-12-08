@@ -11,7 +11,7 @@ import { getTranslatedText } from '@/shared/lib';
 interface cardProps {
   image: string | '/next.svg';
   title: string;
-  slug: string;
+  href?: string;
   variant?: 'horizontal' | 'default';
   additional?: {
     year?: number;
@@ -28,7 +28,13 @@ const genres = (genres: AnimeGenre[] | []) => {
   return <span key={genresStr}>{genresStr}</span>;
 };
 
-const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', additional }) => {
+const Card: React.FC<cardProps> = ({
+  image,
+  title,
+  href = '#',
+  variant = 'default',
+  additional,
+}) => {
   const rate = additional?.rate ? <span>{additional?.rate}✨</span> : null;
   const History = () => {
     console.log(additional);
@@ -41,13 +47,7 @@ const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', ad
     );
   };
   return variant == 'default' ? (
-    <Button
-      as={Link}
-      prefetch={false}
-      title={title}
-      href={`/anime/${slug}`}
-      className={styles.card}
-    >
+    <Button as={Link} prefetch={false} title={title} href={href} className={styles.card}>
       <div className={styles.card_image}>
         <Image src={image} alt={title} width={500} height={750} loading="eager" quality={50} />
       </div>
@@ -57,7 +57,7 @@ const Card: React.FC<cardProps> = ({ image, title, slug, variant = 'default', ad
       </div>
     </Button>
   ) : (
-    <Button as={Link} href={`/anime/${slug}`} className={horizontal.h_card}>
+    <Button as={Link} href={href} className={horizontal.h_card}>
       <Image
         src={image}
         alt={title}
