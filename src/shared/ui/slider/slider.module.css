@@ -1,0 +1,15 @@
+.slider-wrap {
+  overflow: hidden;
+  margin-right: calc(50% - 75vw);
+  width: 100%;
+}
+
+.slider-content {
+  display: flex;
+  overflow-x: scroll;
+  height: 100%;
+}
+
+.slider-wrap a {
+  width: auto;
+}

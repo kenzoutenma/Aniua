@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './slider.module.css';
 
 interface SliderProps {
   children: React.ReactNode;
@@ -6,8 +7,8 @@ interface SliderProps {
 
 function Slider({ children }: SliderProps) {
   return (
-    <div style={{ overflow: 'hidden', marginRight: 'calc(50% - 75vw)', width: '100%' }}>
-      <div style={{ display: 'flex', overflowX: 'scroll' }}>{children}</div>
+    <div className={styles['slider-wrap']}>
+      <div className={styles['slider-content']}>{children}</div>
     </div>
   );
 }
