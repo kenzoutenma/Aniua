@@ -30,7 +30,7 @@ function AnimeList({ anime }: AnimeListProps) {
               key={el.slug}
               image={el.poster}
               title={el.title}
-              slug={el.slug}
+              href={`/anime/${el.slug}`}
               additional={{ rate: el.mal_score.toString() }}
             />
           </Tooltip>
