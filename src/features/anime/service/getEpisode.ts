@@ -13,11 +13,11 @@ async function getEpisodeService(ID: string): Promise<EpisodeListInterface> {
         method: 'GET',
         cache: 'no-store',
       }),
-      FI.fetch<PlayersInEpisode[]>(episodesApiRoutes.videoByEpisodeID(ID), {
+      FI.fetch<{ videos: PlayersInEpisode[] }>(episodesApiRoutes.videoByEpisodeID(ID), {
         to: 'out',
         method: 'GET',
         cache: 'no-store',
-      }).catch(() => ({ ok: false, data: [] })),
+      }).catch(() => ({ ok: false, data: { videos: [] } })),
     ]);
 
     if (!episode.ok) {
@@ -26,7 +26,7 @@ async function getEpisodeService(ID: string): Promise<EpisodeListInterface> {
 
     return {
       ...episode.data,
-      players: video.ok ? video.data : [],
+      players: video.ok ? video.data.videos : [],
     };
   } catch (error) {
     console.error('Error fetching anime:', error);

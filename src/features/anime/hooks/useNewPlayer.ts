@@ -11,7 +11,7 @@ export interface PlayerV2 {
   current_episode_id: number;
   current_episode_url: string | null;
   current_studio: number;
-  studios_list: string[];
+  studios_list: studio[];
   is_loading: boolean;
   is_error: boolean;
 }
@@ -51,7 +51,7 @@ export const useNewPlayer = (slug: string) => {
     setPlayerState((prev) => ({ ...prev, is_loading: true }));
 
     const newEpisode = await getEpisodeService(episodeID.toString());
-
+    console.log(newEpisode);
     if (!newEpisode.players) {
       setPlayerState((prev) => ({ ...prev, is_loading: false }));
       setPlayerState((prev) => ({ ...prev, is_error: true }));
@@ -59,7 +59,7 @@ export const useNewPlayer = (slug: string) => {
     }
 
     const isNewEpisodeHasArrayOfPlayers = Array.isArray(newEpisode.players);
-    const studios: string[] = isNewEpisodeHasArrayOfPlayers
+    const studios: studio[] = isNewEpisodeHasArrayOfPlayers
       ? newEpisode.players.map((player: PlayersInEpisode) => player.studio)
       : [];
 
@@ -69,9 +69,9 @@ export const useNewPlayer = (slug: string) => {
 
     if (isNewEpisodeHasArrayOfPlayers && newEpisode.players[playerState.current_studio]) {
       // check if selected studio exists in current episode
-      episodeUrl = newEpisode.players[playerState.current_studio].videos[0]?.video_url || null;
+      episodeUrl = newEpisode.players[playerState.current_studio].videos[0]?.file || null;
     } else if (isNewEpisodeHasArrayOfPlayers && newEpisode.players[0]) {
-      episodeUrl = newEpisode.players[0].videos[0]?.video_url || null;
+      episodeUrl = newEpisode.players[0].videos[0]?.file || null;
     }
 
     setPlayerState((prevState) => ({

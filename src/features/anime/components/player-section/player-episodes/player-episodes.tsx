@@ -25,12 +25,14 @@ const Episodes = ({
             <div>
               <h3>Episode #{element.episode_number}</h3>
             </div>
-            <Image
-              width={500}
-              height={500}
-              src={element.poster}
-              alt={`episode_${element.episode_number}_poster`}
-            />
+            {element.poster && (
+              <Image
+                width={500}
+                height={500}
+                src={element.poster}
+                alt={`episode_${element.episode_number}_poster`}
+              />
+            )}
           </div>
         );
       })}

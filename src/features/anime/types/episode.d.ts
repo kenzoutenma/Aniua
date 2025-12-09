@@ -1,14 +1,22 @@
 type Video = {
-  studio: string;
-  video_url: string;
-  poster: string;
-  date: string;
-  subtitles: boolean;
-  player: string;
+  episode: number;
+  file: string | null;
+  poster: string | null;
+  slug: string | null;
+  studio: string | null;
+  subtitle: string | null;
+  thumbnails: string | null;
+  title: string | null;
+};
+
+type studio = {
+  id: number;
+  poster: string | null;
+  title: string | null;
 };
 
 interface PlayersInEpisode {
-  studio: string;
+  studio: studio;
   videos: Video[];
 }
 
