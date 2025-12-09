@@ -77,9 +77,12 @@ function DescriptionSection({
           <section>
             <h2>{getTranslatedText('info.Characters')}</h2>
             <Slider>
-              {data.characters.map((el: AnimeCharacters, index: number) => (
-                <Card key={index} image={el.character.poster} title={el.character.name} />
-              ))}
+              {data.characters.map(
+                (el: AnimeCharacters, index: number) =>
+                  el?.character?.poster && (
+                    <Card key={index} image={el.character.poster} title={el.character.name} />
+                  ),
+              )}
             </Slider>
           </section>
         ) : null}
