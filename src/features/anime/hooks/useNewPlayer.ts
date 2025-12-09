@@ -43,14 +43,20 @@ export const useNewPlayer = (slug: string) => {
 
   const fetch_episodes_list = async () => {
     if (!slug) throw new Error(`No slug: ${slug}`);
-    const list = await getEpisodesListService(slug)
+    const list = await getEpisodesListService(slug);
     setEpisodesList(list);
   };
 
   const handleEpisode = async (episodeID: number) => {
     setPlayerState((prev) => ({ ...prev, is_loading: true }));
 
-    const newEpisode = await getEpisodeService(episodeID.toString())
+    const newEpisode = await getEpisodeService(episodeID.toString());
+
+    if (!newEpisode.players) {
+      setPlayerState((prev) => ({ ...prev, is_loading: false }));
+      setPlayerState((prev) => ({ ...prev, is_error: true }));
+      return null;
+    }
 
     const isNewEpisodeHasArrayOfPlayers = Array.isArray(newEpisode.players);
     const studios: string[] = isNewEpisodeHasArrayOfPlayers

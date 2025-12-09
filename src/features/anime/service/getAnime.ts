@@ -1,13 +1,13 @@
 'use server';
 
 import FI from '@/app/api';
-import { backendAPIRoutes } from '@/shared/constants/backend-api.constant';
+import { animeApiRoutes } from '@/shared/constants/routes';
 import { notFound } from 'next/navigation';
 
 async function getAnime(slug: string) {
   try {
     const [anime, character] = await Promise.all([
-      FI.fetch<AnimeDataInterface>(backendAPIRoutes.animeByTitle(slug), {
+      FI.fetch<AnimeDataInterface>(animeApiRoutes.animeByTitle(slug), {
         method: 'GET',
         to: 'out',
         next: {
@@ -15,7 +15,7 @@ async function getAnime(slug: string) {
           tags: [`anime-${slug}`],
         },
       }),
-      FI.fetch<{ characters: AnimeCharacters[] }>(backendAPIRoutes.charsByTitle(slug), {
+      FI.fetch<{ characters: AnimeCharacters[] }>(animeApiRoutes.charsByTitle(slug), {
         to: 'out',
         method: 'GET',
         next: {

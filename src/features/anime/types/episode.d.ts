@@ -29,7 +29,7 @@ interface EpisodeListInterface {
     dislikes: number;
   };
   description: string;
-  players: PlayersInEpisode[];
+  players?: PlayersInEpisode[] | [];
 }
 
 interface IEpisodeListResponse {
