@@ -23,11 +23,13 @@ export default async function Home() {
     data: communityChoice.data.titles as AnimeDataInterface[],
   });
 
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 7; i++) {
     const thisGenreIs = request.data[i];
+    if (!thisGenreIs) continue;
+
     const action = await FI.fetch<AnimeDataListInterface>(searchApiRoutes['filter'], {
       to: 'out',
-      params: { limit: '9', order: 'rating', genre: thisGenreIs.id.toString() },
+      params: { limit: '9', order: 'rating', genre: thisGenreIs.id },
       next: { tags: [`anime-list-genre-${thisGenreIs.slug}`] },
     });
     if (!action.ok) return action;
