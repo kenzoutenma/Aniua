@@ -8,8 +8,8 @@ const Episodes = ({
   episode_now,
 }: {
   episodesList: EpisodeListInterface[];
-  handleEpisode: (x: number) => void;
-  episode_now: number;
+  handleEpisode: (x: number | string) => void;
+  episode_now: number | string;
 }) => {
   return (
     <Pagination variant="vertical">

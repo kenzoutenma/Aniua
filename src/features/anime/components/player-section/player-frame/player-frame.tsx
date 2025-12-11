@@ -15,8 +15,8 @@ const PlayerWrapper = ({
 }: {
   src: string;
   studios: studio[];
-  studio: number;
-  handleStudio: (index: number) => void;
+  studio: number | string;
+  handleStudio: (index: string) => void;
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -47,15 +47,15 @@ const PlayerWrapper = ({
       });
     }
   }, [src]);
-
+  console.log(studios);
   return (
     <div className={styles.frameWrapper}>
       {studios.length > 1 ? (
-        <Select value={studio} onChange={(e) => handleStudio(Number(e.target.value))}>
+        <Select value={studio} onChange={(e) => handleStudio(e.target.value)}>
           {studios.map((e) => {
             return (
-              <option key={e.id} value={e.id}>
-                {e.title}
+              <option key={e.id} value={typeof e == 'string' ? e : e.id}>
+                {typeof e == 'string' ? e : e.title}
               </option>
             );
           })}
@@ -69,7 +69,7 @@ const PlayerWrapper = ({
 interface IPlayerFrame {
   episodesList: EpisodeListInterface[] | null;
   playerState: PlayerV2;
-  handleStudio: (index: number) => void;
+  handleStudio: (index: string) => void;
 }
 
 const PlayerFrame = ({ episodesList, playerState, handleStudio }: IPlayerFrame) => {

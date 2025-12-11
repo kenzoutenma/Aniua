@@ -21,7 +21,7 @@ interface PlayersInEpisode {
 }
 
 interface EpisodeListInterface {
-  id: number;
+  id: number | string;
   episode_number: number;
   title: {
     ua: string | null;
