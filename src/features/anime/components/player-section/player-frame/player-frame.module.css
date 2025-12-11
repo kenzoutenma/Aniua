@@ -16,4 +16,5 @@
   position: absolute;
   margin: 10px;
   width: fit-content;
+  z-index: 1;
 }
