@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 interface PlayerSession {
-  episodeID: number;
+  episodeID: number | string;
   studio: string;
 
   episodeNumber?: number;

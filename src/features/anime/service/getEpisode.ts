@@ -1,22 +1,33 @@
 'use server';
 
 import FI from '@/app/api';
-import { backendAPIRoutes } from '@/shared/constants/backend-api.constant';
+import { episodesApiRoutes } from '@/shared/constants/routes';
+
 import { notFound } from 'next/navigation';
 
-async function getEpisodeService(ID: string) {
+async function getEpisodeService(ID: string): Promise<EpisodeListInterface> {
   try {
-    const request = await FI.fetch<EpisodeListInterface>(backendAPIRoutes.episodeByID(ID), {
-      to: 'out',
-      method: 'GET',
-      cache: 'no-store',
-    });
+    const [episode, video] = await Promise.all([
+      FI.fetch<EpisodeListInterface>(episodesApiRoutes.episodeByID(ID), {
+        to: 'out',
+        method: 'GET',
+        cache: 'no-store',
+      }),
+      FI.fetch<{ videos: PlayersInEpisode[] }>(episodesApiRoutes.videoByEpisodeID(ID), {
+        to: 'out',
+        method: 'GET',
+        cache: 'no-store',
+      }).catch(() => ({ ok: false, data: { videos: [] } })),
+    ]);
 
-    if (!request.ok) {
+    if (!episode.ok) {
       return notFound();
     }
 
-    return request.data;
+    return {
+      ...episode.data,
+      players: video.ok ? video.data.videos : [],
+    };
   } catch (error) {
     console.error('Error fetching anime:', error);
     return notFound();
