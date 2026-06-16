@@ -1,6 +1,6 @@
 const searchApiRoutes = {
-  filter: `4.0/anime/filter`,
-  genres_data: '4.0/genres',
+  filter: `api/4.0/anime`,
+  genres_data: 'api/4.0/rest/genres',
 };
 
 export default searchApiRoutes;
