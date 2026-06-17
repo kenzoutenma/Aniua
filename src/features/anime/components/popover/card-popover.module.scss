@@ -1,0 +1,23 @@
+.anime_card_popover_container {
+  background-color: var(--bg);
+  display: flex;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  flex-direction: column;
+  border-radius: 12px;
+  min-width: 350px;
+
+  .anime_card_popover_tags {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    a,
+    span {
+      background-color: var(--bg-light);
+      padding: 0.25rem 0.5rem;
+      border-radius: 8px;
+    }
+  }
+}
