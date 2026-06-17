@@ -31,7 +31,7 @@ function AddToCollectionButton({ slug }: { slug: string }) {
     <Dropdown trigger={getTranslatedText('info.addToList')} align="center">
       {storedList.map((e) => {
         return (
-          <Button variant="button" onClick={() => addToList({ list: e.id || '' })} key={e.id}>
+          <Button variant="default" onClick={() => addToList({ list: e.id || '' })} key={e.id}>
             {e.title}
           </Button>
         );
@@ -40,7 +40,7 @@ function AddToCollectionButton({ slug }: { slug: string }) {
   ) : (
     <Button
       as={'button'}
-      variant="secondary"
+      variant="default"
       onClick={() => toast.error(getTranslatedText('info.notLogginedUser'))}
     >
       {getTranslatedText('info.addToList')}

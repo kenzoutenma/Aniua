@@ -27,7 +27,7 @@ const listPage = async ({ searchParams }: ListPageProps) => {
             as="a"
             href={AnimeData.createPageUrl(i + 1)}
             key={i}
-            variant={AnimeData.page == i + 1 ? 'primary' : 'secondary'}
+            variant={AnimeData.page == i + 1 ? 'primary' : 'default'}
           >
             {i + 1}
           </Button>

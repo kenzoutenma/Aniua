@@ -10,11 +10,13 @@ function Synopsis({ description }: { description: string }) {
       <>
         <section className={styles.synopsis_wrapper}>
           <span className={styles.synopsis_block} data-expanded={expanded}>
-            <span style={{ color: 'var(--text)' }}>{getTranslatedText('info.Description')}: </span>
+            <span style={{ color: 'var(--cnt-base)' }}>
+              {getTranslatedText('info.Description')}:{' '}
+            </span>
             {description}
           </span>
           <Button
-            variant="secondary"
+            variant="default"
             className={styles.synopsis_button}
             onClick={() => setExpand((prev) => !prev)}
           >

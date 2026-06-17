@@ -70,7 +70,7 @@ function Pagination({
     <nav className={option.wrap}>
       {isHorizontal && (
         <Button
-          variant="secondary"
+          variant="default"
           onClick={moveLeftFunc || handleScrollLeft}
           disabled={isPrevDisabled}
         >
@@ -82,7 +82,7 @@ function Pagination({
       </div>
       {isHorizontal && (
         <Button
-          variant="secondary"
+          variant="default"
           onClick={moveRightFunc || handleScrollRight}
           disabled={isNextDisabled}
         >

@@ -65,7 +65,7 @@ const AuthBlock = () => {
       <li>
         <Button
           as={Link}
-          variant="link"
+          variant="default"
           href={getAccount.registration}
           key="registration_button_header"
         >
