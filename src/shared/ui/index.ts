@@ -1,6 +1,7 @@
 export { default as Button } from './button/button';
 export { default as Checkbox } from './checkbox/checkbox';
 export { Collapsible } from './collapsible';
+export { default as Drawer } from './drawer/drawer';
 export { default as Dropdown } from './dropdown/dropdown';
 export { default as Input } from './input/input';
 export { default as Pagination } from './pagination/pagination';
