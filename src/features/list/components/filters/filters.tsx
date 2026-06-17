@@ -9,7 +9,7 @@ import styles from './filter.module.css';
 function Filters() {
   const { filters, selected, doChange, doChangeRange } = useAnimeFilters();
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
       {Object.entries(filters ?? {}).map(([key, value], index) => {
         return (
           <Collapsible
@@ -78,7 +78,7 @@ function Filters() {
           </Collapsible>
         );
       })}
-    </>
+    </div>
   );
 }
 

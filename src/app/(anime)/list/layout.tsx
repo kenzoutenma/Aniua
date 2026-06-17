@@ -1,4 +1,3 @@
-import Section from '@/shared/layout/section/section';
 import { Suspense } from 'react';
 import Filters from '../../../features/list/components/filters/filters';
 import Loading from './loading';
@@ -6,18 +5,17 @@ import Loading from './loading';
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Section
-        typeOfSection="TwoColSection"
-        classname="justify-evenly"
-        style={{ gridTemplateColumns: '10fr 3fr', padding: '2rem 6rem' }}
+      <section
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '2.25rem',
+          margin: '0 auto',
+        }}
       >
-        <Section.Col>
-          <Suspense fallback={<Loading />}>{children}</Suspense>
-        </Section.Col>
-        <Section.Col>
-          <Filters />
-        </Section.Col>
-      </Section>
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+        <Filters />
+      </section>
     </>
   );
 }

@@ -1,7 +1,6 @@
 import AnimeList from '@/features/list/components/items-list';
 import useAnimeList from '@/features/list/hooks/useAnimeList';
-import { Button } from '@/shared/ui';
-import Pagination from '@/shared/ui/pagination/pagination';
+import { Button, Pagination } from '@/shared/ui';
 import { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -20,7 +19,7 @@ const listPage = async ({ searchParams }: ListPageProps) => {
   const AnimeData = await useAnimeList(filterQuery);
 
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', maxWidth: '1140px' }}>
       <AnimeList anime={AnimeData.titles} />
       <Pagination isNextDisabled={!AnimeData.isNextPage} isPrevDisabled={!AnimeData.isPrevPage}>
         {Array.from({ length: AnimeData.pageCount }).map((_, i) => (
@@ -34,7 +33,7 @@ const listPage = async ({ searchParams }: ListPageProps) => {
           </Button>
         ))}
       </Pagination>
-    </>
+    </div>
   );
 };
 
