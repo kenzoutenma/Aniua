@@ -1,76 +1,33 @@
-.card {
-  aspect-ratio: 3 / 4;
-
-  height: auto;
-  width: 100%;
-  max-width: 25vh;
-
-  flex-direction: column;
+.card_container {
+  --border-radius: 0.75rem;
+  border-radius: var(--border-radius);
+  scroll-snap-align: end;
   gap: 0;
   display: flex;
-  position: relative;
+  flex-direction: column;
   flex-shrink: 0;
-
-  padding: .25rem;
-  border-radius: var(--border-radius);
-  transition: all .5s ease-in-out;
+  color: var(--cnt-base);
+  text-decoration: none;
+  position: relative;
 }
-
-@media (max-width: 932) {
-  .card {
-    width: 50vw;
-    aspect-ratio: 0;
-  }
-  .card_name span {
-    display: none;
-  }
-  .card_name p {
-    width: 100%;
-  }
+.card_container .card_rating {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.25rem;
+  background-color: color-mix(in oklab, var(--bg-l2) 85%, transparent);
+  padding: 5px;
+  border-radius: calc(var(--border-radius) - 0.25rem);
+  transition: 0.1s;
 }
-
-.card:hover .card_title {
-  color: var(--text);
-}
-
-.card_image {
-  aspect-ratio: 3 / 4;
-  border-radius: calc(var(--border-radius) - .25rem);
+.card_container .card_image {
+  border-radius: 12px;
+  aspect-ratio: 9/12;
+  object-fit: cover;
   width: 100%;
   height: auto;
-  overflow: hidden;
-  background-color: var(--bg);
 }
-
-.card_image img {
-  transition: all .1s ease-in-out;
-  height: 100%;
-  width: 100%;
-  scale: 1;
-}
-
-.card:hover img {
-  scale: 1.1;
-}
-
-.card_name {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--distance);
-  justify-content: space-between;
-}
-
-.card_title {
-  display: flex;
-  padding: 0;
+.card_container .card_title {
+  padding: 0.5rem 0 1rem 0;
   margin: 0;
-
-  text-overflow: ellipsis;
-  text-align: left;
-  letter-spacing: 0px;
-  
-  white-space: nowrap;
-  overflow: hidden;
-  color: var(--text-muted);
 }

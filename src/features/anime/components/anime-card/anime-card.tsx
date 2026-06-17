@@ -1,12 +1,12 @@
 'use client';
 
+import { getTranslatedText } from '@/shared/lib';
+import { Button } from '@/shared/ui';
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@/shared/ui';
 import styles from './anime-card.module.css';
 import horizontal from './horizontal-anime-card.module.css';
-import { getTranslatedText } from '@/shared/lib';
 
 interface cardProps {
   image: string | '/next.svg';
@@ -47,15 +47,19 @@ const Card: React.FC<cardProps> = ({
     );
   };
   return variant == 'default' ? (
-    <Button as={Link} prefetch={false} title={title} href={href} className={styles.card}>
-      <div className={styles.card_image}>
-        <Image src={image} alt={title} width={500} height={750} loading="eager" quality={50} />
-      </div>
-      <div className={styles.card_name}>
-        <p className={styles.card_title}>{title}</p>
-        {rate}
-      </div>
-    </Button>
+    <a title={title} href={href} className={styles.card_container}>
+      <Image
+        className={styles.card_image}
+        src={image}
+        alt={title}
+        width={144}
+        height={144}
+        loading="eager"
+        quality={50}
+      />
+      <p className={styles.card_title}>{title}</p>
+      <span className={styles.card_rating}>{rate}</span>
+    </a>
   ) : (
     <Button as={Link} href={href} className={horizontal.h_card}>
       <Image
