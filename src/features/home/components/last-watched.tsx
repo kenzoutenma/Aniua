@@ -62,7 +62,7 @@ export default function LastWatchedSection() {
             <Card
               key={idx}
               image={el.poster}
-              title={el.title}
+              title={el.title_ua}
               href={'/anime/' + el.slug}
               additional={{
                 history: { episode: `${el.last_users_episode} | ${el.episode.present}` },

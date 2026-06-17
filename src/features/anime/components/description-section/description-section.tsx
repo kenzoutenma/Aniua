@@ -2,13 +2,13 @@
 
 import { getTranslatedText } from '@/shared/lib';
 import { Slider, Table } from '@/shared/ui';
+import clsx from 'clsx';
 import Image from 'next/image';
 import renderValue from '../../utils/plain-data-details';
 import AddToCollectionButton from '../addToCollectionButton';
 import Card from '../anime-card/anime-card';
 import styles from './description-section.module.css';
 import Synopsis from './synopsis/synopsis';
-import clsx from 'clsx';
 
 function DescriptionSection({
   data,
@@ -16,7 +16,7 @@ function DescriptionSection({
   data: AnimeDataInterface & { characters: AnimeCharacters[] };
 }) {
   const plain: Partial<AnimeDataInterface> = {
-    title: data.title,
+    title_ua: data.title_ua,
     title_jp: data.title_jp,
     duration: data.duration,
     airing: data.airing,
@@ -40,7 +40,7 @@ function DescriptionSection({
   return (
     <article className={clsx(styles.anime_description_section, 'four_col_section')}>
       <div className={styles.anime_details}>
-        <Image src={data.poster} alt={data.title} height={350} width={250} style={{}} />
+        <Image src={data.poster} alt={data.title_ua} height={350} width={250} style={{}} />
         <AddToCollectionButton slug={data.slug} />
         <Table>
           {Object.entries(plain).map(([key, value]) => {
@@ -69,7 +69,7 @@ function DescriptionSection({
       </div>
       <div className={styles.anime_about}>
         <span className={styles.description_title}>
-          <h2>{data.title}</h2>
+          <h2>{data.title_ua}</h2>
           <h2 style={{ color: 'var(--text-muted)' }}>{data.score}✨</h2>
         </span>
         <Synopsis description={data.description} />

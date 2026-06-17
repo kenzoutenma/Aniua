@@ -29,7 +29,7 @@ function AnimeList({ anime }: AnimeListProps) {
               aria-describedby={`anime_${el.slug}_tooltip`}
               key={el.slug}
               image={el.poster}
-              title={el.title}
+              title={el.title_ua}
               href={`/anime/${el.slug}`}
               additional={{ rate: el.mal_score.toString() }}
             />

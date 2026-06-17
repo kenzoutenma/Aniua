@@ -23,7 +23,12 @@ const Slides = (name: string, group: AnimeDataInterface[]) => {
       <Section.Col title={getTranslatedText(name)} widthState="1">
         <Slider>
           {group.map((el, index) => (
-            <Card key={index} image={el.poster} title={el.title} href={`anime/${el.slug}`}></Card>
+            <Card
+              key={index}
+              image={el.poster}
+              title={el.title_ua}
+              href={`anime/${el.slug}`}
+            ></Card>
           ))}
         </Slider>
       </Section.Col>

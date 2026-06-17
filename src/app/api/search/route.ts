@@ -30,8 +30,8 @@ export async function GET(req: NextRequest) {
         typeof item.title_en === 'string' &&
         item.title_en.toLowerCase().includes(queryString.toLowerCase());
       const titleUaMatch =
-        typeof item.title === 'string' &&
-        item.title.toLowerCase().includes(queryString.toLowerCase());
+        typeof item.title_ua === 'string' &&
+        item.title_ua.toLowerCase().includes(queryString.toLowerCase());
 
       return titleEnMatch || titleUaMatch;
     });

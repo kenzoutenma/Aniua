@@ -9,7 +9,7 @@ export async function getList(options: Options) {
     if (!request.ok) return request;
 
     request.data.titles.forEach((e) => {
-      e.title = e.title || e.title_en || e.title_jp;
+      e.title_ua = e.title_ua || e.title_en || e.title_jp;
     });
 
     return { ok: true, ...request.data };

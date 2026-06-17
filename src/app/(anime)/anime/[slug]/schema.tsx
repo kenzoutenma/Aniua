@@ -8,7 +8,7 @@ const getAnimeSchema = (data: AnimeDataInterface) => {
     '@type': 'TVSeries',
     '@id': `${pageUrl}#series`,
     url: pageUrl,
-    name: data.title,
+    name: data.title_ua,
     alternateName: data.title_jp,
     image: data.poster,
     description: data.description,
@@ -44,7 +44,7 @@ const getAnimeSchema = (data: AnimeDataInterface) => {
       {
         '@type': 'ListItem',
         position: 3,
-        name: data.title,
+        name: data.title_ua,
         item: pageUrl,
       },
     ],

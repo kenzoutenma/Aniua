@@ -11,7 +11,7 @@ function HeroBanner({ data }: { data: AnimeDataInterface }) {
     data.trailer ? (
       <Trailer src={data.trailer} />
     ) : (
-      <Poster src={data.background_image_url || data.poster || 'pfp.png'} />
+      <Poster src={data.cover_image_url || data.poster || 'pfp.png'} />
     );
 
   const description = data?.description && data.description.split(' ').slice(0, 40).join(' ');
@@ -20,9 +20,9 @@ function HeroBanner({ data }: { data: AnimeDataInterface }) {
       ? data.genres.map((e) => <GenreButton key={e.slug} e={e} />)
       : '';
   const titles = {
-    bg: data.title_jp || data.title,
+    bg: data.title_jp || data.title_ua,
     jp: data.title_jp || null,
-    ua: data.title || '',
+    ua: data.title_ua || '',
   };
   const year = data.year || null;
 

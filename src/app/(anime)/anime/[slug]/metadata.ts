@@ -6,7 +6,7 @@ export default async function GenerateMetadata(slug: string): Promise<Metadata> 
   const anime = await getAnime(slug);
 
   const language = 'uk';
-  const title = language === 'uk' ? anime.title : anime.title_en;
+  const title = language === 'uk' ? anime.title_ua : anime.title_en;
 
   return {
     title: `${title} - Aniua | ${anime.title_jp}`,

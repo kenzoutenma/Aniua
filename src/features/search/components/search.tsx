@@ -46,7 +46,7 @@ export function SearchResults({ results, isLoading }: SearchResultsProps) {
           key={i}
           variant="horizontal"
           image={item.poster}
-          title={item.title}
+          title={item.title_ua}
           href={'/anime/' + item.slug}
           additional={{ year: item.year, genres: item.genres }}
         />

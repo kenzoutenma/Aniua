@@ -1,5 +1,5 @@
 interface title {
-  title: string;
+  title_ua: string;
   title_en: string;
   title_jp: string;
   title_synonyms?: {
@@ -8,14 +8,43 @@ interface title {
   }[];
 }
 
+interface AnimeGenre {
+  title: string;
+  id: string;
+  slug: string;
+  title_ua?: string;
+  title_en?: string;
+  description?: string;
+}
+
+interface descriptionInterface {
+  type: {
+    title: string;
+    slug: string;
+  };
+  year: number;
+  status: string;
+  season?: string;
+  airing: boolean;
+  age_rating: string;
+  genres?: AnimeGenre[] | null;
+}
+
+interface AnimeEpisodes {
+  present: number | null;
+  last: number;
+}
+
 interface AnimeDataInterface extends descriptionInterface, title {
   mal_id: number;
   slug: string;
 
   description: string;
+  description_main: string;
   poster: string;
-  background_image_url?: string | null;
+  cover_image_url?: string | null;
   trailer?: string;
+  companies: AnimeGenre[] | null;
 
   episode: AnimeEpisodes;
   duration: string;
@@ -34,6 +63,7 @@ interface AnimeDataInterface extends descriptionInterface, title {
 
 interface AnimeDataListInterface {
   titles: AnimeDataInterface[];
+  results?: AnimeDataInterface[];
   page: number;
   page_count: number;
   next_page: boolean;
