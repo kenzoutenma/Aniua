@@ -29,7 +29,7 @@ export default async function Home() {
 
     const action = await FI.fetch<AnimeDataListInterface>(searchApiRoutes['filter'], {
       to: 'out',
-      params: { limit: '9', order: 'rating', genre: thisGenreIs.id },
+      params: { limit: '9', order: 'rating', genres: thisGenreIs.id },
       next: { tags: [`anime-list-genre-${thisGenreIs.slug}`] },
     });
     if (!action.ok) return action;
