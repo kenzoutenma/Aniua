@@ -7,9 +7,15 @@
 
 .scroll_h_content {
   display: flex;
-  gap: 5px;
+  gap: 0.5rem;
   max-width: 100%;
   overflow-x: scroll;
+
+  * {
+    flex: 0 0 calc((100% - 32px) / 3);
+    box-sizing: border-box;
+    max-width: fit-content;
+  }
 }
 
 .scroll_v_wrap {
