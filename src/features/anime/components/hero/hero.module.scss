@@ -11,7 +11,7 @@
   justify-content: space-between;
   overflow: clip;
   border: var(--border);
-  border-radius: var(--border-radius-box);
+  border-radius: var(--border-radius-box-box);
   color: var(--cnt-base);
 
   max-height: 720px;
@@ -87,7 +87,7 @@
 
 /* poster */
 .hero-poster {
-  border-radius: calc(var(--border-radius-box) - var(--hero-padding-x));
+  border-radius: calc(var(--border-radius-box-box) - var(--hero-padding-x));
   height: 100%;
   width: auto;
 }

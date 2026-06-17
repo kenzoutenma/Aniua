@@ -1,6 +1,6 @@
 .dropdownMenu {
-  border-radius: var(--border-radius-1_2);
-  background-color: var(--bg);
+  border-radius: var(--border-radius-input);
+  background-color: var(--bg-l1);
   border: var(--border-fill);
   position: absolute;
   top: 100%;

@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  color-scheme: light dark;
+  /* hsl (fallback color) */
+  --bg-l0: hsl(231.4 15.9% 14.3%);
+  --bg-l1: hsl(231.4 15% 16.3%);
+  --bg-l2: hsl(231.4 14.8% 18.4%);
+  --bg-l3: hsl(229.5 14.8% 30%);
+
+  --cnt-base: hsl(330 0% 83.9%);
+  --cnt-l0: hsl(325.5 100% 73.7%);
+
+  --border: 2px solid var(--bg-l1);
+
+  // Sizes
+
+  --padding: 0.5rem 0.75rem;
+  --gap: 1rem;
+  --border-radius-box: 1rem;
+  --border-radius-input: 0.5rem;
+
+  // Animations
+
+  --animation-duration: 0.25s;
+  --animation-duration-2: 0.15s;
+
+  --text-color-animation: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+
+  --animation-delay-in: cubic-bezier(1, 0, 1, 0);
+  --animation-delay-out: cubic-bezier(0, 1, 0, 1);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* hsl (fallback color) */
+    --bg-l0: hsl(0 0% 92%);
+    --bg-l1: hsl(0 0% 95%);
+    --bg-l2: hsl(300 50% 100%);
+    --cnt-base: hsl(330 0% 4%);
+    --text-muted: hsl(0 0% 28%);
+    --highlight: hsl(300 50% 100%);
+    --border: hsl(300 0% 50%);
+    --border-muted: hsl(340 0% 62%);
+    --cnt-l0: hsl(41 100% 16%);
+    --secondary: hsl(214 60% 30%);
+    --danger: hsl(9 21% 41%);
+    --warning: hsl(52 23% 34%);
+    --success: hsl(147 19% 36%);
+    --info: hsl(217 22% 41%);
+  }
+}
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 140%;
+  scrollbar-width: thin;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--cnt-l0);
+}
+
+a,
+p,
+h1,
+h2,
+h3 {
+  color: var(--cnt-base);
+  text-decoration: none;
+}
+
+html {
+  background-color: var(--bg-l0);
+
+  &:has(.drawer-panel[aria-hidden='false']) {
+    overflow: hidden;
+  }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.loader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    border: 6px solid var(--cnt-base);
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    @keyframes rotation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+
+main {
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 95%;
+
+  @media (min-width: 768px) {
+    max-width: 768px;
+  }
+
+  @media (min-width: 1280px) {
+    max-width: 75%;
+  }
+
+  @media (min-width: 1920px) {
+    max-width: 1280px;
+  }
+}

@@ -3,7 +3,7 @@
   height: auto;
   flex-shrink: 0;
   position: relative;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-box);
   overflow: clip;
   cursor: pointer;
 }
@@ -13,7 +13,7 @@
 }
 
 .episode_wrap:hover div h3 {
-  color: var(--text);
+  color: var(--cnt-base);
   transition: all var(--animation-duration) ease-in-out;
 }
 

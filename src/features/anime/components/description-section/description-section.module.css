@@ -24,7 +24,7 @@
 
     .anime_desc_summary {
       padding: 0.5rem;
-      background-color: var(--bg-light);
+      background-color: var(--bg-l2);
       border-radius: 12px;
     }
   }

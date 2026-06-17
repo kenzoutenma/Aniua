@@ -1,6 +1,6 @@
 .table {
   border: var(--border-fill);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-box);
   width: 100%;
   overflow: hidden;
   font-weight: 100;
@@ -16,7 +16,7 @@
 }
 
 .table tr:hover {
-  background-color: var(--bg);
+  background-color: var(--bg-l1);
 }
 
 .table tr th:last-child {
@@ -24,7 +24,7 @@
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 5px;
-  color: var(--highlight);
+  color: color-mix(in oklab, var(--btn-text) 15%, var(--btn-bg));
 }
 
 .table[data-align-left] {
@@ -38,7 +38,7 @@
 }
 
 .table[data-align-left] tr th:first-child {
-  color: var(--text);
+  color: var(--cnt-base);
   text-align: left;
   padding-right: 0.05rem;
   line-height: 1.75;
@@ -49,5 +49,5 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  color: var(--highlight);
+  color: color-mix(in oklab, var(--btn-text) 15%, var(--btn-bg));
 }

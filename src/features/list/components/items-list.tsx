@@ -4,8 +4,8 @@ import Card from '@/features/anime/components/anime-card/anime-card';
 import CardSkeletonBlock from '@/features/anime/components/anime-card/anime-card-skeleton';
 import CardStyles from '@/features/anime/components/anime-card/anime-card.module.css';
 import AnimePopover from '@/features/anime/components/popover/card-popover';
-import Section from '@/shared/layout/section/section';
 import { Tooltip } from '@/shared/ui';
+import styles from './list-grid.module.scss';
 
 interface AnimeListProps {
   anime: AnimeDataInterface[] | null;
@@ -13,7 +13,7 @@ interface AnimeListProps {
 
 function AnimeList({ anime }: AnimeListProps) {
   return (
-    <Section typeOfSection={'grid'}>
+    <section className={styles['list-content']}>
       {anime == null ? (
         <CardSkeletonBlock countOfCards={15} />
       ) : (
@@ -36,7 +36,7 @@ function AnimeList({ anime }: AnimeListProps) {
           </Tooltip>
         ))
       )}
-    </Section>
+    </section>
   );
 }
 

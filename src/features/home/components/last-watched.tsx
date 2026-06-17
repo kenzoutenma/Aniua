@@ -2,7 +2,6 @@
 
 import Card from '@/features/anime/components/anime-card/anime-card';
 import { getList } from '@/features/list/service/get-list';
-import Section from '@/shared/layout/section/section';
 import { getTranslatedText } from '@/shared/lib';
 import { usePlayerStore } from '@/shared/state/player-history';
 import { Slider } from '@/shared/ui';
@@ -55,23 +54,21 @@ export default function LastWatchedSection() {
   if (animeList.length === 0) return null;
 
   return (
-    <Section.Row>
-      <Section.Col title={getTranslatedText('home.Last watched')} widthState="1">
-        <Slider>
-          {animeList.map((el, idx) => (
-            <Card
-              key={idx}
-              image={el.poster}
-              title={el.title_ua}
-              href={'/anime/' + el.slug}
-              additional={{
-                history: { episode: `${el.last_users_episode} | ${el.episode.present}` },
-              }}
-              variant="horizontal"
-            />
-          ))}
-        </Slider>
-      </Section.Col>
-    </Section.Row>
+    <div>
+      <h2>{getTranslatedText('home.Last watched')}</h2>
+      <Slider>
+        {animeList.map((el, idx) => (
+          <Card
+            key={idx}
+            image={el.poster}
+            title={el.title_ua}
+            href={'/anime/' + el.slug}
+            additional={{
+              history: { episode: `${el.last_users_episode} | ${el.episode.present}` },
+            }}
+          />
+        ))}
+      </Slider>
+    </div>
   );
 }

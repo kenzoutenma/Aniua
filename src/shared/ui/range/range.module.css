@@ -12,7 +12,7 @@
   top: 50%;
   width: 100%;
   height: 2px;
-  background-color: var(--bg);
+  background-color: var(--bg-l1);
 }
 
 .thumb {
@@ -21,7 +21,7 @@
   transform: translate(-50%, -50%);
   width: 16px;
   height: 16px;
-  background: var(--primary);
+  background: var(--cnt-l0);
   border-radius: 50%;
   border-width: 1px;
   cursor: pointer;

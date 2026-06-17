@@ -1,6 +1,6 @@
 .card_container {
-  --border-radius: 0.75rem;
-  border-radius: var(--border-radius);
+  --border-radius-box: 0.75rem;
+  border-radius: var(--border-radius-box);
   scroll-snap-align: end;
   gap: 0;
   display: flex;
@@ -9,6 +9,7 @@
   color: var(--cnt-base);
   text-decoration: none;
   position: relative;
+  max-width: 10vw;
 }
 .card_container .card_rating {
   position: absolute;
@@ -17,7 +18,7 @@
   margin: 0.25rem;
   background-color: color-mix(in oklab, var(--bg-l2) 85%, transparent);
   padding: 5px;
-  border-radius: calc(var(--border-radius) - 0.25rem);
+  border-radius: calc(var(--border-radius-box) - 0.25rem);
   transition: 0.1s;
 }
 .card_container .card_image {

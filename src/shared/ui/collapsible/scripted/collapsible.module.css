@@ -1,9 +1,9 @@
 .collapsible_wrap {
   border-width: 1px;
-  border-color: var(--bg);
+  border-color: var(--bg-l1);
   width: 100%;
   height: fit-content;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-box);
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -12,20 +12,20 @@
 .collapsible_wrap:hover {
   border-color: var(--border-fill);
 }
-.collapsible_wrap:focus-visible{
-  border-color: var(--bg);
+.collapsible_wrap:focus-visible {
+  border-color: var(--bg-l1);
 }
 
 /* collapse block animation */
 
 .collapsible_child {
-  background-color: var(--bg);
+  background-color: var(--bg-l1);
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
   height: fit-content;
   overflow: hidden;
-  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  border-radius: 0 0 var(--border-radius-box) var(--border-radius-box);
 }
 
 .collapsible_child[aria-expanded='true'] {
@@ -54,23 +54,23 @@
 }
 
 .collapsible_wrap[aria-expanded='true'] button {
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  border-radius: var(--border-radius-box) var(--border-radius-box) 0 0;
   transition-delay: 0s;
 }
 
 .collapsible_wrap[aria-expanded='false'] button {
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-box);
   transition-delay: var(--animation-duration);
 }
 
 /* svg animation */
 
 .collapsible_wrap[aria-expanded='true'] button svg {
-  transform: rotate(0deg); 
-  transition: all .1s;
+  transform: rotate(0deg);
+  transition: all 0.1s;
 }
 
 .collapsible_wrap[aria-expanded='false'] button svg {
-  transform: rotate(180deg); 
-  transition: all .1s;
+  transform: rotate(180deg);
+  transition: all 0.1s;
 }

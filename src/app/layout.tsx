@@ -1,11 +1,11 @@
 import { Roboto_Condensed } from 'next/font/google';
 
+import '@/shared/assets/styles/globals.scss';
+
 import sitemeta from '@/shared/constants/site-metadata';
 import Header from '@/shared/layout/header/header';
 import { getTranslatedText } from '@/shared/lib';
 import LoadProvider from '@/shared/providers/loading-provider';
-import '@/shared/styles/globals.css';
-import '@/shared/styles/ui.css';
 import type { Metadata } from 'next';
 import { Toaster } from 'react-hot-toast';
 

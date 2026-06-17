@@ -1,5 +1,5 @@
 .anime_card_popover_container {
-  background-color: var(--bg);
+  background-color: var(--bg-l1);
   display: flex;
   padding: 1.5rem;
   gap: 1.5rem;
@@ -15,7 +15,7 @@
 
     a,
     span {
-      background-color: var(--bg-light);
+      background-color: var(--bg-l2);
       padding: 0.25rem 0.5rem;
       border-radius: 8px;
     }

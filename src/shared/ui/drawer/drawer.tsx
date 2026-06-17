@@ -1,6 +1,7 @@
 'use client';
 
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import Button from '../button/button';
 import styles from './drawer.module.scss';
 
 interface Props {
@@ -76,13 +77,9 @@ const Drawer = forwardRef<DrawerRef, Props>(
               )}
               {headerExtra}
 
-              <button
-                className={styles['close-btn']}
-                aria-label="Закрити панель"
-                onClick={closeDrawer}
-              >
+              <Button aria-label="Закрити панель" onClick={closeDrawer}>
                 &times;
-              </button>
+              </Button>
             </div>
 
             <div className={styles['drawer-content']}>{children}</div>

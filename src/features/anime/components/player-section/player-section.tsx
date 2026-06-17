@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useNewPlayer } from '../../hooks/useNewPlayer';
 import Episodes from './player-episodes/player-episodes';
 import PlayerFrame from './player-frame/player-frame';
-import styles from './player-section.module.css';
+import styles from './player-section.module.scss';
 
 function PlayerSection({ data }: { data: AnimeDataInterface }) {
   const { playerState, episodesList, handleEpisode, handleStudio } = useNewPlayer(data.slug);

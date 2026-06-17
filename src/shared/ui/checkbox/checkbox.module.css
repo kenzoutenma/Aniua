@@ -1,15 +1,15 @@
 .checkbox {
   padding: var(--padding);
-  background-color: var(--bg);
+  background-color: var(--bg-l1);
   border: none;
-  border-radius: var(--border-radius-1_2);
+  border-radius: var(--border-radius-input);
 }
 
 .checkbox:hover,
 .checkbox:has(.checkinput:focus-visible),
 .checkbox:has(.checkinput:checked) {
   color: var(--button-primary-text-color);
-  background-color: var(--primary);
+  background-color: var(--cnt-l0);
   cursor: pointer;
 }
 

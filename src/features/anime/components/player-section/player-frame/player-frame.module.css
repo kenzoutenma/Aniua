@@ -4,7 +4,7 @@
   object-fit: cover;
 
   border: var(--border-fill);
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-box);
 }
 
 .frameWrapper {

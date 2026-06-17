@@ -1,50 +1,59 @@
 'use client';
 
-import { ArrowDownIcon } from '@/shared/assets/icons';
-import { Button } from '@/shared/ui/index';
-import clsx from 'clsx';
-import React, { useLayoutEffect, useRef, useState } from 'react';
-import styles from './collapsible-styled.module.css';
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './collapsible.module.scss';
 
-function Collapsible({
-  label,
-  children,
-  hidden,
-}: {
+interface Props {
   label: string;
-  children: React.ReactNode;
   hidden?: boolean;
-}) {
-  const [visible, setVisible] = useState(hidden && true);
-  const contentRef = useRef<HTMLDivElement>(null);
+  children?: React.ReactNode;
+}
 
-  useLayoutEffect(() => {
-    if (contentRef.current) {
-      const el = contentRef.current;
-      el.style.setProperty('--collapsible-content-height', `${el.scrollHeight}px`);
-    }
-  }, [children, visible]);
+function Collapsible({ label, hidden = false, children }: Props) {
+  const [isOpen, setIsOpen] = useState<boolean>(!hidden);
+  const collapseContentRef = useRef<HTMLDivElement | null>(null);
 
-  const handleVisible = () => {
-    if (visible) {
-      setVisible(false);
-    } else {
-      setVisible(true);
-    }
+  const toggleVisible = () => {
+    setIsOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if (collapseContentRef.current) {
+        collapseContentRef.current.style.setProperty(
+          '--collapsible-content-height',
+          `${collapseContentRef.current.scrollHeight + 2}px`,
+        );
+      }
+    };
+
+    updateHeight();
+
+    window.addEventListener('resize', updateHeight);
+    return () => window.removeEventListener('resize', updateHeight);
+  }, [children]);
 
   return (
     <div
-      className={styles.collapsible_wrap}
+      role="button"
+      aria-labelledby="clpse-title"
+      className={styles.cllpsble}
       aria-haspopup="listbox"
-      aria-expanded={visible}
-      aria-controls="dropdown-options"
+      aria-expanded={isOpen}
+      aria-controls="collapsible-options"
     >
-      <Button className={styles.collapse_button} onClick={handleVisible}>
-        {label}
-        <ArrowDownIcon />
-      </Button>
-      <div ref={contentRef} className={clsx(styles.collapsible_child)} aria-expanded={visible}>
+      <label id="clpse-title" className={styles['clpse-label']}>
+        <input type="checkbox" onChange={toggleVisible} checked={isOpen} value={label} />
+        <h3>{label}</h3>
+      </label>
+
+      <div
+        id="collapsible-options"
+        ref={collapseContentRef}
+        className={styles.collapsible_child}
+        aria-expanded={isOpen}
+        data-inert={!isOpen ? '' : undefined}
+      >
         {children}
       </div>
     </div>
