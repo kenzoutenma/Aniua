@@ -37,10 +37,7 @@ function Modal({ children }: { children: React.ReactNode }) {
         <span>Close</span>
         <kbd>ESC</kbd>
       </Button>
-      <Section
-        typeOfSection={'OneColSection'}
-        data-dialog="modal"
-      >
+      <Section typeOfSection={'OneColSection'} data-dialog="modal">
         {children}
       </Section>
     </div>

@@ -97,7 +97,7 @@ export const Banner: React.FC<BannerProps> = ({
         </div>
       ) : cover ? (
         <div className={styles['hero-background']}>
-          <img
+          <Image
             src={cover}
             className={styles['hero-background']}
             alt={title}

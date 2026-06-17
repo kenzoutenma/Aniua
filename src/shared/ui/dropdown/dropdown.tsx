@@ -43,11 +43,7 @@ const Dropdown = ({ trigger, children, align = 'center' }: DropdownProps) => {
       aria-controls="dropdown-options"
       className={styles.dropdownWrapper}
     >
-      <button
-        role="button"
-        aria-haspopup="true"
-        aria-expanded={visible}
-      >
+      <button role="button" aria-haspopup="true" aria-expanded={visible}>
         {trigger}
       </button>
       <div
