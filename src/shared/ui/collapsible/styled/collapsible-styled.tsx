@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowDownIcon } from '@/shared/icons/index';
+import { ArrowDownIcon } from '@/shared/assets/icons';
 import { Button } from '@/shared/ui/index';
 import clsx from 'clsx';
 import React, { useLayoutEffect, useRef, useState } from 'react';
@@ -29,7 +29,7 @@ function Collapsible({
     if (visible) {
       setVisible(false);
     } else {
-      setVisible(true)
+      setVisible(true);
     }
   };
 
@@ -44,11 +44,7 @@ function Collapsible({
         {label}
         <ArrowDownIcon />
       </Button>
-      <div
-        ref={contentRef}
-        className={clsx(styles.collapsible_child)}
-        aria-expanded={visible}
-      >
+      <div ref={contentRef} className={clsx(styles.collapsible_child)} aria-expanded={visible}>
         {children}
       </div>
     </div>

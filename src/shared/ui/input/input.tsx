@@ -1,4 +1,4 @@
-import { ErrorIcon } from '@/shared/icons';
+import { ErrorIcon } from '@/shared/assets/icons';
 import { forwardRef, HTMLInputTypeAttribute, InputHTMLAttributes, memo } from 'react';
 import styles from './input.module.css';
 

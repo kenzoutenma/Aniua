@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowDownIcon } from '@/shared/icons/index';
+import { ArrowDownIcon } from '@/shared/assets/icons';
 import { Button } from '@/shared/ui/index';
 import clsx from 'clsx';
 import React, { useLayoutEffect, useRef, useState } from 'react';

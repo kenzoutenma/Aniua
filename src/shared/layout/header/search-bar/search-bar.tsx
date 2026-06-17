@@ -1,6 +1,6 @@
 'use client';
 
-import { SearchIcon } from '@/shared/icons';
+import { SearchIcon } from '@/shared/assets/icons';
 import { getTranslatedText } from '@/shared/lib';
 import { useRouter } from 'next/navigation';
 import styles from './search-bar.module.css';
