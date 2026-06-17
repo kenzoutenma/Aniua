@@ -11,6 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           flexDirection: 'column',
           gap: '2.25rem',
           margin: '0 auto',
+          width: '100%',
         }}
       >
         <div>
