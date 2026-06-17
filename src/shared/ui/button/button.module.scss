@@ -6,14 +6,20 @@
   --btn-radius: 4px;
   --btn-transition: background 0.15s, color 0.15s, border-color 0.15s, opacity 0.15s;
 
+  min-height: 35px;
+  min-width: 35px;
+
+  width: fit-content;
+  text-align: center;
+
   gap: var(--btn-gap);
   padding: var(--btn-p-y) var(--btn-p-x);
-  font-size: var(--btn-font-size);
-  font-weight: 500;
-  line-height: 1;
+
   border-radius: var(--btn-radius);
   border: 1px solid transparent;
+
   cursor: pointer;
+
   transition: var(--btn-transition);
   white-space: nowrap;
   outline: none;
