@@ -1,0 +1,78 @@
+.drawer-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.drawer-panel {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 400px;
+  height: 100vh;
+  background: var(--bg-l1);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out;
+  visibility: visible;
+
+  &[aria-hidden='true'] {
+    visibility: hidden;
+  }
+
+  &.right {
+    right: 0;
+    transform: translateX(100%);
+    &.is-open {
+      transform: translateX(0);
+    }
+  }
+
+  &.left {
+    left: 0;
+    transform: translateX(-100%);
+    &.is-open {
+      transform: translateX(0);
+    }
+  }
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0.5rem;
+  border-bottom: 1px solid var(--cnt-l0);
+
+  h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    outline: none;
+  }
+}
+
+.drawer-content {
+  padding: 0.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.drawer-footer {
+  padding: 1.25rem 0.5rem;
+  border-top: 1px solid var(--cnt-l0);
+}

@@ -1,10 +1,6 @@
 .tooltip-wrapper {
-  display: flex;
-  flex-shrink: 0;
-  height: 100%;
   position: relative;
-  width: fit-content;
-  max-width: 376px;
+  max-width: 100%;
 }
 
 .tooltip-wrapper:hover .tooltip {
@@ -12,6 +8,8 @@
   display: block;
   animation: fadeInTooltip-desktop 0.5s ease forwards;
   animation-delay: 0.1s;
+
+  pointer-events: all;
 }
 
 .tooltip {
@@ -31,7 +29,7 @@
 
 .tooltip-left {
   top: 0;
-  right: calc(100% + 15px);
+  right: calc(100% - 15px);
 }
 
 @media (max-width: 640px) {
@@ -55,11 +53,11 @@
 @keyframes fadeInTooltip-desktop {
   from {
     opacity: 0;
-    transform: translateX(-15px);
+    transform: translateX(0px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(-15px);
   }
 }
 

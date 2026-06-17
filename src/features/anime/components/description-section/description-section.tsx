@@ -1,10 +1,11 @@
 'use client';
 
-import Section from '@/shared/layout/section/section';
 import { getTranslatedText } from '@/shared/lib';
-import { Slider, Table, Typography } from '@/shared/ui';
-import Card from '../anime-card/anime-card';
+import { Slider, Table } from '@/shared/ui';
+import Image from 'next/image';
 import renderValue from '../../utils/plain-data-details';
+import Card from '../anime-card/anime-card';
+import styles from './description-section.module.css';
 
 function DescriptionSection({
   data,
@@ -12,7 +13,7 @@ function DescriptionSection({
   data: AnimeDataInterface & { characters: AnimeCharacters[] };
 }) {
   const plain: Partial<AnimeDataInterface> = {
-    title: data.title,
+    title_ua: data.title_ua,
     title_jp: data.title_jp,
     duration: data.duration,
     airing: data.airing,
@@ -34,31 +35,16 @@ function DescriptionSection({
   };
 
   return (
-    <Section typeOfSection="TwoColSection" style={{ gridTemplateColumns: '7fr 3fr' }}>
-      <Section.Col>
-        <div>
-          <h2>{getTranslatedText('info.Description')}</h2>
-          <p>{data?.description && data.description}</p>
-        </div>
-        {data.characters && data.characters.length > 1 ? (
-          <>
-            <h2>{getTranslatedText('info.Characters')}</h2>
-            <Slider>
-              {data.characters.map((el: AnimeCharacters, index: number) => (
-                <Card
-                  key={index}
-                  image={el.poster}
-                  title={el.name_surname_ua}
-                  slug={el.id.toString()}
-                />
-              ))}
-            </Slider>
-          </>
-        ) : null}
-      </Section.Col>
-
-      <Section.Col>
-        <Typography variant="h2">{getTranslatedText('info.Details')}</Typography>
+    <article className={styles.anime_desc_container}>
+      <div className={styles.anime_desc_left}>
+        <Image
+          src={data.poster}
+          alt={data.slug}
+          width={144}
+          height={144}
+          loading="eager"
+          quality={50}
+        />
         <Table>
           {Object.entries(plain).map(([key, value]) => {
             if (!value) return;
@@ -83,8 +69,26 @@ function DescriptionSection({
             );
           })}
         </Table>
-      </Section.Col>
-    </Section>
+      </div>
+
+      <div className={styles.anime_desc_right}>
+        <h2>{data.title_ua}</h2>
+        <p className={styles.anime_desc_summary}>
+          <strong>{getTranslatedText('info.Description')}: </strong>
+          {data.description_main}
+        </p>
+        {data.characters && data.characters.length > 1 ? (
+          <>
+            <h2>{getTranslatedText('info.Characters')}</h2>
+            <Slider>
+              {data.characters.map((el: AnimeCharacters, index: number) => (
+                <Card key={index} image={el.poster} title={el.title_ua} />
+              ))}
+            </Slider>
+          </>
+        ) : null}
+      </div>
+    </article>
   );
 }
 

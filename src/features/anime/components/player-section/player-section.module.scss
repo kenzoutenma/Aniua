@@ -1,0 +1,23 @@
+.anime_player_section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap);
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+  max-height: fit-content;
+
+  div:first-child {
+    grid-column: 1/4;
+    max-width: 100%;
+  }
+
+  div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 100%;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+  }
+}

@@ -1,10 +1,9 @@
 'use client';
 
+import { SearchIcon } from '@/shared/assets/icons';
 import { getTranslatedText } from '@/shared/lib';
-import { Input } from '@/shared/ui';
-import { SearchIcon } from '@/shared/icons';
 import { useRouter } from 'next/navigation';
-
+import styles from './search-bar.module.css';
 interface SearchBarProps {
   variant?: 'input' | 'icon';
   handle?: () => void;
@@ -13,26 +12,35 @@ interface SearchBarProps {
 function SearchBar({ variant = 'input', handle }: SearchBarProps) {
   const router = useRouter();
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      router.push('/search');
-    }
-  };
+  // const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  //   if (e.key === 'Enter' || e.key === ' ') {
+  //     router.push('/search');
+  //   }
+  // };
 
-  return variant == 'input' ? (
-    <>
-      <Input
+  const Wrap = () => (
+    <div className={styles.search_bar}>
+      <label htmlFor="search_bar">{getTranslatedText('header.search')}</label>
+      <input
+        readOnly
+        id="search_bar"
         type="text"
-        readonly
-        aria-label={getTranslatedText('header.search')}
+        onClick={() => {
+          router.push('/search');
+        }}
+        value={getTranslatedText('header.search')}
+      />
+      <SearchIcon
         onClick={() => {
           router.push('/search');
           handle?.();
         }}
-        onKeyDown={handleKeyDown}
-        value={getTranslatedText('header.search')}
       />
-    </>
+    </div>
+  );
+
+  return variant == 'input' ? (
+    <Wrap />
   ) : (
     <SearchIcon
       onClick={() => {

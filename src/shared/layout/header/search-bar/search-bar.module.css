@@ -1,3 +1,25 @@
+<<<<<<< HEAD
+.search_bar label {
+  display: none;
+}
+
+.search_bar svg {
+  display: none;
+}
+
+.search_bar input {
+  width: fit-content;
+}
+
+@media (max-width: 640px) {
+  .search_bar svg {
+    display: block;
+  }
+
+  .search_bar input {
+    display: none;
+  }
+=======
 .searchbar {
   padding: 4px 10px;
   width: 150px;
@@ -5,4 +27,5 @@
   text-align: left;
   border-radius: var(--borderRad);
   background-color: var(--backColor);
+>>>>>>> 312a80f83f37eec154a778075e5bc375381924c8
 }

@@ -1,0 +1,42 @@
+.synopsis_wrapper {
+  max-height: 18vh;
+  transition: all 0.4s ease-in-out;
+  height: fit-content;
+  position: relative;
+  overflow: hidden;
+}
+
+.synopsis_wrapper:has(*[data-expanded='true']) {
+  max-height: 100%;
+}
+
+.synopsis_block {
+  display: block;
+  position: relative;
+  text-align: justify;
+}
+
+.synopsis_wrapper::after {
+  content: ' ';
+  background: linear-gradient(0deg, var(--bg-l1) 20%, rgba(0, 0, 0, 0) 25%);
+  background-repeat: no-repeat;
+  transition: background-position var(--animation-duration) ease-in-out;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 200px;
+  width: 100%;
+  z-index: 2;
+}
+
+.synopsis_wrapper:has(*[data-expanded='true'])::after {
+  background-position: 0 200px;
+}
+
+.synopsis_button {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+}

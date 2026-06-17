@@ -1,7 +1,7 @@
-import { UserIcon } from '@/shared/icons';
+import { UserIcon } from '@/shared/assets/icons';
+import { Typography } from '@/shared/ui';
 import Image from 'next/image';
 import React from 'react';
-import { Typography } from '@/shared/ui';
 import style from './Message.module.css';
 
 interface MessageProps {

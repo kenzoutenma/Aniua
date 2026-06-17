@@ -1,0 +1,60 @@
+.table {
+  border: var(--border);
+  border-radius: var(--border-radius-box);
+
+  width: 100%;
+  overflow: hidden;
+
+  tr {
+    margin: 0.5rem 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+  }
+
+  background-color: var(--bg-l1);
+
+  tr:nth-child(2n) {
+    background-color: var(--bg-l2);
+  }
+}
+
+.table tr th * {
+  text-transform: capitalize;
+  margin: 0;
+}
+
+.table tr th:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 5px;
+  color: color-mix(in oklab, var(--btn-text) 15%, var(--btn-bg));
+}
+
+.table[data-align-left] {
+  border: none;
+}
+
+.table[data-align-left] tr {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  align-items: start;
+}
+
+.table[data-align-left] tr th:first-child {
+  color: var(--cnt-base);
+  text-align: left;
+  padding-right: 0.05rem;
+  line-height: 1.75;
+}
+
+.table[data-align-left] tr th:last-child {
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  color: color-mix(in oklab, var(--btn-text) 15%, var(--btn-bg));
+}

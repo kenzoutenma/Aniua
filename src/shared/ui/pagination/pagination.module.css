@@ -1,13 +1,33 @@
-.scrollableContent {
-    display: flex;
-    gap: 5px;
-    max-width: 100%;
-    overflow-x: scroll;
+.scroll_h_wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
 }
 
-.scrollable {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap: 5px;
+.scroll_h_content {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 100%;
+  overflow-x: scroll;
+
+  * {
+    flex: 0 0 calc((100% - 32px) / 3);
+    box-sizing: border-box;
+    max-width: fit-content;
+  }
+}
+
+.scroll_v_wrap {
+  flex-direction: column;
+  display: flex;
+  height: 100%;
+}
+
+.scroll_v_content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--distance);
+  height: 100%;
+  overflow-y: scroll;
 }

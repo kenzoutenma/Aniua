@@ -5,10 +5,10 @@ import { useSettingsStore } from '@/shared/state/settings-store';
 import { Button } from '@/shared/ui';
 
 import SettingField from '@/features/user/components/setting-field';
+import Section from '@/shared/layout/section/section';
 import { getTranslatedText } from '@/shared/lib';
 import Link from 'next/link';
 import { memo, useCallback, useMemo, useState } from 'react';
-import Section from '@/shared/layout/section/section';
 
 export default function settings() {
   const setSetting = useSettingsStore((s) => s.setSetting);
@@ -63,7 +63,7 @@ export default function settings() {
       <Section.Col widthState="1/4">
         Settings
         {Object.entries(settingsConfig).map(([section]) => (
-          <Button variant="link" key={section} as={Link} href={`#settings-${section}`}>
+          <Button variant="default" key={section} as={Link} href={`#settings-${section}`}>
             {section}
           </Button>
         ))}

@@ -8,7 +8,7 @@ interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 function Select({ children, ...props }: SelectProps) {
   return (
     <select
-      className={button_variants.button}
+      className={button_variants.default}
       style={{ backgroundColor: 'transparent' }}
       {...props}
     >

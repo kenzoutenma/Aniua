@@ -1,10 +1,9 @@
-import clsx from 'clsx';
-import styles from './button.module.css';
+import styles from './button.module.scss';
 
 export const button_variants = {
-  button: clsx(styles.ghost, styles.button),
-  outline: clsx(styles.outline, styles.button),
-  secondary: clsx(styles.secondary, styles.button),
-  link: clsx(styles.link, `border-animate`),
-  primary: clsx(styles.primary, styles.button),
+  default: styles[`btn-default`],
+  primary: styles[`btn-primary`],
+  ghost: styles[`btn-ghost`],
+  outline: styles[`btn-outline`],
+  danger: styles[`btn-danger`],
 } as const;

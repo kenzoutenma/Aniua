@@ -22,11 +22,11 @@ export default function GlobalError() {
       <h1>Oh, something went wrong with server. Error code is 500 (if you know you know)</h1>
       <h2>
         Please, leave this error code{' '}
-        <Button variant="link" as={Link} href={reportLink}>
+        <Button variant="danger" as={Link} href={reportLink}>
           here.
         </Button>
       </h2>
-      <Button variant="link" as={Link} href={reportLink}>
+      <Button variant="ghost" as={Link} href={reportLink}>
         <img src="/report.gif" style={{ margin: '0 auto' }}></img>
       </Button>
     </div>

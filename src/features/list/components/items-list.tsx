@@ -3,8 +3,9 @@
 import Card from '@/features/anime/components/anime-card/anime-card';
 import CardSkeletonBlock from '@/features/anime/components/anime-card/anime-card-skeleton';
 import CardStyles from '@/features/anime/components/anime-card/anime-card.module.css';
-import Section from '@/shared/layout/section/section';
-import { Button, Popover, Tooltip } from '@/shared/ui';
+import AnimePopover from '@/features/anime/components/popover/card-popover';
+import { Tooltip } from '@/shared/ui';
+import styles from './list-grid.module.scss';
 
 interface AnimeListProps {
   anime: AnimeDataInterface[] | null;
@@ -12,56 +13,31 @@ interface AnimeListProps {
 
 function AnimeList({ anime }: AnimeListProps) {
   return (
-    <Section typeOfSection={'grid'}>
+    <section className={styles['list-content']}>
       {anime == null ? (
         <CardSkeletonBlock countOfCards={15} />
       ) : (
         anime.map((el: AnimeDataInterface) => (
           <Tooltip
-            className={CardStyles.cardcontainer}
+            className={CardStyles.card}
             role="tooltip"
             id={`anime_${el.slug}_tooltip`}
             key={el.slug}
-            tooltipContent={<PopoverFilled animeData={el} />}
+            tooltipContent={<AnimePopover animeData={el} />}
           >
             <Card
               aria-describedby={`anime_${el.slug}_tooltip`}
               key={el.slug}
               image={el.poster}
-              title={el.title}
-              slug={el.slug}
+              title={el.title_ua}
+              href={`/anime/${el.slug}`}
               additional={{ rate: el.mal_score.toString() }}
             />
           </Tooltip>
         ))
       )}
-    </Section>
+    </section>
   );
 }
-
-const PopoverFilled = ({ animeData }: { animeData: AnimeDataInterface }) => {
-  return (
-    <Popover>
-      <Popover.Row variant="title">
-        <h4>{animeData.title}</h4>
-        <Button variant="secondary">{animeData.mal_score} ⭐️</Button>
-      </Popover.Row>
-      <Popover.Row variant="row">
-        <span>{animeData.year}</span>
-        <span>•</span>
-        {animeData.genres && Object.entries(animeData.genres).length > 0 ? (
-          animeData.genres.map((el, _) => (
-            <Button key={`genres_${el.id}_${_}`} variant="secondary">
-              {el.title || el.slug}
-            </Button>
-          ))
-        ) : (
-          <p>unknown genres (?)</p>
-        )}
-      </Popover.Row>
-      <p>{animeData?.description && animeData.description.slice(0, 75)}...</p>
-    </Popover>
-  );
-};
 
 export default AnimeList;

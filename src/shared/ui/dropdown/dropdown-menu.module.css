@@ -1,13 +1,13 @@
 .dropdownMenu {
-  border-radius: var(--borderRad);
+  border-radius: var(--border-radius-input);
+  background-color: var(--bg-l1);
+  border: var(--border-fill);
   position: absolute;
   top: 100%;
   width: fit-content;
   display: flex;
   flex-direction: column;
-  background-color: var(--backColor);
   margin-top: 15px;
-  border: var(--border);
   overflow: hidden;
 
   max-height: 300px;
@@ -17,6 +17,10 @@
     max-height 0.3s ease-in-out,
     opacity 0.3s ease-in-out,
     transform 0.3s ease-in-out;
+}
+
+.dropdownMenu button {
+  border-radius: 0;
 }
 
 .hidden {

@@ -22,6 +22,7 @@
   "dependencies": {
     "@bprogress/next": "^3.2.12",
     "clsx": "^2.1.1",
+    "hls.js": "^1.6.15",
     "i18next": "^24.2.0",
     "lodash.debounce": "^4.0.8",
     "next": "^15.3.0",
@@ -32,12 +33,14 @@
     "react-hot-toast": "^2.5.2",
     "react-i18next": "^15.4.0",
     "react-intersection-observer": "^9.14.0",
+    "sass": "^1.101.0",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1",
     "zustand": "^5.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
+    "@types/hls.js": "^0.13.3",
     "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20",
     "@types/react": "^18",

@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import isAnimeGenre from '../types/anime/category.guard';
 import { animeAPIConstant } from '@/shared/constants/api-endpoints.constant';
 import { Button } from '@/shared/ui';
+import Link from 'next/link';
+import isAnimeGenre from '../types/anime/category.guard';
 
 const isPrimitive = (v: unknown): v is string | number | boolean =>
   typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean';
@@ -13,7 +13,7 @@ const renderValue = (val: unknown, linked?: string) => {
     return linked ? (
       <Button
         as={Link}
-        variant="link"
+        variant="default"
         key={linked}
         href={animeAPIConstant['list'] + `?${linked}=${String(val)}`}
       >
@@ -34,7 +34,7 @@ const renderValue = (val: unknown, linked?: string) => {
           {val.map((genre) => (
             <Button
               as={Link}
-              variant="link"
+              variant="default"
               key={genre.id}
               href={animeAPIConstant['list'] + `?${linked}=${genre.slug}`}
             >

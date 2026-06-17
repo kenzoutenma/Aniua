@@ -1,0 +1,85 @@
+.cllpsble {
+  color: var(--cnt-base);
+
+  background-color: var(--bg-l2);
+  border: var(--border);
+
+  width: 100%;
+  height: fit-content;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.1s ease-in-out;
+
+  &:has(input:focus-visible),
+  &:hover {
+    background-color: color-mix(in oklab, var(--bg-l2) 95%, var(--cnt-l0));
+  }
+
+  label {
+    user-select: none;
+    cursor: pointer;
+    padding: 1rem;
+    h3 {
+      margin: 0;
+    }
+
+    input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  }
+
+  .collapsible_child {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    height: fit-content;
+
+    overflow: hidden;
+    max-height: 0;
+    transition: all 0.2s ease;
+  }
+
+  .collapsible_child[aria-expanded='true'] {
+    padding: 0.5rem;
+    max-height: var(--collapsible-content-height, 9999px);
+  }
+
+  #clpse-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+
+    &:has(:checked) {
+      &::after {
+        transform: translateY(-100%) rotate(-135deg);
+      }
+    }
+
+    &::after {
+      content: '';
+
+      display: block;
+      width: 0.5rem;
+      height: 0.5rem;
+
+      transform-origin: 75% 75%;
+      inset-inline-end: 1.4rem;
+      position: absolute;
+      top: 50%;
+      pointer-events: none;
+
+      box-shadow: 2px 2px;
+
+      transform: translateY(-100%) rotate(45deg);
+      transition: all 0.1s ease-in-out;
+    }
+  }
+}

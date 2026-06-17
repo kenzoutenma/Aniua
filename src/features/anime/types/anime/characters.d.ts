@@ -1,9 +1,11 @@
 interface AnimeCharacters {
   id: number;
+  title_ua: string;
+  title_en: string;
+  title_jp: null;
+  description_ua: string;
+  description_en: string;
   poster: string;
-  name_surname_en: string;
-  name_surname_ua: string;
-  name_surname_jp: string;
-  role: 'main' | 'supporter';
-  description: string;
+  role_en: 'Main' | 'Supporting';
+  role_ua: string;
 }

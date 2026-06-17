@@ -13,18 +13,17 @@ interface IUseAnimeList {
 const useAnimeList = async (
   query: Record<string, string | string[] | undefined>,
 ): Promise<IUseAnimeList> => {
-
   const request = await getList({
     params: { page: '1', limit: '15', ...query },
     cache: 'force-cache',
     next: {
       revalidate: 86400,
-      tags: ["anime-list"]
-    }
+      tags: ['anime-list'],
+    },
   });
 
   const createPageUrl = (page: number) => {
-    const params = FI.getParams(query)
+    const params = FI.getParams(query);
     params.set('page', page.toString());
     return `?${params.toString()}`;
   };

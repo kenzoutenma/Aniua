@@ -1,24 +1,19 @@
 .checkbox {
-  padding: 8px 16px;
-  border-radius: var(--borderRad);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  border: 1px var(--front-900) solid;
-  width: fit-content;
+  padding: var(--padding);
+  background-color: var(--bg-l1);
+  border: none;
+  border-radius: var(--border-radius-input);
 }
 
 .checkbox:hover,
-.checkbox:has(.checkinput:focus-visible) {
-  background-color: var(--front-700);
+.checkbox:has(.checkinput:focus-visible),
+.checkbox:has(.checkinput:checked) {
+  color: var(--button-primary-text-color);
+  background-color: var(--cnt-l0);
   cursor: pointer;
 }
 
 .checkinput {
   position: absolute;
   opacity: 0;
-}
-
-.checkbox:has(.checkinput:checked) {
-  background-color: var(--front-700);
 }

@@ -1,6 +1,7 @@
 import FI from '@/app/api';
-import { backendAPIRoutes } from '@/shared/constants/backend-api.constant';
+
 import { sleep } from './index';
+import { searchApiRoutes } from '../constants/routes';
 
 async function getAllAnimeSlugs(): Promise<string[]> {
   const allSlugs: string[] = [];
@@ -9,7 +10,7 @@ async function getAllAnimeSlugs(): Promise<string[]> {
   let hasMore = true;
 
   while (hasMore) {
-    const request = await FI.fetch<AnimeDataListInterface>(backendAPIRoutes['filter'], {
+    const request = await FI.fetch<AnimeDataListInterface>(searchApiRoutes['filter'], {
       to: 'out',
       params: { limit: String(pageSize), page: String(page), order: 'rating' },
     });

@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './slider.module.scss';
 
 interface SliderProps {
   children: React.ReactNode;
@@ -6,8 +7,14 @@ interface SliderProps {
 
 function Slider({ children }: SliderProps) {
   return (
-    <div style={{ overflow: 'hidden', marginRight: 'calc(50% - 75vw)', width: '100%' }}>
-      <div style={{ display: 'flex', overflowX: 'scroll' }}>{children}</div>
+    <div className={styles['slider-wrap']}>
+      <div className={styles['slider-content']}>
+        {React.Children.map(children, (child, i) => (
+          <div className={styles['slider-item']} key={i}>
+            {child}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

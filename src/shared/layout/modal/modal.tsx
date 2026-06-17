@@ -4,39 +4,42 @@ import { sleep } from '@/shared/lib';
 import { Button } from '@/shared/ui';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef } from 'react';
+import styles from './modal.module.css';
+import Section from '../section/section';
 
 function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
 
   const closeModal = async () => {
-    modalRef.current?.classList.replace('opacity-100', 'opacity-0');
+    if (modalRef.current) {
+      modalRef.current.style.opacity = '0';
+    }
     await sleep(200);
     router.back();
   };
 
   useEffect(() => {
-    modalRef.current?.classList.replace('opacity-0', 'opacity-100');
+    if (modalRef.current) {
+      modalRef.current.style.opacity = '1';
+    }
   }, [modalRef]);
 
   return (
     <div
       ref={modalRef}
-      className="fixed w-full h-full top-[0] p-40 flex items-start justify-center z-[99] backdrop-blur-md bg-transparent00dp transition-opacity opacity-0"
+      className={styles.modal_wrap}
       data-dialog-backdrop="modal"
       data-dialog-backdrop-close="true"
+      style={{ opacity: 0 }}
     >
-      <Button variant="outline" className="absolute right-0 top-0 m-6" onClick={closeModal}>
+      <Button variant="outline" className={styles.close_button} onClick={closeModal}>
         <span>Close</span>
         <kbd>ESC</kbd>
       </Button>
-      <div
-        data-dialog="modal"
-        className="gap-5 flex flex-col w-96"
-        onClick={(e) => e.stopPropagation()}
-      >
+      <Section typeOfSection={'OneColSection'} data-dialog="modal">
         {children}
-      </div>
+      </Section>
     </div>
   );
 }

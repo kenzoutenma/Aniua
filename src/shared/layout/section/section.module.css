@@ -11,7 +11,7 @@
 .ThreeColsSection {
   display: flex;
   justify-content: space-evenly;
-  padding: 0 2%;
+  padding: 0 var(--section-padding-x);
 }
 
 .OneColSection {
@@ -20,7 +20,7 @@
   min-height: 50svh;
   align-items: center;
   flex-direction: column;
-  padding: 50px 10%;
+  padding: var(--section-padding-y) var(--section-padding-x);
   gap: 25px;
 }
 
@@ -30,19 +30,13 @@
   justify-content: center;
   gap: 15px;
   transition: all 0.1s ease-in;
-  padding: 3rem 6rem;
+  padding: var(--section-padding-y) var(--section-padding-x);
 }
 
 .grid {
+  gap: var(--distance);
   display: grid;
-  position: relative;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  margin-top: -1rem;
-  margin-bottom: -1rem;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1rem;
-  justify-items: center;
 }
 
 .row {
@@ -64,11 +58,13 @@
   .TwoColSection {
     display: flex;
     flex-direction: column;
+    align-items: justify;
     gap: 15px;
     padding: 10px !important;
   }
   .grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    justify-items: center;
   }
   .BannerSection {
     justify-content: space-between;
@@ -78,5 +74,6 @@
 @media (max-width: 786px) {
   .grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: center;
   }
 }
