@@ -1,11 +1,17 @@
 .anime_card_popover_container {
-  background-color: var(--bg-l1);
+  background-color: color-mix(in oklab, var(--bg-l1) 99%, transparent);
+
   display: flex;
-  padding: 1.5rem;
+  padding: 1rem;
   gap: 1.5rem;
   flex-direction: column;
-  border-radius: 12px;
+  border-radius: var(--border-radius-box);
   min-width: 350px;
+
+  * {
+    padding: 0;
+    margin: 0;
+  }
 
   .anime_card_popover_tags {
     display: flex;
