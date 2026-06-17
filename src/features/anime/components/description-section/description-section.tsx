@@ -2,13 +2,10 @@
 
 import { getTranslatedText } from '@/shared/lib';
 import { Slider, Table } from '@/shared/ui';
-import clsx from 'clsx';
 import Image from 'next/image';
 import renderValue from '../../utils/plain-data-details';
-import AddToCollectionButton from '../addToCollectionButton';
 import Card from '../anime-card/anime-card';
 import styles from './description-section.module.css';
-import Synopsis from './synopsis/synopsis';
 
 function DescriptionSection({
   data,
@@ -38,10 +35,16 @@ function DescriptionSection({
   };
 
   return (
-    <article className={clsx(styles.anime_description_section, 'four_col_section')}>
-      <div className={styles.anime_details}>
-        <Image src={data.poster} alt={data.title_ua} height={350} width={250} style={{}} />
-        <AddToCollectionButton slug={data.slug} />
+    <article className={styles.anime_desc_container}>
+      <div className={styles.anime_desc_left}>
+        <Image
+          src={data.poster}
+          alt={data.slug}
+          width={144}
+          height={144}
+          loading="eager"
+          quality={50}
+        />
         <Table>
           {Object.entries(plain).map(([key, value]) => {
             if (!value) return;
@@ -67,25 +70,22 @@ function DescriptionSection({
           })}
         </Table>
       </div>
-      <div className={styles.anime_about}>
-        <span className={styles.description_title}>
-          <h2>{data.title_ua}</h2>
-          <h2 style={{ color: 'var(--text-muted)' }}>{data.score}✨</h2>
-        </span>
-        <Synopsis description={data.description} />
+
+      <div className={styles.anime_desc_right}>
+        <h2>{data.title_ua}</h2>
+        <p className={styles.anime_desc_summary}>
+          <strong>{getTranslatedText('info.Description')}: </strong>
+          {data.description_main}
+        </p>
         {data.characters && data.characters.length > 1 ? (
-          <section>
+          <>
             <h2>{getTranslatedText('info.Characters')}</h2>
             <Slider>
               {data.characters.map((el: AnimeCharacters, index: number) => (
-                <Card
-                  key={index}
-                  image={el?.poster || '/report.gif'}
-                  title={el?.title_ua || el?.title_en || 'unknown'}
-                />
+                <Card key={index} image={el.poster} title={el.title_ua} />
               ))}
             </Slider>
-          </section>
+          </>
         ) : null}
       </div>
     </article>
