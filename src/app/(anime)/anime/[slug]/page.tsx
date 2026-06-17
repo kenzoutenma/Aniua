@@ -2,9 +2,9 @@ import DescriptionSection from '@/features/anime/components/description-section/
 import HeroBanner from '@/features/anime/components/hero/hero';
 import PlayerSection from '@/features/anime/components/player-section/player-section';
 import getAnime from '@/features/anime/service/getAnime';
-import getAnimeSchema from './schema';
 import { Metadata } from 'next';
 import GenerateMetadata from './metadata';
+import getAnimeSchema from './schema';
 
 export async function generateMetadata({
   params,
@@ -27,7 +27,16 @@ export default async function AnimePage({ params }: { params: { slug: string } }
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <HeroBanner data={anime} />
+      <HeroBanner
+        title={anime.title_ua}
+        year={anime.year}
+        description={anime.description_main}
+        genres={anime.genres}
+        trailer={anime.trailer}
+        poster={anime.poster}
+        cover={anime.cover_image_url}
+        anime={anime}
+      />
       <PlayerSection data={anime} />
       <DescriptionSection data={anime} />
     </>
