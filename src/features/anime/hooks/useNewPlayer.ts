@@ -10,8 +10,9 @@ export interface PlayerV2 {
   current_episode_title: string;
   current_episode_id: number | string;
   current_episode_url: string | null;
+  current_episode_poster?: string;
   current_studio: string;
-  studios_list: studio[];
+  studios_list: Studio[];
   is_loading: boolean;
   is_error: boolean;
 }
@@ -44,14 +45,18 @@ export const useNewPlayer = (slug: string) => {
   const fetch_episodes_list = async () => {
     if (!slug) throw new Error(`No slug: ${slug}`);
     const list = await getEpisodesListService(slug);
-    setEpisodesList(list);
+    setEpisodesList(list.episodes);
   };
 
   const handleEpisode = async (episodeID: number | string) => {
     setPlayerState((prev) => ({ ...prev, is_loading: true }));
 
     const newEpisode = await getEpisodeService(episodeID.toString());
-    console.log(newEpisode);
+
+    if (newEpisode instanceof Error) {
+      throw new Error((newEpisode as Error).message);
+    }
+
     if (!newEpisode.players) {
       setPlayerState((prev) => ({ ...prev, is_loading: false }));
       setPlayerState((prev) => ({ ...prev, is_error: true }));
@@ -59,24 +64,25 @@ export const useNewPlayer = (slug: string) => {
     }
 
     const isNewEpisodeHasArrayOfPlayers = Array.isArray(newEpisode.players);
-    const studios: studio[] = isNewEpisodeHasArrayOfPlayers
-      ? newEpisode.players.map((player: PlayersInEpisode) => player.studio)
+
+    const studios: Studio[] = isNewEpisodeHasArrayOfPlayers
+      ? newEpisode.players.map(({ id, title, poster }) => ({ id, title, poster }))
       : [];
 
     let episodeUrl: string | null = null;
 
-    console.log(episodeID, playerState.current_studio);
-
     if (Array.isArray(newEpisode.players) && newEpisode.players.length > 0) {
       const matchedPlayer = newEpisode.players.find(
-        (p) => String(p.studio.title) === String(playerState.current_studio),
+        (p) => String(p.title) === String(playerState.current_studio),
       );
 
       if (matchedPlayer) {
-        episodeUrl = matchedPlayer.videos?.[0]?.file || null;
+        episodeUrl = matchedPlayer.video?.[0]?.url || null;
       } else {
-        episodeUrl = newEpisode.players[0].videos?.[0]?.file || null;
+        episodeUrl = newEpisode.players[0].video?.[0]?.url || null;
       }
+
+      console.log(matchedPlayer);
     }
 
     setPlayerState((prevState) => ({
@@ -85,6 +91,7 @@ export const useNewPlayer = (slug: string) => {
       current_episode_id: episodeID,
       episode_title: newEpisode.title?.ua,
       studios_list: studios,
+      current_episode_poster: newEpisode.poster,
     }));
     setPlayerState((prev) => ({ ...prev, is_loading: false }));
 

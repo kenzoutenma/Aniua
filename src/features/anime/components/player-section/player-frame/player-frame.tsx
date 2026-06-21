@@ -12,11 +12,13 @@ const PlayerWrapper = ({
   studios,
   studio,
   handleStudio,
+  poster,
 }: {
   src: string;
-  studios: studio[];
+  studios: Studio[];
   studio: number | string;
   handleStudio: (index: string) => void;
+  poster?: string;
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -61,7 +63,7 @@ const PlayerWrapper = ({
           })}
         </Select>
       ) : null}
-      <video className={styles.frame} ref={videoRef} controls />
+      <video poster={poster} className={styles.frame} ref={videoRef} controls />
     </div>
   );
 };
@@ -83,6 +85,7 @@ const PlayerFrame = ({ episodesList, playerState, handleStudio }: IPlayerFrame) 
         studios={playerState.studios_list}
         studio={playerState.current_studio}
         handleStudio={handleStudio}
+        poster={playerState.current_episode_poster}
       />
     );
   return <h2>{getTranslatedText('info.EpisodesNotFound')}</h2>;

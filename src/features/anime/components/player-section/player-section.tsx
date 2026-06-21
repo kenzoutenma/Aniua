@@ -9,7 +9,7 @@ import styles from './player-section.module.scss';
 function PlayerSection({ data }: { data: AnimeDataInterface }) {
   const { playerState, episodesList, handleEpisode, handleStudio } = useNewPlayer(data.slug);
 
-  return (
+  return !playerState.is_error ? (
     <section className={clsx(styles.anime_player_section, 'four_col_section')}>
       <div>
         <PlayerFrame
@@ -28,6 +28,8 @@ function PlayerSection({ data }: { data: AnimeDataInterface }) {
         ) : null}
       </div>
     </section>
+  ) : (
+    <hr></hr>
   );
 }
 

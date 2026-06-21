@@ -1,45 +1,27 @@
 'use server';
 
-import FI from '@/app/api';
-import { animeApiRoutes } from '@/shared/constants/routes';
-import { notFound } from 'next/navigation';
+import ACClient from '@/shared/clients/aniua/aniua';
 
-async function getAnime(slug: string) {
+async function getAnime(
+  slug: string,
+): Promise<(AnimeDataInterface & { characters: AnimeCharacters[] }) | Error> {
   try {
     const [anime, character] = await Promise.all([
-      FI.fetch<AnimeDataInterface>(animeApiRoutes.animeByTitle(slug), {
-        method: 'GET',
-        to: 'out',
-        next: {
-          revalidate: 3600,
-          tags: [`anime-${slug}`],
-        },
-      }),
-      FI.fetch<{ characters: AnimeCharacters[] }>(animeApiRoutes.charsByTitle(slug), {
-        to: 'out',
-        method: 'GET',
-        next: {
-          revalidate: 3600,
-          tags: [`anime-chars-${slug}`],
-        },
-        params: {
-          page: '1',
-          limit: '10',
-        },
-      }).catch(() => ({ ok: false, data: { characters: [] } })),
+      ACClient.anime.get(slug),
+      ACClient.anime.characters(slug).catch(() => null),
     ]);
 
-    if (!anime.ok) {
-      return notFound();
+    if (anime instanceof Error) {
+      throw new Error((anime as Error).message);
     }
 
     return {
-      ...anime.data,
-      characters: character.ok ? character.data.characters.slice(0, 10) : [],
+      ...anime,
+      characters: character && !(character instanceof Error) ? character.slice(0, 10) : [],
     };
   } catch (error) {
     console.error('Error fetching anime:', error);
-    return notFound();
+    throw new Error((error as Error).message);
   }
 }
 

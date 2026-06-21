@@ -1,36 +1,22 @@
 'use server';
 
-import FI from '@/app/api';
-import { episodesApiRoutes } from '@/shared/constants/routes';
+import ACClient from '@/shared/clients/aniua/aniua';
 
-import { notFound } from 'next/navigation';
-
-async function getEpisodeService(ID: string): Promise<EpisodeListInterface> {
+async function getEpisodeService(ID: string): Promise<EpisodeListInterface | Error> {
   try {
-    const [episode, video] = await Promise.all([
-      FI.fetch<EpisodeListInterface>(episodesApiRoutes.episodeByID(ID), {
-        to: 'out',
-        method: 'GET',
-        cache: 'no-store',
-      }),
-      FI.fetch<{ videos: PlayersInEpisode[] }>(episodesApiRoutes.videoByEpisodeID(ID), {
-        to: 'out',
-        method: 'GET',
-        cache: 'no-store',
-      }).catch(() => ({ ok: false, data: { videos: [] } })),
-    ]);
+    const request = await ACClient.episode.byID(ID);
 
-    if (!episode.ok) {
-      return notFound();
+    if (request instanceof Error) {
+      throw new Error((request as Error).message);
     }
 
     return {
-      ...episode.data,
-      players: video.ok ? video.data.videos : [],
+      ...request,
+      players: request.player,
     };
   } catch (error) {
     console.error('Error fetching anime:', error);
-    return notFound();
+    throw new Error((error as Error).message);
   }
 }
 

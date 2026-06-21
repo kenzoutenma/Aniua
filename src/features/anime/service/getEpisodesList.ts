@@ -1,28 +1,19 @@
 'use server';
 
-import FI from '@/app/api';
-import { episodesApiRoutes } from '@/shared/constants/routes';
-import { notFound } from 'next/navigation';
+import ACClient from '@/shared/clients/aniua/aniua';
 
 async function getEpisodesListService(slug: string) {
   try {
-    const request = await FI.fetch<IEpisodeListResponse>(
-      episodesApiRoutes.episodeListBySlug(slug),
-      {
-        to: 'out',
-        method: 'GET',
-        cache: 'no-store',
-      },
-    );
+    const request = await ACClient.episode.list(slug);
 
-    if (!request.ok) {
-      return notFound();
+    if (request instanceof Error) {
+      throw new Error((request as Error).message);
     }
 
-    return request.data.episodes;
+    return request;
   } catch (error) {
     console.error('Error fetching anime:', error);
-    return notFound();
+    throw new Error((error as Error).message);
   }
 }
 
